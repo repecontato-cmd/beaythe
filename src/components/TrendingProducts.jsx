@@ -22,21 +22,14 @@ export default function TrendingProducts({ overrideTitle, removePadding }) {
         loadTrendings();
     }, []);
 
-    const fallbackProducts = [
-        { id: 1000, name: "Gloss Labial Shine", brand: "Beauthé", price: 49.90, image: "https://images.unsplash.com/photo-1586495777744-4413f21062fa?auto=format&fit=crop&q=80&w=600", badge: "best_seller" },
-        { id: 1001, name: "Sérum Facial Glow", brand: "Beauthé", price: 89.90, image: "https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&q=80&w=600", badge: "new" },
-        { id: 1002, name: "Aceite Corporal Silk", brand: "Beauthé", price: 65.00, image: "https://images.unsplash.com/photo-1522337660859-02fbefca4702?auto=format&fit=crop&q=80&w=600", badge: "trend" },
-        { id: 1003, name: "Contorno de Ojos Pro", brand: "Beauthé", price: 34.00, image: "https://images.unsplash.com/photo-1512496015851-a1c8d1720d29?auto=format&fit=crop&q=80&w=600", badge: null },
-    ];
-
-    const products = liveProducts.length > 0 ? liveProducts.map(p => ({
+    const products = liveProducts.map(p => ({
         id: p.id,
         name: p.name,
         brand: "Beauthé",
         price: p.manual_price || p.price,
         image: p.image_url,
         badge: "trend"
-    })) : fallbackProducts;
+    }));
 
 
     return (
