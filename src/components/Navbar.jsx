@@ -396,7 +396,7 @@ export default function Navbar({ onCartClick, onFavoritesClick, onUserClick }) {
             </AnimatePresence>
 
             {/* Breadcrumbs / Tags - Optional for navigation feel */}
-            <div className="flex md:hidden overflow-x-auto py-3 no-scrollbar gap-4 mt-2 border-t border-[#F1EBE6]/30">
+            <div className="flex md:hidden overflow-x-auto py-2 no-scrollbar gap-4 mt-1 border-t border-[#F1EBE6]/20">
                 {Object.keys(megaMenuData).map(key => (
                     <Link key={key} to={`/categoria/${key}`} className={`text-[11px] font-bold uppercase tracking-widest whitespace-nowrap transition-colors ${forceSolid ? 'text-[#8A7369]' : 'text-white/70'}`}>
                         {t(`nav.${key}`)}
