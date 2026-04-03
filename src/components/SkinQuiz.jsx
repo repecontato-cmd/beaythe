@@ -79,7 +79,7 @@ export default function SkinQuiz() {
                             <h2 className="text-4xl md:text-6xl font-normal tracking-tight mb-8 leading-tight">
                                 {quizData.title}
                             </h2>
-                            <p className="text-white/60 text-lg font-light mb-12 max-w-[500px] mx-auto leading-relaxed">
+                            <p className="text-white/90 text-base md:text-lg font-light mb-12 max-w-[500px] mx-auto leading-relaxed">
                                 {quizData.desc}
                             </p>
                             <button
