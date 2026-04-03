@@ -39,7 +39,7 @@ export default function FeaturedCarousel() {
     const prevSlide = () => setCurrent((c) => (c - 1 + slides.length) % slides.length);
 
     return (
-        <section className="w-full relative h-[450px] md:h-[600px] overflow-hidden bg-white mb-12">
+        <section className="w-full relative h-[380px] md:h-[600px] overflow-hidden bg-white mb-8 md:mb-12">
             <AnimatePresence initial={false}>
                 <motion.div
                     key={current}
@@ -57,7 +57,7 @@ export default function FeaturedCarousel() {
                     {/* Coluna Central */}
                     <div className={`w-full md:w-1/3 h-full ${slides[current].bgColor} flex flex-col items-center justify-center relative p-8`}>
                         <div className="text-center z-10 w-full flex flex-col items-center">
-                            <h1 className="text-5xl md:text-6xl lg:text-7xl font-medium mb-3 text-white tracking-tight leading-none text-center">
+                            <h1 className="text-4xl md:text-6xl lg:text-7xl font-medium mb-3 text-white tracking-tight leading-loose text-center">
                                 {t(`hero.hero_carousel.slide_${slides[current].id}.title`)}
                             </h1>
                             <p className="text-[10px] md:text-[11px] tracking-[0.35em] text-white/90 uppercase mb-10 text-center">
