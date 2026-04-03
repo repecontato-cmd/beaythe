@@ -20,7 +20,7 @@ export default function Hero() {
     };
 
     return (
-        <section className="w-full max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-16">
+        <section className="w-full max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 pt-8 md:pt-16 pb-8 md:pb-16">
             <motion.div
                 variants={containerVariants}
                 initial="hidden"
@@ -99,7 +99,7 @@ export default function Hero() {
             >
                 <div className="z-10 max-w-lg text-center md:text-left mb-8 md:mb-0">
                     <p className="text-[11px] md:text-[12px] font-bold mb-4 uppercase tracking-[0.3em] text-[#8A7369]">{t('hero.subtitle')}</p>
-                    <h1 className="text-4xl md:text-6xl lg:text-7xl font-light text-[#2C2826] leading-[1.1] tracking-tight mb-8">
+                    <h1 className="text-3xl md:text-6xl lg:text-7xl font-light text-[#2C2826] leading-[1.1] tracking-tight mb-8">
                         {t('hero.title_part1')} <br /><span className="font-bold text-[#C4A49A] uppercase">{t('hero.title_part2')}</span>
                     </h1>
                     <Link
