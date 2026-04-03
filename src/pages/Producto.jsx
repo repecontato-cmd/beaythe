@@ -65,7 +65,7 @@ export default function Producto() {
     return (
         <div className="bg-white overflow-hidden">
             {/* 1. Dynamic Hero Section */}
-            <section className="relative min-h-[90vh] flex flex-col items-center justify-center pt-32 pb-24 px-4 overflow-hidden">
+            <section className="relative min-h-[70vh] md:min-h-[90vh] flex flex-col items-center justify-center pt-24 md:pt-32 pb-16 md:pb-24 px-4 overflow-hidden">
                 <motion.div
                     animate={{
                         scale: [1, 1.1, 1],
@@ -117,14 +117,13 @@ export default function Producto() {
                             ))}
                         </div>
 
-                        <motion.p
+                        <motion.div
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ delay: 0.2 }}
                             className="text-lg text-[#8A7369] font-light leading-relaxed mb-10 max-w-md"
-                        >
-                            {product.description}
-                        </motion.p>
+                            dangerouslySetInnerHTML={{ __html: product.description }}
+                        />
 
                         <div className="flex flex-col sm:flex-row gap-4 w-full max-w-md">
                             <motion.button
@@ -425,9 +424,10 @@ export default function Producto() {
                                         {activeAccordion === key ? <Minus size={16} className="text-[#8A7369]" /> : <Plus size={16} className="text-[#8A7369]" />}
                                     </button>
                                     <motion.div animate={{ height: activeAccordion === key ? 'auto' : 0, opacity: activeAccordion === key ? 1 : 0 }} className="overflow-hidden">
-                                        <div className="pb-6 text-[14px] text-[#5C534F] font-light leading-relaxed">
-                                            {key === 'description' ? product.description : key === 'precautions' ? t('helpbot.faq.returns') : "Aqua, Niacinamide, Glycerin, Rosa Centifolia Flower Extract, Hyaluronic Acid, Phenoxyethanol, Ethylhexylglycerin."}
-                                        </div>
+                                        <div
+                                            className="pb-6 text-[14px] text-[#5C534F] font-light leading-relaxed"
+                                            dangerouslySetInnerHTML={{ __html: key === 'description' ? product.description : key === 'precautions' ? t('helpbot.faq.returns') : "Aqua, Niacinamide, Glycerin, Rosa Centifolia Flower Extract, Hyaluronic Acid, Phenoxyethanol, Ethylhexylglycerin." }}
+                                        />
                                     </motion.div>
                                 </div>
                             ))}
@@ -529,12 +529,12 @@ export default function Producto() {
             )}
 
             {/* 6. STICKY UI */}
-            <motion.div initial={{ y: 100 }} animate={{ y: 0 }} className="fixed bottom-0 left-0 right-0 z-50 p-4 bg-white/80 backdrop-blur-xl border-t border-[#F1EBE6] md:hidden flex items-center justify-between gap-4">
-                <div>
-                    <span className="text-xs font-bold text-[#8A7369] uppercase block">{product.name}</span>
-                    <span className="text-lg font-bold text-[#2C2826]">{product.price.toFixed(2)} {t('currency')}</span>
+            <motion.div initial={{ y: 100 }} animate={{ y: 0 }} className="fixed bottom-0 left-0 right-0 z-50 p-4 bg-white/90 backdrop-blur-xl border-t border-[#F1EBE6] md:hidden flex items-center justify-between gap-4 shadow-[0_-10px_30px_rgba(0,0,0,0.05)]">
+                <div className="flex-1 min-w-0">
+                    <span className="text-[10px] font-bold text-[#8A7369] uppercase block truncate">{product.name}</span>
+                    <span className="text-base font-bold text-[#2C2826]">{product.price.toFixed(2)} {t('currency')}</span>
                 </div>
-                <button onClick={() => addToCart(product)} className="px-6 py-4 rounded-xl text-white text-[11px] font-bold uppercase tracking-widest shadow-lg" style={{ backgroundColor: theme.primary }}>{t('product.add_to_cart')}</button>
+                <button onClick={() => addToCart(product)} className="px-8 py-4 rounded-xl text-white text-[11px] font-bold uppercase tracking-widest shadow-lg flex-shrink-0" style={{ backgroundColor: theme.primary }}>{t('product.add_to_cart')}</button>
             </motion.div>
 
             <TrendingProducts overrideTitle={t('product.recommended')} removePadding={false} />
