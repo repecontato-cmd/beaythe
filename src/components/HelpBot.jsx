@@ -46,7 +46,7 @@ export default function HelpBot() {
     };
 
     return (
-        <div className="fixed bottom-6 right-6 z-[100]">
+        <div className="fixed bottom-24 md:bottom-6 right-6 z-[100]">
             <AnimatePresence>
                 {isOpen && (
                     <motion.div
