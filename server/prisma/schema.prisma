@@ -1,0 +1,51 @@
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Product {
+  id          Int      @id @default(autoincrement())
+  dropea_id   String?  @unique
+  name        String
+  price       Float
+  stock       Int      @default(0)
+  description String?
+  image_url   String?
+  tags        String   @default("[]") // JSON estético array
+  upsell_kits String   @default("[]") // JSON relationships
+
+  // --- Admin V2 Extensions ---
+  manual_price Float?  // Caso nulo, usa a matemática global
+  placement    String  @default("HIDDEN") // Onde do site ele vai pintar ("HOME", "TRENDING", "HIDDEN")
+  is_active    Boolean @default(false)    // Fallback de segurança massiva
+
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model GeneratedPage {
+  id               Int      @id @default(autoincrement())
+  slug             String   @unique
+  city             String
+  pain             String
+  meta_title       String?
+  meta_description String?
+  h1_customizado   String?
+  conteudo_spin    String?
+  status_indexacao String   @default("Pending") // Pending, Generated, Published
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+
+  @@index([slug])
+}
+
+model StoreSettings {
+  id                    Int      @id @default(1)
+  profit_margin_percent Float    @default(30.0)
+  fixed_shipping_cost   Float    @default(7.00)
+  updatedAt             DateTime @updatedAt
+}

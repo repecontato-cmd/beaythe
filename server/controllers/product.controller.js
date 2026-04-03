@@ -1,0 +1,95 @@
+import prisma from '../db.js';
+import { fetchProductFromDropea, fetchDropeaCatalog as fetchCatalogService } from '../services/dropea.service.js';
+
+export const importFromDropea = async (req, res) => {
+    const { dropeaId } = req.body;
+    if (!dropeaId) return res.status(400).json({ error: 'Especifique o ID Dropea.' });
+
+    try {
+        const dropeaProduct = await fetchProductFromDropea(dropeaId);
+        if (!dropeaProduct.success) {
+            return res.status(400).json({ error: dropeaProduct.error });
+        }
+
+        const { name, stock, description, image_url } = dropeaProduct.data;
+
+        // Recupera Configurações de Precificação Globais
+        let settings = await prisma.storeSettings.findUnique({ where: { id: 1 } });
+        if (!settings) {
+            settings = { profit_margin_percent: 30.0, fixed_shipping_cost: 7.00 };
+        }
+
+        // Aplica Matemática do Motor: 
+        // Preço Venda = (Custo + Envio) * (1 + % Lucro)
+        const costPrice = parseFloat(dropeaProduct.data.price) || 0;
+        const finalPrice = parseFloat(((costPrice + settings.fixed_shipping_cost) * (1 + (settings.profit_margin_percent / 100))).toFixed(2));
+
+        // Persiste no DB Local (Fallback Manual Preservado)
+        const product = await prisma.product.upsert({
+            where: { dropea_id: dropeaId },
+            update: { price: finalPrice, stock }, // Atualiza estoque e re-precifica
+            create: {
+                dropea_id: dropeaId,
+                name,
+                price: finalPrice,
+                stock,
+                description,
+                image_url
+            }
+        });
+
+        res.json(product);
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
+};
+
+export const getProducts = async (req, res) => {
+    try {
+        const products = await prisma.product.findMany();
+        res.json(products);
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
+};
+
+export const updateProduct = async (req, res) => {
+    const { id } = req.params;
+    const data = req.body;
+
+    try {
+        const updated = await prisma.product.update({
+            where: { id: parseInt(id) },
+            data
+        });
+        res.json(updated);
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
+};
+
+export const getDropeaCatalog = async (req, res) => {
+    try {
+        const catalog = await fetchCatalogService(150); // Fetch 150 items for diverse categories
+        if (!catalog.success) return res.status(400).json({ error: catalog.error });
+
+        // Retrieve pricing settings to simulate suggested prices
+        let settings = await prisma.storeSettings.findUnique({ where: { id: 1 } });
+        if (!settings) {
+            settings = { profit_margin_percent: 30.0, fixed_shipping_cost: 7.00 };
+        }
+
+        const previewData = catalog.data.map(item => {
+            const cost = parseFloat(item.cost_price || item.pvpr) || 0;
+            const finalPrice = ((cost + settings.fixed_shipping_cost) * (1 + (settings.profit_margin_percent / 100))).toFixed(2);
+            return {
+                ...item,
+                suggested_sell_price: parseFloat(finalPrice)
+            };
+        });
+
+        res.json(previewData);
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
+};

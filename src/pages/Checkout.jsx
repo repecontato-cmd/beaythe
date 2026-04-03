@@ -1,0 +1,232 @@
+import React, { useState, useEffect } from 'react';
+import { motion } from 'framer-motion';
+import { useCart } from '../context/CartContext';
+import { useLanguage } from '../context/LanguageContext';
+import { ChevronLeft, CreditCard, ShieldCheck } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
+
+export default function Checkout() {
+    const { cartItems, getCartTotal } = useCart();
+    const { t, lang } = useLanguage();
+    const navigate = useNavigate();
+    const [selectedPayment, setSelectedPayment] = useState('card');
+    const [saveInfo, setSaveInfo] = useState(false);
+    const [formData, setFormData] = useState({
+        email: '',
+        firstName: '',
+        lastName: '',
+        address: '',
+        zip: '',
+        city: ''
+    });
+
+    // Load saved info on mount
+    useEffect(() => {
+        const saved = localStorage.getItem('beauthe_checkout_info');
+        if (saved) {
+            const parsed = JSON.parse(saved);
+            setFormData(parsed.formData || {});
+            setSelectedPayment(parsed.selectedPayment || 'card');
+            setSaveInfo(true);
+        }
+    }, []);
+
+    // Save info when fields change and saveInfo is true
+    useEffect(() => {
+        if (saveInfo) {
+            localStorage.setItem('beauthe_checkout_info', JSON.stringify({ formData, selectedPayment }));
+        } else {
+            localStorage.removeItem('beauthe_checkout_info');
+        }
+    }, [formData, selectedPayment, saveInfo]);
+
+    const handleInputChange = (field, value) => {
+        setFormData(prev => ({ ...prev, [field]: value }));
+    };
+
+    const paymentMethods = [
+        { id: 'card', name: t('checkout.payments.card'), icon: <CreditCard size={20} /> },
+        { id: 'paypal', name: t('checkout.payments.paypal'), icon: <span className="font-bold text-blue-800">PayPal</span> },
+        { id: 'klarna', name: t('checkout.payments.klarna'), icon: <span className="font-bold text-pink-500">Klarna.</span> },
+        ...(lang === 'es' ? [{ id: 'bizum', name: t('checkout.payments.bizum'), icon: <div className="w-5 h-5 rounded-full bg-[#00AAFF] flex items-center justify-center text-[8px] text-white font-bold">B</div> }] : []),
+        ...(lang === 'pt' ? [
+            { id: 'mbway', name: t('checkout.payments.mbway'), icon: <div className="w-5 h-5 rounded-full bg-red-600 flex items-center justify-center text-[8px] text-white font-bold">MB</div> },
+            { id: 'multibanco', name: t('checkout.payments.multibanco'), icon: <div className="w-5 h-5 bg-blue-900 flex items-center justify-center text-[8px] text-white font-bold px-1">MB</div> }
+        ] : [])
+    ];
+
+    if (cartItems.length === 0) {
+        return (
+            <div className="min-h-[60vh] flex flex-col items-center justify-center px-4">
+                <h2 className="text-3xl font-light text-[#2C2826] mb-6">{t('cart.empty')}</h2>
+                <button onClick={() => navigate('/')} className="px-8 py-3 bg-[#2C2826] text-white rounded-xl text-[11px] font-bold uppercase tracking-widest hover:bg-[#C4A49A] transition-colors shadow-lg">
+                    {t('nav.regalos')}
+                </button>
+            </div>
+        );
+    }
+
+    return (
+        <div className="max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-20">
+            <button
+                onClick={() => navigate(-1)}
+                className="flex items-center gap-2 text-[11px] font-bold uppercase tracking-widest text-[#8A7369] hover:text-[#2C2826] transition-colors mb-10 group"
+            >
+                <ChevronLeft size={16} className="group-hover:-translate-x-1 transition-transform" />
+                {t('footer.back_to_top')}
+            </button>
+
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-16">
+                {/* Left Column: Forms */}
+                <div className="lg:col-span-7 space-y-12">
+                    <section>
+                        <h2 className="text-3xl font-bold text-[#2C2826] tracking-tight mb-8">
+                            {t('checkout.shipping_address')}
+                        </h2>
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div className="md:col-span-2">
+                                <label className="block text-[11px] font-bold uppercase tracking-widest text-[#8A7369] mb-2">{t('checkout.fields.email')}</label>
+                                <input
+                                    type="email"
+                                    value={formData.email}
+                                    onChange={(e) => handleInputChange('email', e.target.value)}
+                                    className="w-full bg-white border border-[#F1EBE6] rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#C4A49A] transition-colors"
+                                    placeholder="email@example.com"
+                                />
+                            </div>
+                            <div>
+                                <label className="block text-[11px] font-bold uppercase tracking-widest text-[#8A7369] mb-2">{t('checkout.fields.first_name')}</label>
+                                <input
+                                    type="text"
+                                    value={formData.firstName}
+                                    onChange={(e) => handleInputChange('firstName', e.target.value)}
+                                    className="w-full bg-white border border-[#F1EBE6] rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#C4A49A] transition-colors"
+                                />
+                            </div>
+                            <div>
+                                <label className="block text-[11px] font-bold uppercase tracking-widest text-[#8A7369] mb-2">{t('checkout.fields.last_name')}</label>
+                                <input
+                                    type="text"
+                                    value={formData.lastName}
+                                    onChange={(e) => handleInputChange('lastName', e.target.value)}
+                                    className="w-full bg-white border border-[#F1EBE6] rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#C4A49A] transition-colors"
+                                />
+                            </div>
+                            <div className="md:col-span-2">
+                                <label className="block text-[11px] font-bold uppercase tracking-widest text-[#8A7369] mb-2">{t('checkout.fields.address')}</label>
+                                <input
+                                    type="text"
+                                    value={formData.address}
+                                    onChange={(e) => handleInputChange('address', e.target.value)}
+                                    className="w-full bg-white border border-[#F1EBE6] rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#C4A49A] transition-colors"
+                                />
+                            </div>
+                            <div>
+                                <label className="block text-[11px] font-bold uppercase tracking-widest text-[#8A7369] mb-2">{t('checkout.fields.zip')}</label>
+                                <input
+                                    type="text"
+                                    value={formData.zip}
+                                    onChange={(e) => handleInputChange('zip', e.target.value)}
+                                    className="w-full bg-white border border-[#F1EBE6] rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#C4A49A] transition-colors"
+                                />
+                            </div>
+                            <div>
+                                <label className="block text-[11px] font-bold uppercase tracking-widest text-[#8A7369] mb-2">{t('checkout.fields.city')}</label>
+                                <input
+                                    type="text"
+                                    value={formData.city}
+                                    onChange={(e) => handleInputChange('city', e.target.value)}
+                                    className="w-full bg-white border border-[#F1EBE6] rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#C4A49A] transition-colors"
+                                />
+                            </div>
+                        </div>
+
+                        <div className="mt-8 flex items-center gap-3">
+                            <button
+                                onClick={() => setSaveInfo(!saveInfo)}
+                                className={`w-12 h-6 rounded-full transition-colors relative ${saveInfo ? 'bg-[#C4A49A]' : 'bg-[#EBE1DA]'}`}
+                            >
+                                <div className={`absolute top-1 left-1 w-4 h-4 bg-white rounded-full transition-transform ${saveInfo ? 'translate-x-6' : ''}`} />
+                            </button>
+                            <span className="text-[13px] text-[#5C534F] font-medium">{t('checkout.save_info')}</span>
+                        </div>
+                    </section>
+
+                    <section>
+                        <h2 className="text-3xl font-bold text-[#2C2826] tracking-tight mb-8">
+                            {t('checkout.payment_method')}
+                        </h2>
+                        <div className="space-y-4">
+                            {paymentMethods.map((method) => (
+                                <div
+                                    key={method.id}
+                                    onClick={() => setSelectedPayment(method.id)}
+                                    className={`flex items-center justify-between p-5 rounded-2xl border-2 cursor-pointer transition-all duration-300
+                                        ${selectedPayment === method.id ? 'border-[#C4A49A] bg-[#FAF7F5]' : 'border-[#F1EBE6] bg-white border-dashed hover:border-[#C4A49A]'}
+                                    `}
+                                >
+                                    <div className="flex items-center gap-4">
+                                        <div className={`w-5 h-5 rounded-full border flex items-center justify-center ${selectedPayment === method.id ? 'border-[#C4A49A]' : 'border-[#D1C8C4]'}`}>
+                                            {selectedPayment === method.id && <div className="w-2.5 h-2.5 rounded-full bg-[#C4A49A]" />}
+                                        </div>
+                                        <span className="text-[14px] font-bold text-[#2C2826]">{method.name}</span>
+                                    </div>
+                                    <div className="opacity-80">
+                                        {method.icon}
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    </section>
+                </div>
+
+                {/* Right Column: Order Summary */}
+                <div className="lg:col-span-5">
+                    <div className="bg-white rounded-[32px] border border-[#F1EBE6] p-8 md:p-10 sticky top-[160px] shadow-sm">
+                        <h3 className="text-xl font-bold text-[#2C2826] mb-8 pb-4 border-b border-[#F1EBE6]">
+                            {t('checkout.order_summary')}
+                        </h3>
+
+                        <div className="space-y-6 mb-10 max-h-[300px] overflow-y-auto pr-2 custom-scrollbar">
+                            {cartItems.map((item) => (
+                                <div key={item.id} className="flex gap-4">
+                                    <div className="w-20 h-20 rounded-xl bg-[#FCFAF8] border border-[#F1EBE6] p-2 shrink-0">
+                                        <img src={item.image} alt={item.name} className="w-full h-full object-contain mix-blend-multiply" />
+                                    </div>
+                                    <div className="flex flex-col justify-center">
+                                        <h4 className="text-[13px] font-bold text-[#2C2826] leading-tight mb-1 uppercase tracking-tight">{item.name}</h4>
+                                        <p className="text-[11px] text-[#8A7369] uppercase font-bold tracking-widest">{item.quantity} x {item.price} €</p>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+
+                        <div className="space-y-4 mb-10 pt-6 border-t border-[#F1EBE6]">
+                            <div className="flex justify-between text-sm text-[#8A7369]">
+                                <span>{t('cart.subtotal')}</span>
+                                <span>{getCartTotal()} €</span>
+                            </div>
+                            <div className="flex justify-between text-sm text-[#8A7369]">
+                                <span>{t('cart.shipping')}</span>
+                                <span className="text-[#359C5F] font-bold uppercase tracking-widest text-[10px]">{t('checkout.free_shipping')}</span>
+                            </div>
+                            <div className="flex justify-between text-xl font-bold text-[#2C2826] pt-4 border-t border-[#F1EBE6]">
+                                <span>{t('cart.total')}</span>
+                                <span>{getCartTotal()} €</span>
+                            </div>
+                        </div>
+
+                        <button className="w-full bg-[#2C2826] text-white rounded-2xl py-5 text-[13px] font-bold uppercase tracking-widest hover:bg-[#C4A49A] transition-all shadow-2xl flex items-center justify-center gap-3">
+                            <ShieldCheck size={18} />
+                            {t('checkout.place_order')}
+                        </button>
+
+                        <p className="text-center text-[10px] text-[#A69B97] mt-6 leading-relaxed opacity-80 uppercase tracking-widest font-bold">
+                            {t('checkout.secure')} <br /> {t('checkout.returns_guarantee')}
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
+}
