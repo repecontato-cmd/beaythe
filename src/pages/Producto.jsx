@@ -29,36 +29,24 @@ export default function Producto() {
         load();
     }, [id]);
 
-    const fallbackProduct = {
-        id: 99,
-        name: "LIP JUICE MAXI GLOSS",
-        brand: "Beauthé",
-        price: 24.50,
-        rating: 4.8,
-        reviews: 24,
-        description: t('product.collection_desc'),
-        images: [
-            "https://images.unsplash.com/photo-1586495777744-4413f21062fa?auto=format&fit=crop&q=80&w=800",
-            "https://images.unsplash.com/photo-1625093742435-6fa192b6fb10?auto=format&fit=crop&q=80&w=800"
-        ],
-        colors: [
-            { name: "Pitaya", hex: "#E85D75" },
-            { name: "Banana", hex: "#F4D35E" },
-            { name: "Guava", hex: "#FF8C61" },
-            { name: "Lychee", hex: "#F9CEDF" }
-        ]
-    };
-
     const product = liveProduct ? {
         ...liveProduct,
         images: [liveProduct.image_url, ...(liveProduct.secondary_images ? JSON.parse(liveProduct.secondary_images) : [])]
-    } : fallbackProduct;
+    } : null;
 
-    const theme = PRODUCT_LANDING_DATA[product.id] || PRODUCT_LANDING_DATA[99];
+    const theme = (product && PRODUCT_LANDING_DATA[product.id]) || PRODUCT_LANDING_DATA[99];
 
     if (loading) return (
         <div className="min-h-screen flex items-center justify-center bg-[#FCFAF8]">
             <div className="w-12 h-12 border-4 border-[#F1EBE6] border-t-[#C4A49A] rounded-full animate-spin"></div>
+        </div>
+    );
+
+    if (!product) return (
+        <div className="min-h-screen flex flex-col items-center justify-center bg-[#FCFAF8] gap-6 text-center px-4">
+            <h1 className="text-3xl font-light text-[#2C2826]">Produto não encontrado</h1>
+            <p className="text-[#8A7369]">Este item pode ter sido removido ou o link está incorreto.</p>
+            <Link to="/" className="bg-[#2C2826] text-white px-8 py-4 rounded-xl text-[12px] font-bold uppercase tracking-widest">Voltar para a Home</Link>
         </div>
     );
 
