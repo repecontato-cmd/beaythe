@@ -145,12 +145,28 @@ export default function Categoria() {
             tagline: t('categories.maquillaje.tagline')
         },
         cabello: {
-            img: "https://images.unsplash.com/photo-1522337660859-02fbefca4702?auto=format&fit=crop&q=80&w=2000",
+            img: "/assets/images/hair_category_hero.png",
             tagline: t('categories.cabello.tagline')
         },
         tendencias: {
-            img: "https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&q=80&w=2000",
+            img: "/assets/images/trending_category_hero.png",
             tagline: t('categories.tendencias.tagline')
+        },
+        cuerpo: {
+            img: "https://images.unsplash.com/photo-1522337660859-02fbefca4702?auto=format&fit=crop&q=80&w=2000",
+            tagline: t('categories.cuerpo.tagline')
+        },
+        solares: {
+            img: "https://images.unsplash.com/photo-1552046122-03184de85e08?auto=format&fit=crop&q=80&w=2000",
+            tagline: t('categories.solares.tagline')
+        },
+        bienestar: {
+            img: "https://images.unsplash.com/photo-1540555700478-4be289aef79b?auto=format&fit=crop&q=80&w=2000",
+            tagline: t('categories.bienestar.tagline')
+        },
+        hombre: {
+            img: "https://images.unsplash.com/photo-1616117403483-36e2f1837ac6?auto=format&fit=crop&q=80&w=2000",
+            tagline: t('categories.hombre.tagline')
         },
         default: {
             img: "https://images.unsplash.com/photo-1552046122-03184de85e08?auto=format&fit=crop&w=2000",
