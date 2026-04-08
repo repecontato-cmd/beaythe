@@ -5,29 +5,17 @@ import { Heart, ShoppingBag, ChevronDown, Search, Plus } from 'lucide-react';
 import { useCart } from '../context/CartContext';
 import { useLanguage } from '../context/LanguageContext';
 import { useFavorites } from '../context/FavoritesContext';
-
-const mockCategoryProducts = [
-    { id: 1, name: "Sérum Glow Radiante", brand: "Beauthé", price: 49.90, oldPrice: 60.00, discount: "-15%", image: "https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&w=600&q=80", colors: 1, badge: "best_seller", priceRange: "25€ - 50€", skinTone: "Medio", color: "Rosado", type: "serums" },
-    { id: 2, name: "Lip Juice Morango", brand: "Beauthé", price: 19.90, oldPrice: null, discount: null, image: "https://images.unsplash.com/photo-1586495777744-4413f21062fa?auto=format&fit=crop&w=600&q=80", colors: 5, badge: "new", priceRange: "0 - 25€", skinTone: "Claro", color: "Rojo", type: "labios" },
-    { id: 3, name: "Aceite Corporal Glow", brand: "Beauthé", price: 28.50, oldPrice: 35.00, discount: "-18%", image: "https://images.unsplash.com/photo-1522337660859-02fbefca4702?auto=format&fit=crop&w=600&q=80", colors: 1, badge: null, priceRange: "25€ - 50€", skinTone: "Bronceado", color: "Tierra", type: "hidratacion" },
-    { id: 4, name: "Mascarilla Revitalizante", brand: "Beauthé", price: 32.00, oldPrice: null, discount: null, image: "https://images.unsplash.com/photo-1556228578-0d85b1a4d571?auto=format&fit=crop&w=600&q=80", colors: 1, badge: "trend", priceRange: "25€ - 50€", skinTone: "Oscuro", color: "Nude", type: "mascarillas" },
-    { id: 5, name: "Gloss Extremo Shine", brand: "Beauthé", price: 15.00, oldPrice: null, discount: null, image: "https://images.unsplash.com/photo-1596462502278-27bfdc403348?auto=format&fit=crop&w=600&q=80", colors: 3, badge: null, priceRange: "0 - 25€", skinTone: "Medio", color: "Rosado", type: "labios" },
-    { id: 6, name: "Sérum Noche Reparador", brand: "Beauthé", price: 89.90, oldPrice: 110.00, discount: "-20%", image: "https://images.unsplash.com/photo-1615397323886-0bf17b0ddec2?auto=format&fit=crop&w=600&q=80", colors: 1, badge: "luxury", priceRange: "75€+", skinTone: "Claro", color: "Nude", type: "serums" },
-    { id: 7, name: "Crema Hidratante Pro", brand: "Beauthé", price: 42.00, oldPrice: null, discount: null, image: "https://images.unsplash.com/photo-1596462502278-27bfdc403348?auto=format&fit=crop&w=600&q=80", colors: 1, badge: "expert", priceRange: "25€ - 50€", skinTone: "Medio", color: "Nude", type: "cremas" },
-    { id: 8, name: "Agua Micelar Calmante", brand: "Beauthé", price: 19.90, oldPrice: 25.00, discount: "-20%", image: "https://images.unsplash.com/photo-1556228578-0d85b1a4d571?auto=format&fit=crop&w=600&q=80", colors: 1, badge: null, priceRange: "0 - 25€", skinTone: "Claro", color: "Nude", type: "limpiadores" },
-    { id: 9, name: "Protector Solar SPF50", brand: "Beauthé", price: 34.00, oldPrice: null, discount: null, image: "https://images.unsplash.com/photo-1552046122-03184de85e08?auto=format&fit=crop&w=600&q=80", colors: 1, badge: "summer", priceRange: "25€ - 50€", skinTone: "Medio", color: "Invisible", type: "solares" },
-    { id: 10, name: "Tónico Refrescante", brand: "Beauthé", price: 24.50, oldPrice: 30.00, discount: "-18%", image: "https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&w=600&q=80", colors: 1, badge: null, priceRange: "0 - 25€", skinTone: "Medio", color: "Rosado", type: "tonicos" },
-    { id: 11, name: "Exfoliante de Bambú", brand: "Beauthé", price: 29.00, oldPrice: null, discount: null, image: "https://images.unsplash.com/photo-1527799822367-3de88bc0c4a3?auto=format&fit=crop&w=600&q=80", colors: 1, badge: "new", priceRange: "25€ - 50€", skinTone: "Bronceado", color: "Tierra", type: "cuidados" },
-    { id: 12, name: "Bálsamo Labial Coco", brand: "Beauthé", price: 12.90, oldPrice: null, discount: null, image: "https://images.unsplash.com/photo-1586495777744-4413f21062fa?auto=format&fit=crop&w=600&q=80", colors: 2, badge: null, priceRange: "0 - 25€", skinTone: "Claro", color: "Blanco", type: "labios" }
-];
+import { getProducts } from '../admin/services/db';
 
 export default function Categoria() {
     const { slug: rawSlug } = useParams();
     const slug = rawSlug?.toLowerCase();
     const { addToCart } = useCart();
     const { t } = useLanguage();
-    const { toggleFavorite, isFavorite, openFavorites } = useFavorites();
+    const { toggleFavorite, isFavorite } = useFavorites();
 
+    const [allProducts, setAllProducts] = useState([]);
+    const [loading, setLoading] = useState(true);
     const [searchTerm, setSearchTerm] = useState('');
     const [visibleCount, setVisibleCount] = useState(8);
     const [activeFilter, setActiveFilter] = useState(null);
@@ -41,7 +29,7 @@ export default function Categoria() {
 
     const filterOptions = {
         price: ["0 - 25€", "25€ - 50€", "50€ - 75€", "75€+"],
-        skin_tone: [t('history.purity'), "Medio", "Bronceado", "Oscuro"], // Using purity as a placeholder for Claro just to show t() usage or similar
+        skin_tone: [t('history.purity'), "Medio", "Bronceado", "Oscuro"],
         color_name: ["Nude", "Rosado", "Rojo", "Tierra"],
         product_type: ["serums", "cremas", "limpiadores", "solares", "labios", "hidratacion"]
     };
@@ -60,6 +48,21 @@ export default function Categoria() {
     ];
 
     useEffect(() => {
+        const loadProducts = async () => {
+            setLoading(true);
+            try {
+                const data = await getProducts();
+                setAllProducts(data.filter(p => p.is_active));
+            } catch (error) {
+                console.error("Error loading products:", error);
+            } finally {
+                setLoading(false);
+            }
+        };
+        loadProducts();
+    }, []);
+
+    useEffect(() => {
         window.scrollTo(0, 0);
         setVisibleCount(8);
         setSelectedFilters({ price: null, skin_tone: null, color_name: null, product_type: null });
@@ -67,64 +70,57 @@ export default function Categoria() {
     }, [slug]);
 
     const filteredAndSortedProducts = useMemo(() => {
-        let result = [...mockCategoryProducts];
+        // First filter by Category/Slug
+        let result = [];
+        const normalizedSlug = slug === 'rosto' ? 'rostro' : (slug === 'maquilhagem' || slug === 'maquillagem' ? 'maquillaje' : slug);
+
+        if (normalizedSlug === 'tendencias') {
+            result = allProducts.filter(p => p.placement === 'TRENDING');
+        } else if (normalizedSlug === 'todos' || !normalizedSlug) {
+            result = [...allProducts];
+        } else {
+            // Flexible matching for categories: check name, description, or tags
+            result = allProducts.filter(p => {
+                const content = (p.name + " " + (p.description || "")).toLowerCase();
+                const terms = {
+                    rostro: ['rostro', 'rosto', 'facial', 'face', 'piel', 'pele'],
+                    maquillaje: ['maquillaje', 'maquilhagem', 'makeup', 'labios', 'ojos', 'olhos'],
+                    cuerpo: ['cuerpo', 'corpo', 'baño', 'banho', 'hidratacion', 'body'],
+                    cabello: ['cabello', 'cabelo', 'hair', 'capilar'],
+                    solares: ['solar', 'proteccion', 'spf', 'sun'],
+                    bienestar: ['bienestar', 'bem-estar', 'relax', 'zen'],
+                    hombre: ['hombre', 'homem', 'men', 'masculino']
+                };
+                const searchTerms = terms[normalizedSlug] || [normalizedSlug];
+                return searchTerms.some(term => content.includes(term));
+            });
+        }
 
         // Search filter
         if (searchTerm) {
             result = result.filter(p => p.name.toLowerCase().includes(searchTerm.toLowerCase()));
         }
 
-        // Dropdown filters
-        if (selectedFilters.price) result = result.filter(p => p.priceRange === selectedFilters.price);
-        if (selectedFilters.skin_tone) result = result.filter(p => p.skinTone === selectedFilters.skin_tone);
-        if (selectedFilters.color_name) result = result.filter(p => p.color === selectedFilters.color_name);
-        if (selectedFilters.product_type) result = result.filter(p => p.type === selectedFilters.product_type);
+        // Dropdown filters (simplified mapping for real data)
+        if (selectedFilters.price) {
+            result = result.filter(p => {
+                const price = p.manual_price || p.price;
+                if (selectedFilters.price === "0 - 25€") return price <= 25;
+                if (selectedFilters.price === "25€ - 50€") return price > 25 && price <= 50;
+                if (selectedFilters.price === "50€ - 75€") return price > 50 && price <= 75;
+                if (selectedFilters.price === "75€+") return price > 75;
+                return true;
+            });
+        }
 
         // Sort
-        if (sortOption === "menor_preco") result.sort((a, b) => a.price - b.price);
-        else if (sortOption === "maior_preco") result.sort((a, b) => b.price - a.price);
+        if (sortOption === "menor_preco") result.sort((a, b) => (a.manual_price || a.price) - (b.manual_price || b.price));
+        else if (sortOption === "maior_preco") result.sort((a, b) => (b.manual_price || b.price) - (a.manual_price || a.price));
         else if (sortOption === "a_z") result.sort((a, b) => a.name.localeCompare(b.name));
         else if (sortOption === "z_a") result.sort((a, b) => b.name.localeCompare(a.name));
-        else if (sortOption === "mais_vendidos") {
-            result.sort((a, b) => {
-                const aIsBest = a.badge === "best_seller";
-                const bIsBest = b.badge === "best_seller";
-                if (aIsBest && !bIsBest) return -1;
-                if (!aIsBest && bIsBest) return 1;
-                return 0;
-            });
-        }
-        else if (sortOption === "em_tendencia") {
-            result.sort((a, b) => {
-                const aIsTrend = a.badge === "trend";
-                const bIsTrend = b.badge === "trend";
-                if (aIsTrend && !bIsTrend) return -1;
-                if (!aIsTrend && bIsTrend) return 1;
-                return 0;
-            });
-        }
-        else if (sortOption === "melhor_avaliados") {
-            result.sort((a, b) => b.rating - a.rating);
-        }
-        else if (sortOption === "novidades") {
-            result.sort((a, b) => {
-                const aIsNew = a.badge === "new";
-                const bIsNew = b.badge === "new";
-                if (aIsNew && !bIsNew) return -1;
-                if (!aIsNew && bIsNew) return 1;
-                return 0;
-            });
-        }
-        else if (sortOption === "maior_desconto") {
-            result.sort((a, b) => {
-                const aDiscount = a.discount ? parseInt(a.discount.replace(/[^0-9]/g, '')) : 0;
-                const bDiscount = b.discount ? parseInt(b.discount.replace(/[^0-9]/g, '')) : 0;
-                return bDiscount - aDiscount;
-            });
-        }
 
         return result;
-    }, [searchTerm, selectedFilters, sortOption]);
+    }, [allProducts, slug, searchTerm, selectedFilters, sortOption]);
 
     const visibleProducts = filteredAndSortedProducts.slice(0, visibleCount);
 
@@ -135,14 +131,40 @@ export default function Categoria() {
         }));
     };
 
-    const normalizedSlug = slug === 'rosto' ? 'rostro' : (slug === 'maquillagem' ? 'maquillaje' : slug);
+    const normalizedSlugForTitle = slug === 'rosto' ? 'rostro' : (slug === 'maquilhagem' || slug === 'maquillagem' ? 'maquillaje' : slug);
     const title = slug ? slug.charAt(0).toUpperCase() + slug.slice(1).replace(/-/g, ' ') : t('categories.collection');
+
+    // Category Visuals Mapping
+    const categoryVisuals = {
+        rostro: {
+            img: "https://images.unsplash.com/photo-1596462502278-27bfdc403348?auto=format&fit=crop&q=80&w=2000",
+            tagline: t('categories.rostro.tagline')
+        },
+        maquillaje: {
+            img: "https://images.unsplash.com/photo-1512496015851-a90fb38ba796?auto=format&fit=crop&q=80&w=2000",
+            tagline: t('categories.maquillaje.tagline')
+        },
+        cabello: {
+            img: "https://images.unsplash.com/photo-1522337660859-02fbefca4702?auto=format&fit=crop&q=80&w=2000",
+            tagline: t('categories.cabello.tagline')
+        },
+        tendencias: {
+            img: "https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&q=80&w=2000",
+            tagline: t('categories.tendencias.tagline')
+        },
+        default: {
+            img: "https://images.unsplash.com/photo-1552046122-03184de85e08?auto=format&fit=crop&w=2000",
+            tagline: ""
+        }
+    };
+
+    const currentVisual = categoryVisuals[normalizedSlugForTitle] || categoryVisuals.default;
 
     return (
         <div className="w-full bg-[#FCFAF8] pb-24">
             <section className="relative w-full h-[60vh] md:h-[75vh] flex flex-col items-center justify-center text-center px-4 overflow-hidden bg-[#2C2826] mb-12">
                 <img
-                    src={normalizedSlug === 'rostro' ? "https://images.unsplash.com/photo-1596462502278-27bfdc403348?auto=format&fit=crop&q=80&w=2000" : (normalizedSlug === 'cabello' ? "https://images.unsplash.com/photo-1522337660859-02fbefca4702?auto=format&fit=crop&w=2000" : "https://images.unsplash.com/photo-1552046122-03184de85e08?auto=format&fit=crop&w=2000")}
+                    src={currentVisual.img}
                     alt={title}
                     className="absolute inset-0 w-full h-full object-cover opacity-60 transition-scale duration-10000 hover:scale-105"
                 />
@@ -150,7 +172,7 @@ export default function Categoria() {
 
                 <div className="relative z-10 text-white max-w-4xl pt-10 px-6">
                     <p className="text-[10px] md:text-[11px] font-bold tracking-[0.35em] uppercase mb-5 opacity-95 text-[#EBE1DA]">
-                        {normalizedSlug === 'rostro' ? t('categories.rostro.tagline') : (normalizedSlug === 'cabello' ? t('categories.cabello.tagline') : (normalizedSlug === 'solares' ? t('categories.solares.tagline') : ""))}
+                        {currentVisual.tagline}
                     </p>
                     <motion.h1
                         initial={{ opacity: 0, y: 20 }}
@@ -158,10 +180,10 @@ export default function Categoria() {
                         transition={{ duration: 1, ease: "easeOut" }}
                         className="text-6xl md:text-8xl lg:text-9xl font-normal mb-8 tracking-tighter drop-shadow-2xl uppercase"
                     >
-                        {t(`categories.${normalizedSlug}.title`) || title}
+                        {t(`categories.${normalizedSlugForTitle}.title`) || title}
                     </motion.h1>
                     <p className="text-[15px] md:text-lg font-light tracking-wide opacity-90 text-[#F4EFEA] max-w-2xl mx-auto leading-relaxed">
-                        {t(`categories.${normalizedSlug}.desc`)}
+                        {t(`categories.${normalizedSlugForTitle}.desc`)}
                     </p>
                 </div>
             </section>
