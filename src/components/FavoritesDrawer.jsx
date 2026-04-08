@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useNavigate } from 'react-router-dom';
 import { X, Heart, ShoppingBag, Trash2 } from 'lucide-react';
 import { useFavorites } from '../context/FavoritesContext';
 import { useCart } from '../context/CartContext';
@@ -9,6 +10,7 @@ export default function FavoritesDrawer({ isOpen, onClose }) {
     const { favorites, toggleFavorite, clearFavorites } = useFavorites();
     const { addToCart } = useCart();
     const { t } = useLanguage();
+    const navigate = useNavigate();
 
     return (
         <AnimatePresence>
@@ -59,7 +61,10 @@ export default function FavoritesDrawer({ isOpen, onClose }) {
                                         {t('favorites.empty_desc')}
                                     </p>
                                     <button
-                                        onClick={onClose}
+                                        onClick={() => {
+                                            navigate('/');
+                                            onClose();
+                                        }}
                                         className="px-8 py-3.5 border border-[#2C2826] rounded-xl text-[#2C2826] text-[11px] font-bold tracking-[0.15em] uppercase"
                                     >
                                         {t('favorites.explore')}
