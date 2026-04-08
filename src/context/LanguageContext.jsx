@@ -187,6 +187,21 @@ const translationsData = {
                 desc: "Cuidados especiales con la más alta calidad para revelar toda la belleza de su piel.",
                 tagline: "Ritual de luminosidad"
             },
+            maquillaje: {
+                title: "Maquillaje",
+                desc: "Realza tu belleza natural con productos de larga duración y texturas sensoriales.",
+                tagline: "Belleza Consciente"
+            },
+            cuerpo: {
+                title: "Cuerpo y Baño",
+                desc: "Mima tu cuerpo con rituales de hidratación profunda y fragancias envolventes.",
+                tagline: "Cuidado Corporal"
+            },
+            bienestar: {
+                title: "Bienestar",
+                desc: "Equilibrio y armonía para tu mente y cuerpo a través de la cosmética holística.",
+                tagline: "Equilibrio Vital"
+            },
             cabello: {
                 title: "Cabello",
                 desc: "Tratamientos premium para un cabello fuerte, brillante y saludable.",
@@ -196,6 +211,11 @@ const translationsData = {
                 title: "Solares",
                 desc: "Protección avanzada para mantener su piel radiante y joven bajo el sol.",
                 tagline: "Protección Vital"
+            },
+            hombre: {
+                title: "Hombre",
+                desc: "Cuidados específicos diseñados para la piel y las necesidades del hombre moderno.",
+                tagline: "Cuidado Masculino"
             },
             collection: "Colección"
         },
@@ -702,6 +722,21 @@ const translationsData = {
                 desc: "Cuidados especiais com a mais alta qualidade para revelar toda a beleza da sua pele.",
                 tagline: "Ritual de luminosidade"
             },
+            maquillaje: {
+                title: "Maquilhagem",
+                desc: "Realce a sua beleza natural com produtos de longa duração e texturas sensoriais.",
+                tagline: "Beleza Consciente"
+            },
+            cuerpo: {
+                title: "Corpo e Banho",
+                desc: "Mime o seu corpo com rituais de hidratação profunda e fragrâncias envolventes.",
+                tagline: "Cuidado Corporal"
+            },
+            bienestar: {
+                title: "Bem-estar",
+                desc: "Equilíbrio e harmonia para a sua mente e corpo através da cosmética holística.",
+                tagline: "Equilíbrio Vital"
+            },
             cabello: {
                 title: "Cabelo",
                 desc: "Tratamentos capilares formulados para nutrir, reparar e proteger os seus fios.",
@@ -711,6 +746,11 @@ const translationsData = {
                 title: "Solares",
                 desc: "Proteção avançada contra os raios UV para uma pele saudável durante todo o ano.",
                 tagline: "Proteção Vital"
+            },
+            hombre: {
+                title: "Homem",
+                desc: "Cuidados específicos concebidos para a pele e as necessidades do homem moderno.",
+                tagline: "Cuidado Masculino"
             }
         },
         filters: {
