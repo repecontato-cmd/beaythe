@@ -212,6 +212,11 @@ const translationsData = {
                 desc: "Protección avanzada para mantener su piel radiante y joven bajo el sol.",
                 tagline: "Protección Vital"
             },
+            tendencias: {
+                title: "Tendencias de Temporada",
+                desc: "Descubre los productos más deseados y las últimas innovaciones en belleza.",
+                tagline: "Lo más deseado"
+            },
             hombre: {
                 title: "Hombre",
                 desc: "Cuidados específicos diseñados para la piel y las necesidades del hombre moderno.",
@@ -746,6 +751,11 @@ const translationsData = {
                 title: "Solares",
                 desc: "Proteção avançada contra os raios UV para uma pele saudável durante todo o ano.",
                 tagline: "Proteção Vital"
+            },
+            tendencias: {
+                title: "Tendências de Temporada",
+                desc: "Descubra os produtos mais desejados e as últimas inovações em beleza.",
+                tagline: "O mais desejado"
             },
             hombre: {
                 title: "Homem",
