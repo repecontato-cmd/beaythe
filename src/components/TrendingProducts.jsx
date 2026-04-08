@@ -39,7 +39,7 @@ export default function TrendingProducts({ overrideTitle, removePadding }) {
                     <span className="text-[11px] font-bold tracking-[0.3em] text-[#C4A49A] uppercase">{t('trending.tag')}</span>
                     <h2 className="text-4xl md:text-5xl font-normal text-[#2C2826] tracking-tight">{overrideTitle || t('trending.title')}</h2>
                 </div>
-                <Link to="/categoria/todos" className="text-[12px] font-bold text-[#8A7369] hover:text-[#C4A49A] transition-colors border-b border-[#EBE1DA] pb-1 uppercase tracking-widest flex items-center gap-2 group">
+                <Link to="/categoria/tendencias" className="text-[12px] font-bold text-[#8A7369] hover:text-[#C4A49A] transition-colors border-b border-[#EBE1DA] pb-1 uppercase tracking-widest flex items-center gap-2 group">
                     {t('common.view_all')}
                     <span className="group-hover:translate-x-1 transition-transform">→</span>
                 </Link>
