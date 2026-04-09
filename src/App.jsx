@@ -99,6 +99,7 @@ function App() {
       <HelpBot />
       <NewsletterPopup />
       <CROBanners />
+      <CookieConsent />
     </div>
   );
 }
