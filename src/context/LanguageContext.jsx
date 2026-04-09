@@ -593,6 +593,13 @@ const translationsData = {
             categories: "Categorias",
             language: "Idioma",
             favorites: "Favoritos",
+            cookies: {
+                title: "Respeitamos a sua privacidade 🍪",
+                message: "Utilizamos cookies para melhorar a sua experiência e lembrar as suas preferências. Ao continuar a navegar, aceita o seu uso.",
+                accept: "Entendido",
+                decline: "Recusar",
+                more: "Saber mais"
+            },
             seo: {
                 home: "Beauthé: Alta cosmética vegana e rituais de beleza com propósito. Descubra o melhor em cuidado facial e corporal.",
                 skin: "Cuidado Facial: Séruns, cremes e tónicos formulados com ingredientes naturais para uma pele radiante e saudável.",
