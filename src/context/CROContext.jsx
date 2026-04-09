@@ -35,13 +35,11 @@ export const CROProvider = ({ children }) => {
 
     useEffect(() => {
         // Initialize Consent
-        const consentVal = CROCookie.get('cro_consent');
+        const consentVal = CROCookie.get('cro_interest'); // Reusing some initialization logic if needed, but disabling banner
         if (consentVal === 'true') {
             setConsent(true);
         } else if (consentVal === 'false') {
             setConsent(false);
-        } else {
-            setShowConsentBanner(true);
         }
 
         // Initialize Visits (Welcome Message)
