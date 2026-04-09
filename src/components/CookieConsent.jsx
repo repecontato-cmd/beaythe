@@ -2,13 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useLanguage } from '../context/LanguageContext';
 import { useLocation } from 'react-router-dom';
-import { useCRO } from '../context/CROContext';
 import { Cookie, X } from 'lucide-react';
 
 export default function CookieConsent() {
     const { t } = useLanguage();
     const { pathname } = useLocation();
-    const { acceptConsent, declineConsent } = useCRO();
     const [isVisible, setIsVisible] = useState(false);
 
     useEffect(() => {
@@ -23,11 +21,6 @@ export default function CookieConsent() {
     }, [pathname]);
 
     const handleAction = (type) => {
-        if (type === 'accepted') {
-            acceptConsent();
-        } else {
-            declineConsent();
-        }
         localStorage.setItem('beauthe_cookie_consent', type);
         setIsVisible(false);
     };

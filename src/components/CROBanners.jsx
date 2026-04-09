@@ -57,6 +57,46 @@ export default function CROBanners() {
                 )}
             </AnimatePresence>
 
+            {/* Cookie Consent Banner */}
+            <AnimatePresence>
+                {showConsentBanner && (
+                    <motion.div
+                        initial={{ opacity: 0, y: 100 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: 100 }}
+                        className="fixed bottom-0 left-0 w-full bg-[#2C2826] text-white z-[100] py-4 px-6 shadow-[0_-10px_40px_rgba(0,0,0,0.2)]"
+                    >
+                        <div className="max-w-[1440px] mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
+                            <div className="flex flex-col md:flex-row items-center gap-2 md:gap-4 text-center md:text-left">
+                                <span className="text-lg">🍪</span>
+                                <p className="text-[13px] md:text-sm font-light leading-relaxed max-w-3xl">
+                                    <span className="font-bold mr-2 text-[#EBE1DA]">{t('common.cookies.title')}</span>
+                                    {t('common.cookies.message')}
+                                </p>
+                            </div>
+                            <div className="flex items-center gap-4 shrink-0">
+                                <Link to="/historia" className="text-[11px] uppercase tracking-widest font-bold text-[#A69B97] hover:text-white transition-colors">
+                                    {t('common.cookies.more')}
+                                </Link>
+                                <div className="flex items-center gap-2">
+                                    <button
+                                        onClick={declineConsent}
+                                        className="px-6 py-2.5 rounded-full text-[11px] font-bold uppercase tracking-widest text-[#8A7369] bg-transparent border border-[#5C534F] hover:bg-[#5C534F] hover:text-white transition-all whitespace-nowrap"
+                                    >
+                                        {t('common.cookies.decline')}
+                                    </button>
+                                    <button
+                                        onClick={acceptConsent}
+                                        className="bg-[#C4A49A] text-[#2C2826] px-8 py-2.5 rounded-full text-[11px] font-black uppercase tracking-[0.2em] hover:bg-white transition-all shadow-lg active:scale-95"
+                                    >
+                                        {t('common.cookies.accept')}
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </motion.div>
+                )}
+            </AnimatePresence>
         </>
     );
 }
