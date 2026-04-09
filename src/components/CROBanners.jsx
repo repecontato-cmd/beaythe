@@ -56,9 +56,6 @@ export default function CROBanners() {
                     </motion.div>
                 )}
             </AnimatePresence>
-
-                )}
-        </AnimatePresence >
         </>
     );
 }
