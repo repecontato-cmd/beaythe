@@ -1,27 +1,34 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useLanguage } from '../context/LanguageContext';
+import { useCRO } from '../context/CROContext';
 import { useLocation } from 'react-router-dom';
 import { Cookie, X } from 'lucide-react';
 
 export default function CookieConsent() {
     const { t } = useLanguage();
     const { pathname } = useLocation();
+    const { showConsentBanner, acceptConsent, declineConsent } = useCRO();
     const [isVisible, setIsVisible] = useState(false);
 
     useEffect(() => {
-        // Show only on home page and if not already decided
-        const consent = localStorage.getItem('beauthe_cookie_consent');
-        if (pathname === '/' && !consent) {
+        // Show only on home page if the CRO context thinks we should show it
+        if (pathname === '/' && showConsentBanner) {
             const timer = setTimeout(() => {
                 setIsVisible(true);
-            }, 1500); // Slight delay for better UX
+            }, 1500);
             return () => clearTimeout(timer);
+        } else {
+            setIsVisible(false);
         }
-    }, [pathname]);
+    }, [pathname, showConsentBanner]);
 
     const handleAction = (type) => {
-        localStorage.setItem('beauthe_cookie_consent', type);
+        if (type === 'accepted') {
+            acceptConsent();
+        } else {
+            declineConsent();
+        }
         setIsVisible(false);
     };
 
