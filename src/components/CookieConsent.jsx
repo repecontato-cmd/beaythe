@@ -23,6 +23,11 @@ export default function CookieConsent() {
     }, [pathname]);
 
     const handleAction = (type) => {
+        if (type === 'accepted') {
+            acceptConsent();
+        } else {
+            declineConsent();
+        }
         localStorage.setItem('beauthe_cookie_consent', type);
         setIsVisible(false);
     };
