@@ -26,6 +26,7 @@ import FAQPage from './pages/FAQPage';
 import NewsletterPopup from './components/NewsletterPopup';
 import HelpBot from './components/HelpBot';
 import CROBanners from './components/CROBanners';
+import CookieConsent from './components/CookieConsent';
 import { useCart } from './context/CartContext';
 import { useFavorites } from './context/FavoritesContext';
 
