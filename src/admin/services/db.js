@@ -58,9 +58,9 @@ export const importFromDropea = async (dropeaId) => {
     return res.json();
 };
 
-export const getDropeaCatalog = async () => {
+export const getDropeaCatalog = async (page = 1) => {
     try {
-        const res = await fetch(`${API_URL}/products/dropea-catalog`, { cache: 'no-store' });
+        const res = await fetch(`${API_URL}/products/dropea-catalog?page=${page}`, { cache: 'no-store' });
         return res.json();
     } catch (e) {
         return [];

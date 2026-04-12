@@ -76,14 +76,14 @@ export const fetchProductFromDropea = async (dropeaId) => {
   }
 };
 
-export const fetchDropeaCatalog = async (limit = 50) => {
+export const fetchDropeaCatalog = async (limit = 50, page = 1) => {
   if (!API_KEY) {
     return { success: false, error: 'DROPEA_API_KEY ausente no .env do servidor.' };
   }
 
   const query = `
-    query getCatalog($limit: Int) {
-      products(limit: $limit) {
+    query getCatalog($limit: Int, $page: Int) {
+      products(limit: $limit, page: $page) {
         data {
           id
           name
@@ -100,7 +100,8 @@ export const fetchDropeaCatalog = async (limit = 50) => {
   try {
     const response = await axios.post(
       BASE_URL,
-      { query, variables: { limit } },
+      { query, variables: { limit, page } },
+
       { headers: { 'Content-Type': 'application/json', 'x-api-key': API_KEY } }
     );
 
