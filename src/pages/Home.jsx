@@ -19,6 +19,7 @@ export default function Home() {
             <SkinQuiz />
             <CircularCategories />
             <TrustStrip />
+            <TrendingProducts type="new" overrideTitle={t('filters.sort_options.novidades')} />
             <TrendingProducts />
             <Reviews />
             <FAQ />
