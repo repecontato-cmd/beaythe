@@ -18,6 +18,10 @@ model Product {
   tags        String   @default("[]") // JSON estético array
   upsell_kits String   @default("[]") // JSON relationships
 
+  // --- LP Engine Integration ---
+  landing_page_data    String?
+  recommended_products String  @default("[]")
+
   // --- Admin V2 Extensions ---
   manual_price Float?  // Caso nulo, usa a matemática global
   placement    String  @default("HIDDEN") // Onde do site ele vai pintar ("HOME", "TRENDING", "HIDDEN")

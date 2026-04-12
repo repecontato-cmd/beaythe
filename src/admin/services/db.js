@@ -37,9 +37,29 @@ export const getProducts = async () => {
     }
 };
 
+export const getProductById = async (id) => {
+    try {
+        const res = await fetch(`${API_URL}/products/${id}`, { cache: 'no-store' });
+        const p = await res.json();
+        if (p.error) throw new Error(p.error);
+        return {
+            ...p,
+            tags: JSON.parse(p.tags || '[]'),
+            upsell_kits: JSON.parse(p.upsell_kits || '[]'),
+            recommended_products: JSON.parse(p.recommended_products || '[]'),
+            landing_page_data: p.landing_page_data ? JSON.parse(p.landing_page_data) : null,
+        };
+    } catch (error) {
+        console.error('API Connect Error:', error);
+        return null;
+    }
+};
+
 export const updateProduct = async (id, updates) => {
     if (updates.tags) updates.tags = JSON.stringify(updates.tags);
-    if (updates.upsell_kits) updates.upsell_kits = JSON.stringify(updates.upsell_kits);
+    if (updates.upsell_kits) updates.upsell_kits = typeof updates.upsell_kits === 'string' ? updates.upsell_kits : JSON.stringify(updates.upsell_kits);
+    if (updates.recommended_products) updates.recommended_products = typeof updates.recommended_products === 'string' ? updates.recommended_products : JSON.stringify(updates.recommended_products);
+    if (updates.landing_page_data) updates.landing_page_data = typeof updates.landing_page_data === 'string' ? updates.landing_page_data : JSON.stringify(updates.landing_page_data);
 
     const res = await fetch(`${API_URL}/products/${id}`, {
         method: 'PUT',
