@@ -81,7 +81,7 @@ export default function FavoritesDrawer({ isOpen, onClose }) {
                                             className="flex gap-4 group"
                                         >
                                             <div className="w-24 h-32 rounded-2xl overflow-hidden border border-[#F1EBE6] bg-white shrink-0">
-                                                <img src={product.image} alt={product.name} className="w-full h-full object-cover" />
+                                                <img src={product.image_url || product.image} alt={product.name} className="w-full h-full object-cover" />
                                             </div>
                                             <div className="flex-1 flex flex-col justify-between py-1">
                                                 <div>
