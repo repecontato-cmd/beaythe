@@ -9,12 +9,13 @@ export default function ProductEditor() {
 
     const [isLoading, setIsLoading] = useState(true);
     const [isSaving, setIsSaving] = useState(false);
-    const [activeTab, setActiveTab] = useState('visual');
+    const [activeTab, setActiveTab] = useState('basic');
 
     // DB Models
     const [product, setProduct] = useState(null);
     const [lpData, setLpData] = useState({});
     const [recommendedIds, setRecommendedIds] = useState([]);
+    const [basicInfo, setBasicInfo] = useState({ name: '', description: '', image_url: '', tags: [] });
 
     useEffect(() => {
         loadData();
@@ -39,6 +40,12 @@ export default function ProductEditor() {
                 }
             });
             setRecommendedIds(prod.recommended_products || []);
+            setBasicInfo({
+                name: prod.name || '',
+                description: prod.description || '',
+                image_url: prod.image_url || '',
+                tags: prod.tags || []
+            });
         }
         setIsLoading(false);
     };
@@ -46,6 +53,10 @@ export default function ProductEditor() {
     const handleSave = async () => {
         setIsSaving(true);
         await updateProduct(id, {
+            name: basicInfo.name,
+            description: basicInfo.description,
+            image_url: basicInfo.image_url,
+            tags: basicInfo.tags,
             landing_page_data: lpData,
             recommended_products: recommendedIds
         });
@@ -79,7 +90,7 @@ export default function ProductEditor() {
                     </button>
                     <div>
                         <h1 className="text-2xl font-bold">Construtor de Oferta</h1>
-                        <p className="text-gray-500">Editando LP para: <b>{product.name}</b></p>
+                        <p className="text-gray-500">Editando o produto: <b>{basicInfo.name}</b></p>
                     </div>
                 </div>
                 <button
@@ -96,6 +107,9 @@ export default function ProductEditor() {
 
                 {/* Lateral Tabs */}
                 <div className="w-full md:w-64 flex flex-col gap-2">
+                    <button onClick={() => setActiveTab('basic')} className={`p-4 text-left rounded-xl font-bold flex items-center gap-3 transition-colors ${activeTab === 'basic' ? 'bg-black text-white' : 'bg-white hover:bg-gray-50 text-gray-700 shadow-sm border border-gray-100'}`}>
+                        <Target size={20} /> Informações Básicas
+                    </button>
                     <button onClick={() => setActiveTab('visual')} className={`p-4 text-left rounded-xl font-bold flex items-center gap-3 transition-colors ${activeTab === 'visual' ? 'bg-black text-white' : 'bg-white hover:bg-gray-50 text-gray-700 shadow-sm border border-gray-100'}`}>
                         <Palette size={20} /> Design e Cores
                     </button>
@@ -112,6 +126,47 @@ export default function ProductEditor() {
 
                 {/* Content Panel */}
                 <div className="flex-1 bg-white p-8 rounded-2xl shadow-sm border border-gray-100">
+
+                    {activeTab === 'basic' && (
+                        <div className="space-y-6">
+                            <h2 className="text-xl font-bold mb-4">Informações e Categorização</h2>
+                            <p className="text-sm text-gray-500">Altere o nome e coloque tags/palavras-chave (ex: "rosto", "solares", "maquillaje") para forçar este produto a aparecer nas categorias correspondentes do site.</p>
+
+                            <div>
+                                <label className="block text-sm font-bold text-gray-700 mb-1">Nome Principal</label>
+                                <input type="text" value={basicInfo.name} onChange={e => setBasicInfo({ ...basicInfo, name: e.target.value })} className="w-full border p-3 rounded-xl" />
+                            </div>
+
+                            <div>
+                                <label className="block text-sm font-bold text-gray-700 mb-1">Miniatura Principal (URL)</label>
+                                <input type="url" value={basicInfo.image_url} onChange={e => setBasicInfo({ ...basicInfo, image_url: e.target.value })} className="w-full border p-3 rounded-xl" />
+                            </div>
+
+                            <div>
+                                <label className="block text-sm font-bold text-gray-700 mb-1">Tags (separadas por vírgula)</label>
+                                <input
+                                    type="text"
+                                    value={basicInfo.tags.join(', ')}
+                                    onChange={e => {
+                                        const tags = e.target.value.split(',').map(v => v.trim().toLowerCase()).filter(v => v);
+                                        setBasicInfo({ ...basicInfo, tags });
+                                    }}
+                                    className="w-full border p-3 rounded-xl lowercase"
+                                    placeholder="rosto, hidratacion, anti-idade..."
+                                />
+                            </div>
+
+                            <div>
+                                <label className="block text-sm font-bold text-gray-700 mb-1">Descrição</label>
+                                <textarea
+                                    value={basicInfo.description}
+                                    onChange={e => setBasicInfo({ ...basicInfo, description: e.target.value })}
+                                    className="w-full border p-3 rounded-xl"
+                                    rows="5"
+                                ></textarea>
+                            </div>
+                        </div>
+                    )}
 
                     {activeTab === 'visual' && (
                         <div className="space-y-6">
