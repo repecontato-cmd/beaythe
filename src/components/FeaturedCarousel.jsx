@@ -16,7 +16,7 @@ export default function FeaturedCarousel() {
             const all = await getProducts();
             let bannerProducts = all.filter(p => p.is_active && p.placement === 'BANNER');
             if (bannerProducts.length === 0) {
-                bannerProducts = all.filter(p => p.is_active).slice(0, 3);
+                bannerProducts = all.slice(0, 3);
             }
 
             if (bannerProducts.length > 0) {
