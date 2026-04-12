@@ -29,7 +29,9 @@ export const getProducts = async () => {
         return data.map(p => ({
             ...p,
             tags: JSON.parse(p.tags || '[]'),
-            upsell_kits: JSON.parse(p.upsell_kits || '[]')
+            upsell_kits: typeof p.upsell_kits === 'string' ? JSON.parse(p.upsell_kits) : [],
+            recommended_products: typeof p.recommended_products === 'string' ? JSON.parse(p.recommended_products) : [],
+            landing_page_data: p.landing_page_data && typeof p.landing_page_data === 'string' ? JSON.parse(p.landing_page_data) : null,
         }));
     } catch (error) {
         console.error('API Connect Error:', error);
