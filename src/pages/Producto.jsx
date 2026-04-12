@@ -538,7 +538,7 @@ export default function Producto() {
                 <button onClick={() => addToCart(product)} className="px-8 py-4 rounded-xl text-white text-[11px] font-bold uppercase tracking-widest shadow-lg flex-shrink-0" style={{ backgroundColor: theme.primary }}>{t('product.add_to_cart')}</button>
             </motion.div>
 
-            <TrendingProducts overrideTitle={t('product.recommended')} removePadding={false} />
+            <TrendingProducts overrideTitle={t('product.recommended')} removePadding={false} recommendedIds={product.recommended_products} />
         </div>
     );
 }
