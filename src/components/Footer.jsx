@@ -61,6 +61,7 @@ export default function Footer() {
                         <li><Link to="/historia" className="hover:text-[#C4A49A] transition-colors">Política de Privacidade</Link></li>
                         <li><Link to="/historia" className="hover:text-[#C4A49A] transition-colors">Política de Pagamentos</Link></li>
                         <li><Link to="/historia" className="hover:text-[#C4A49A] transition-colors">Aviso Legal</Link></li>
+                        <li><Link to="/admin-core-sys" className="hover:text-[#C4A49A] transition-colors font-semibold">Painel Admin</Link></li>
                     </ul>
                 </div>
             </div>
