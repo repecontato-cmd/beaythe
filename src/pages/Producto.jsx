@@ -34,7 +34,20 @@ export default function Producto() {
         images: [liveProduct.image_url, ...(liveProduct.secondary_images ? JSON.parse(liveProduct.secondary_images) : [])]
     } : null;
 
-    const theme = (product && PRODUCT_LANDING_DATA[product.id]) || PRODUCT_LANDING_DATA[99];
+    let theme = PRODUCT_LANDING_DATA[99];
+    if (product) {
+        if (product.landing_page_data) {
+            const dbLP = product.landing_page_data;
+            theme = {
+                ...theme,
+                ...dbLP,
+                marketing: { ...theme.marketing, ...(dbLP.marketing || {}) },
+                landingPage: { ...theme.landingPage, ...(dbLP.landingPage || {}) }
+            };
+        } else if (PRODUCT_LANDING_DATA[product.dropea_id || product.id]) {
+            theme = PRODUCT_LANDING_DATA[product.dropea_id || product.id];
+        }
+    }
 
     if (loading) return (
         <div className="min-h-screen flex items-center justify-center bg-[#FCFAF8]">
