@@ -7,7 +7,7 @@ import { useFavorites } from '../context/FavoritesContext';
 import { useLanguage } from '../context/LanguageContext';
 import { getProducts } from '../admin/services/db';
 
-export default function TrendingProducts({ overrideTitle, removePadding, recommendedIds }) {
+export default function TrendingProducts({ overrideTitle, removePadding, recommendedIds, type }) {
     const { t } = useLanguage();
     const { addToCart } = useCart();
     const { toggleFavorite, isFavorite } = useFavorites();
@@ -20,16 +20,16 @@ export default function TrendingProducts({ overrideTitle, removePadding, recomme
 
             if (recommendedIds && recommendedIds.length > 0) {
                 trendings = all.filter(p => recommendedIds.includes(p.id)).slice(0, 4);
-            }
-
-            if (trendings.length === 0) {
+            } else if (type === 'new') {
+                trendings = all.filter(p => p.is_active).sort((a, b) => b.id - a.id).slice(0, 4);
+            } else {
                 trendings = all.filter(p => p.is_active && p.placement === 'TRENDING').slice(0, 4);
             }
 
             setLiveProducts(trendings);
         };
         loadTrendings();
-    }, [recommendedIds]);
+    }, [recommendedIds, type]);
 
     const products = liveProducts.map(p => ({
         id: p.id,
