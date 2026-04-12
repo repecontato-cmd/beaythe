@@ -46,7 +46,10 @@ export default function DropeaIntegration() {
         try {
             const res = await importFromDropea(dropeaId.toString());
             if (res.error) alert(`Erro: ${res.error}`);
-            else alert(`Sucesso! O produto "${res.name}" foi sincronizado ao Inventário.`);
+            else {
+                alert(`Sucesso! O produto "${res.name}" foi sincronizado ao Inventário.`);
+                setCatalogItems(prev => prev.filter(c => c.id !== dropeaId));
+            }
         } catch (error) {
             console.error(error);
             alert('Falha na comunicação com o servidor.');
@@ -64,6 +67,7 @@ export default function DropeaIntegration() {
         setImportingState({ active: true, current: 0, total: filteredCatalog.length, productName: 'Iniciando Lote...' });
 
         let successCount = 0;
+        let importedIds = [];
         let c = 0;
 
         for (const item of filteredCatalog) {
@@ -71,13 +75,17 @@ export default function DropeaIntegration() {
             setImportingState(prev => ({ ...prev, current: c, productName: item.name }));
             try {
                 const res = await importFromDropea(item.id.toString());
-                if (!res.error) successCount++;
+                if (!res.error) {
+                    successCount++;
+                    importedIds.push(item.id);
+                }
             } catch (e) { console.log('Mass import error on id', item.id); }
 
             // Artificial tiny delay against spamming upstream API
             await new Promise(r => setTimeout(r, 200));
         }
 
+        setCatalogItems(prev => prev.filter(c => !importedIds.includes(c.id)));
         setImportingState({ active: false, current: 0, total: 0, productName: '' });
         alert(`Integração em Massa Concluída! ${successCount} de ${filteredCatalog.length} produtos foram adicionados ao Inventário Oculto com a nova regra de preço.`);
     };

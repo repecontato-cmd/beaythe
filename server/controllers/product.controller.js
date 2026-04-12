@@ -79,14 +79,23 @@ export const getDropeaCatalog = async (req, res) => {
             settings = { profit_margin_percent: 30.0, fixed_shipping_cost: 7.00 };
         }
 
-        const previewData = catalog.data.map(item => {
-            const cost = parseFloat(item.cost_price || item.pvpr) || 0;
-            const finalPrice = ((cost + settings.fixed_shipping_cost) * (1 + (settings.profit_margin_percent / 100))).toFixed(2);
-            return {
-                ...item,
-                suggested_sell_price: parseFloat(finalPrice)
-            };
+        // Hide items already imported into our database
+        const importedItems = await prisma.product.findMany({
+            where: { dropea_id: { not: null } },
+            select: { dropea_id: true }
         });
+        const importedIds = new Set(importedItems.map(item => item.dropea_id));
+
+        const previewData = catalog.data
+            .filter(item => !importedIds.has(item.id.toString()))
+            .map(item => {
+                const cost = parseFloat(item.cost_price || item.pvpr) || 0;
+                const finalPrice = ((cost + settings.fixed_shipping_cost) * (1 + (settings.profit_margin_percent / 100))).toFixed(2);
+                return {
+                    ...item,
+                    suggested_sell_price: parseFloat(finalPrice)
+                };
+            });
 
         res.json(previewData);
     } catch (err) {
