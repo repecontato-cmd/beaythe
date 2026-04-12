@@ -60,6 +60,7 @@ function App() {
             <Route path="inventory" element={<Inventory />} />
             <Route path="storefront" element={<StorefrontManager />} />
             <Route path="dropea" element={<DropeaIntegration />} />
+            <Route path="produtos/editar/:id" element={<ProductEditor />} />
           </Route>
         </Routes>
       </div>
