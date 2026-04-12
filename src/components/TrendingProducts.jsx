@@ -7,7 +7,7 @@ import { useFavorites } from '../context/FavoritesContext';
 import { useLanguage } from '../context/LanguageContext';
 import { getProducts } from '../admin/services/db';
 
-export default function TrendingProducts({ overrideTitle, removePadding }) {
+export default function TrendingProducts({ overrideTitle, removePadding, recommendedIds }) {
     const { t } = useLanguage();
     const { addToCart } = useCart();
     const { toggleFavorite, isFavorite } = useFavorites();
@@ -16,11 +16,20 @@ export default function TrendingProducts({ overrideTitle, removePadding }) {
     React.useEffect(() => {
         const loadTrendings = async () => {
             const all = await getProducts();
-            const trendings = all.filter(p => p.is_active && p.placement === 'TRENDING').slice(0, 4);
+            let trendings = [];
+
+            if (recommendedIds && recommendedIds.length > 0) {
+                trendings = all.filter(p => recommendedIds.includes(p.id)).slice(0, 4);
+            }
+
+            if (trendings.length === 0) {
+                trendings = all.filter(p => p.is_active && p.placement === 'TRENDING').slice(0, 4);
+            }
+
             setLiveProducts(trendings);
         };
         loadTrendings();
-    }, []);
+    }, [recommendedIds]);
 
     const products = liveProducts.map(p => ({
         id: p.id,
