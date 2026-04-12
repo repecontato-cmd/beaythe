@@ -14,7 +14,10 @@ export default function FeaturedCarousel() {
     useEffect(() => {
         const loadSlides = async () => {
             const all = await getProducts();
-            const bannerProducts = all.filter(p => p.is_active && p.placement === 'BANNER');
+            let bannerProducts = all.filter(p => p.is_active && p.placement === 'BANNER');
+            if (bannerProducts.length === 0) {
+                bannerProducts = all.filter(p => p.is_active).slice(0, 3);
+            }
 
             if (bannerProducts.length > 0) {
                 const colors = ["bg-[#4A423F]", "bg-[#C4A49A]", "bg-[#8A7369]", "bg-[#2C2826]"];
