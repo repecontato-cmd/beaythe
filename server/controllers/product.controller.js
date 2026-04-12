@@ -70,7 +70,7 @@ export const updateProduct = async (req, res) => {
 
 export const getDropeaCatalog = async (req, res) => {
     try {
-        const catalog = await fetchCatalogService(150); // Fetch 150 items for diverse categories
+        const catalog = await fetchCatalogService(1000); // Fetch up to 1000 items to load the catalog safely
         if (!catalog.success) return res.status(400).json({ error: catalog.error });
 
         // Retrieve pricing settings to simulate suggested prices
