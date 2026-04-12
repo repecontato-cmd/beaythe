@@ -16,6 +16,7 @@ import AdminDashboard from './admin/pages/AdminDashboard';
 import Inventory from './admin/pages/Inventory';
 import StorefrontManager from './admin/pages/StorefrontManager';
 import DropeaIntegration from './admin/pages/DropeaIntegration';
+import ProductEditor from './admin/pages/ProductEditor';
 import Categoria from './pages/Categoria';
 import SearchResults from './pages/SearchResults';
 import Checkout from './pages/Checkout';
