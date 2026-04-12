@@ -9,11 +9,8 @@ import AboutUs from '../components/AboutUs';
 import Reviews from '../components/Reviews';
 import TrustStrip from '../components/TrustStrip';
 import SkinQuiz from '../components/SkinQuiz';
-import { useLanguage } from '../context/LanguageContext';
 
 export default function Home() {
-    const { t } = useLanguage();
-
     return (
         <>
             <FeaturedCarousel />

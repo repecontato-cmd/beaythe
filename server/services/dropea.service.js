@@ -66,7 +66,7 @@ export const fetchProductFromDropea = async (dropeaId) => {
         stock: parseInt(prd.stock_available) || 0,
         description: prd.description || '',
         image_url: prd.image || '',
-        tags: JSON.stringify(prd.category ? [prd.category.trim().toLowerCase()] : []),
+        tags: '[]',
         upsell_kits: '[]'
       }
     };

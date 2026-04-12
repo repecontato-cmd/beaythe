@@ -103,7 +103,7 @@ export default function SearchResults() {
 
                                     <Link to={`/producto/${product.id}`} className="block w-full h-full">
                                         <img
-                                            src={product.image_url || product.image}
+                                            src={product.image}
                                             alt={product.name}
                                             className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
                                         />
