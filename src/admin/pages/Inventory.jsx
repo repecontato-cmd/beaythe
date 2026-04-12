@@ -119,12 +119,16 @@ export default function Inventory() {
                                         )}
                                     </div>
 
+                                    <button onClick={() => window.location.href = `/admin-core-sys/produtos/editar/${product.id}`} className="ml-4 px-4 h-12 flex items-center justify-center rounded-xl bg-rose-50 text-rose-600 font-bold border border-rose-100 hover:bg-rose-100 transition-colors text-sm whitespace-nowrap">
+                                        Editar Landing Page
+                                    </button>
                                     <button
                                         onClick={() => {
                                             setEditingId(editingId === product.id ? null : product.id);
                                             setManualPriceInput(isManual ? product.manual_price.toString() : product.price.toString());
                                         }}
-                                        className={`ml-4 w-12 h-12 flex items-center justify-center rounded-xl transition-colors ${editingId === product.id ? 'bg-black text-white' : 'bg-gray-100 text-gray-600 hover:bg-gray-200'}`}
+                                        className={`ml-3 w-12 h-12 flex items-center justify-center rounded-xl transition-colors ${editingId === product.id ? 'bg-black text-white' : 'bg-gray-100 text-gray-600 hover:bg-gray-200'}`}
+                                        title="Painel de Tags e Preços"
                                     >
                                         <ChevronRight size={20} className={editingId === product.id ? "rotate-90 transition-transform" : "transition-transform"} />
                                     </button>
