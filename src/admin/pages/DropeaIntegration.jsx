@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { getSettings, updateSettings, getDropeaCatalog, importFromDropea } from '../services/db';
-import { Settings2, Sparkles, DownloadCloud, Box, AlertCircle, CopyCheck } from 'lucide-react';
+import { Settings2, Sparkles, DownloadCloud, Box, AlertCircle, CopyCheck, ChevronLeft, ChevronRight, Search, Plus } from 'lucide-react';
 
 export default function DropeaIntegration() {
     // Pricing Settings
@@ -11,14 +11,18 @@ export default function DropeaIntegration() {
     // Catalog & Categories
     const [catalogItems, setCatalogItems] = useState([]);
     const [isLoadingCatalog, setIsLoadingCatalog] = useState(true);
+    const [isLoadingMore, setIsLoadingMore] = useState(false);
+    const [currentPage, setCurrentPage] = useState(1);
     const [activeCategory, setActiveCategory] = useState('Todas');
+    const [manualId, setManualId] = useState('');
+    const scrollRef = useRef(null);
 
     // Mass Import progress
     const [importingState, setImportingState] = useState({ active: false, current: 0, total: 0, productName: '' });
 
     useEffect(() => {
         loadSettings();
-        loadCatalog();
+        loadCatalog(true);
     }, []);
 
     const loadSettings = async () => {
@@ -34,11 +38,27 @@ export default function DropeaIntegration() {
         alert("Parâmetros Globais de Precificação atualizados com sucesso!");
     };
 
-    const loadCatalog = async () => {
-        setIsLoadingCatalog(true);
-        const data = await getDropeaCatalog();
-        setCatalogItems(data);
-        setIsLoadingCatalog(false);
+    const loadCatalog = async (reset = true) => {
+        if (reset) {
+            setIsLoadingCatalog(true);
+            setCurrentPage(1);
+            const data = await getDropeaCatalog(1);
+            setCatalogItems(data);
+            setIsLoadingCatalog(false);
+        } else {
+            setIsLoadingMore(true);
+            const next = currentPage + 1;
+            setCurrentPage(next);
+            const data = await getDropeaCatalog(next);
+            setCatalogItems(prev => [...prev, ...data]);
+            setIsLoadingMore(false);
+        }
+    };
+
+    const scroll = (direction) => {
+        if (scrollRef.current) {
+            scrollRef.current.scrollBy({ left: direction === 'left' ? -200 : 200, behavior: 'smooth' });
+        }
     };
 
     const handleImportSingle = async (dropeaId) => {
@@ -147,16 +167,26 @@ export default function DropeaIntegration() {
             {/* Dropea Marketplace */}
             <div className="bg-white rounded-3xl shadow-sm border border-gray-200 overflow-hidden flex flex-col min-h-[600px]">
                 {/* Header Superior do Catálogo */}
-                <div className="p-6 md:p-8 border-b border-gray-100 flex flex-col md:flex-row justify-between items-start md:items-center bg-gray-50/50 gap-4">
+                <div className="p-6 md:p-8 border-b border-gray-100 flex flex-col xl:flex-row justify-between items-start xl:items-center bg-gray-50/50 gap-6">
                     <div>
                         <h3 className="text-xl font-bold text-gray-900 flex items-center gap-2">
                             Marketplace Oficial
                         </h3>
-                        <p className="text-sm text-gray-500 mt-1 font-medium">Exibindo {catalogItems.length} produtos em alta nesta semana.</p>
+                        <p className="text-sm text-gray-500 mt-1 font-medium">Exibindo {catalogItems.length} produtos. Página: {currentPage}</p>
                     </div>
-                    <div className="flex gap-4">
-                        <button onClick={loadCatalog} className="px-5 py-3 bg-white border border-gray-200 text-gray-700 font-bold rounded-xl text-sm hover:bg-gray-50 transition-colors shadow-sm">
+                    <div className="flex flex-col md:flex-row gap-4 w-full xl:w-auto items-stretch md:items-center">
+                        <div className="flex items-center bg-white border border-gray-200 rounded-xl px-2 shadow-sm flex-1 md:flex-auto">
+                            <Search className="text-gray-400 ml-2" size={18} />
+                            <input type="text" placeholder="Importar por DId..." value={manualId} onChange={e => setManualId(e.target.value)} className="bg-transparent border-none outline-none px-3 py-3 text-sm w-full md:w-36 font-mono" />
+                            <button onClick={() => { handleImportSingle(manualId); setManualId(''); }} disabled={!manualId} className="bg-black text-white p-2 rounded-lg hover:bg-gray-800 disabled:opacity-50">
+                                <Plus size={16} />
+                            </button>
+                        </div>
+                        <button onClick={() => loadCatalog(true)} className="px-5 py-3 bg-white border border-gray-200 text-gray-700 font-bold rounded-xl text-sm hover:bg-gray-50 transition-colors shadow-sm whitespace-nowrap">
                             Recarregar API
+                        </button>
+                        <button onClick={() => loadCatalog(false)} disabled={isLoadingMore} className="px-5 py-3 bg-rose-600 border border-rose-600 text-white font-bold rounded-xl text-sm hover:bg-rose-500 transition-colors shadow-sm whitespace-nowrap flex items-center justify-center gap-2">
+                            {isLoadingMore ? 'Buscando...' : 'Mais Produtos'} <DownloadCloud size={16} />
                         </button>
                     </div>
                 </div>
@@ -170,16 +200,24 @@ export default function DropeaIntegration() {
                 ) : (
                     <div className="flex flex-col flex-1">
                         {/* Categories Bar */}
-                        <div className="px-6 py-4 border-b border-gray-100 flex gap-3 overflow-x-auto bg-white bg-opacity-95 backdrop-blur-md sticky top-0 z-10" style={{ scrollbarWidth: 'none' }}>
-                            {uniqueCategories.map(cat => (
-                                <button
-                                    key={cat}
-                                    onClick={() => setActiveCategory(cat)}
-                                    className={`px-5 py-2.5 rounded-full text-sm font-bold whitespace-nowrap transition-all border shadow-sm ${activeCategory === cat ? 'bg-black text-white border-black scale-105' : 'bg-white text-gray-600 border-gray-200 hover:border-gray-400'}`}
-                                >
-                                    {cat}
-                                </button>
-                            ))}
+                        <div className="relative group border-b border-gray-100 bg-white bg-opacity-95 backdrop-blur-md sticky top-0 z-10 flex items-center">
+                            <button onClick={() => scroll('left')} className="absolute left-0 z-20 h-full px-2 bg-gradient-to-r from-white to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
+                                <ChevronLeft className="text-gray-600" />
+                            </button>
+                            <div ref={scrollRef} className="px-6 py-4 flex gap-3 overflow-x-auto w-full scroll-smooth" style={{ scrollbarWidth: 'none' }}>
+                                {uniqueCategories.map(cat => (
+                                    <button
+                                        key={cat}
+                                        onClick={() => setActiveCategory(cat)}
+                                        className={`px-5 py-2.5 rounded-full text-sm font-bold whitespace-nowrap transition-all border shadow-sm ${activeCategory === cat ? 'bg-black text-white border-black scale-105' : 'bg-white text-gray-600 border-gray-200 hover:border-gray-400'}`}
+                                    >
+                                        {cat}
+                                    </button>
+                                ))}
+                            </div>
+                            <button onClick={() => scroll('right')} className="absolute right-0 z-20 h-full px-2 bg-gradient-to-l from-white to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
+                                <ChevronRight className="text-gray-600" />
+                            </button>
                         </div>
 
                         {/* Painel de Ação da Categoria Selecionada */}
