@@ -648,13 +648,12 @@ const translationsData = {
             default: { title: "Beauthé", tagline: "Beleza com Propósito", desc: "Explore a nossa seleção de alta cosmética natural." }
         },
         nav: {
-            outlet: "Outlet",
+            exclusivos: "Exclusivos",
             marcas: "Marcas",
             rostro: "Rosto",
             cuerpo: "Corpo & Banho",
             bienestar: "Bem-estar",
             cabello: "Cabelo",
-            solares: "Solares",
             maquillaje: "Maquilhagem",
             perfumes: "Perfumes",
             hombre: "Homem",
@@ -786,8 +785,8 @@ const translationsData = {
                 desc: "Tratamentos capilares formulados para nutrir, reparar e proteger os seus fios.",
                 tagline: "Cuidado Profundo"
             },
-            solares: {
-                title: "Solares",
+            exclusivos: {
+                title: "Exclusivos",
                 desc: "Proteção avançada contra os raios UV para uma pele saudável durante todo o ano.",
                 tagline: "Proteção Vital"
             },
@@ -1208,13 +1207,12 @@ const translationsData = {
             default: { title: "Beauthé", tagline: "Beauty with Purpose", desc: "Explore our selection of natural high cosmetics." }
         },
         nav: {
-            outlet: "Outlet",
+            exclusivos: "Exclusives",
             marcas: "Brands",
             rostro: "Face",
             cuerpo: "Body & Bath",
             bienestar: "Wellness",
             cabello: "Hair",
-            solares: "Sun Care",
             maquillaje: "Makeup",
             perfumes: "Perfumes",
             hombre: "Men",
@@ -1346,8 +1344,8 @@ const translationsData = {
                 desc: "Premium treatments for strong, shiny and healthy hair.",
                 tagline: "Deep Care"
             },
-            solares: {
-                title: "Sun Care",
+            exclusivos: {
+                title: "Exclusives",
                 desc: "Advanced protection to keep your skin radiant and young under the sun.",
                 tagline: "Vital Protection"
             },
