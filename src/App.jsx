@@ -6,6 +6,7 @@ import CartDrawer from './components/CartDrawer';
 import FavoritesDrawer from './components/FavoritesDrawer';
 import AuthDrawer from './components/AuthDrawer';
 import Footer from './components/Footer';
+import BackToTop from './components/BackToTop';
 
 // Pages
 import Home from './pages/Home';
@@ -102,6 +103,7 @@ function App() {
       <NewsletterPopup />
       <CROBanners />
       <CookieConsent />
+      <BackToTop />
     </div>
   );
 }
