@@ -48,6 +48,8 @@ export default function Hero() {
                         className="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105 opacity-90"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-[#2C2826]/80 via-[#2C2826]/10 to-transparent"></div>
+                    <div className="absolute inset-x-0 top-0 h-1/2 bg-gradient-to-b from-black/40 to-transparent pointer-events-none"></div>
+
                     <div className="relative z-10 p-6 md:p-8 flex flex-col items-center text-center">
                         <h2 className="text-white text-2xl md:text-3xl font-bold mb-2 uppercase tracking-tight">{t('hero.skin_care.title')}</h2>
                         <p className="text-[#F4EFEA] text-[12px] md:text-[13px] font-light mb-5 opacity-80 max-w-[200px]">{t('hero.skin_care.desc')}</p>
@@ -68,6 +70,8 @@ export default function Hero() {
                         className="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105 opacity-90"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-[#2C2826]/80 via-[#2C2826]/10 to-transparent"></div>
+                    <div className="absolute inset-x-0 top-0 h-1/2 bg-gradient-to-b from-black/40 to-transparent pointer-events-none"></div>
+
                     <div className="relative z-10 p-6 md:p-8 flex flex-col items-center text-center">
                         <h2 className="text-white text-2xl md:text-3xl font-bold mb-2 uppercase tracking-tight">{t('hero.hair_care.title')}</h2>
                         <p className="text-[#F4EFEA] text-[12px] md:text-[13px] font-light mb-5 opacity-80 max-w-[200px]">{t('hero.hair_care.desc')}</p>
@@ -88,6 +92,8 @@ export default function Hero() {
                         className="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105 opacity-90"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-[#2C2826]/80 via-[#2C2826]/10 to-transparent"></div>
+                    <div className="absolute inset-x-0 top-0 h-1/2 bg-gradient-to-b from-black/40 to-transparent pointer-events-none"></div>
+
                     <div className="relative z-10 p-6 md:p-8 flex flex-col items-center text-center">
                         <h2 className="text-white text-2xl md:text-3xl font-bold mb-2 uppercase tracking-tight">{t('hero.sun_care.title')}</h2>
                         <p className="text-[#F4EFEA] text-[12px] md:text-[13px] font-light mb-5 opacity-80 max-w-[200px]">{t('hero.sun_care.desc')}</p>
