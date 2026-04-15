@@ -221,10 +221,17 @@ export default function DropeaIntegration() {
                                 <Plus size={16} />
                             </button>
                         </div>
+                        <button
+                            onClick={handleMasterSync}
+                            disabled={isMasterSyncing}
+                            className="px-5 py-3 bg-rose-600 border border-rose-600 text-white font-bold rounded-xl text-sm hover:bg-rose-500 transition-all shadow-lg shadow-rose-900/20 whitespace-nowrap flex items-center justify-center gap-2 hover:-translate-y-0.5"
+                        >
+                            {isMasterSyncing ? 'Sincronizando...' : 'Sincronizar Todo o Catálogo'} <Sparkles size={16} />
+                        </button>
                         <button onClick={() => loadCatalog(true)} className="px-5 py-3 bg-white border border-gray-200 text-gray-700 font-bold rounded-xl text-sm hover:bg-gray-50 transition-colors shadow-sm whitespace-nowrap">
                             Recarregar API
                         </button>
-                        <button onClick={() => loadCatalog(false)} disabled={isLoadingMore} className="px-5 py-3 bg-rose-600 border border-rose-600 text-white font-bold rounded-xl text-sm hover:bg-rose-500 transition-colors shadow-sm whitespace-nowrap flex items-center justify-center gap-2">
+                        <button onClick={() => loadCatalog(false)} disabled={isLoadingMore} className="px-5 py-3 bg-gray-900 border border-gray-900 text-white font-bold rounded-xl text-sm hover:bg-black transition-colors shadow-sm whitespace-nowrap flex items-center justify-center gap-2">
                             {isLoadingMore ? 'Buscando...' : 'Mais Produtos'} <DownloadCloud size={16} />
                         </button>
                     </div>
