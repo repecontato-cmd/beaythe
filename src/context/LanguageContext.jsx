@@ -1644,28 +1644,46 @@ const translationsData = {
 };
 
 
-const translateProduct = (product) => {
-    if (!product) return product;
+export const LanguageProvider = ({ children }) => {
+    const [lang, setLang] = useState(localStorage.getItem('beauthe_lang') || 'es');
 
-    // Try to find translation by name (lowercase, no spaces)
-    const productKey = product.name?.toLowerCase().replace(/\s+/g, '_');
-    const translatedProduct = translationsData[lang]?.products?.[productKey];
+    const t = (key) => {
+        const keys = key.split('.');
+        let value = translationsData[lang];
+        for (const k of keys) {
+            value = value?.[k];
+        }
+        return value || key;
+    };
 
-    if (translatedProduct) {
-        return {
-            ...product,
-            name: translatedProduct.name || product.name,
-            description: translatedProduct.description || product.description
-        };
-    }
+    const toggleLanguage = (newLang) => {
+        setLang(newLang);
+        localStorage.setItem('beauthe_lang', newLang);
+    };
 
-    return product;
+    const translateProduct = (product) => {
+        if (!product) return product;
+
+        // Try to find translation by name (lowercase, no spaces)
+        const productKey = product.name?.toLowerCase().replace(/\s+/g, '_');
+        const translatedProduct = translationsData[lang]?.products?.[productKey];
+
+        if (translatedProduct) {
+            return {
+                ...product,
+                name: translatedProduct.name || product.name,
+                description: translatedProduct.description || product.description
+            };
+        }
+
+        return product;
+    };
+
+    return (
+        <LanguageContext.Provider value={{ lang, t, toggleLanguage, translateProduct }}>
+            {children}
+        </LanguageContext.Provider>
+    );
 };
 
-return (
-    <LanguageContext.Provider value={{ lang, t, toggleLanguage, translateProduct }}>
-        {children}
-    </LanguageContext.Provider>
-);
-};
 
