@@ -385,5 +385,8 @@ export default function Categoria() {
                             </p>
                         </div>
                     </div>
-                    );
+                </div>
+        </div >
+    );
 }
+
