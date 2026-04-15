@@ -168,7 +168,16 @@ export default function Navbar({ onCartClick, onFavoritesClick, onUserClick }) {
                     >
                         ES
                     </button>
+                    <span className={`text-[10px] ${forceSolid ? 'text-[#EBE1DA]' : 'text-white/40'}`}>|</span>
+
+                    <button
+                        onClick={() => toggleLanguage('en')}
+                        className={`text-[11px] font-bold transition-all duration-300 ${lang === 'en' ? (forceSolid ? 'text-[#2C2826]' : 'text-white') : (forceSolid ? 'text-[#9C9490]' : 'text-white/50')} hover:text-[#C4A49A]`}
+                    >
+                        EN
+                    </button>
                     <span className={`ml-1 text-[10px] uppercase font-medium ${forceSolid ? 'text-[#7A706C]' : 'text-white/90'}`}>| EUR</span>
+
 
                 </div>
 
