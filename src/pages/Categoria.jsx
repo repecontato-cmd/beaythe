@@ -354,40 +354,38 @@ export default function Categoria() {
                                 </motion.div>
                             ))}
                         </div>
+                    </div>
 
-                        {visibleCount < filteredAndSortedProducts.length && (
-                            <div className="mt-20 flex justify-center">
-                                <motion.button
-                                    onClick={() => setVisibleCount(prev => prev + 4)}
-                                    whileHover={{ scale: 1.05 }}
-                                    whileTap={{ scale: 0.95 }}
-                                    className="group flex flex-col items-center gap-4 focus:outline-none"
-                                >
-                                    <div className="w-16 h-16 rounded-full border border-[#F1EBE6] flex items-center justify-center text-[#2C2826] group-hover:bg-[#2C2826] group-hover:text-white transition-all duration-500 shadow-sm">
-                                        <Plus size={24} strokeWidth={1.5} />
-                                    </div>
-                                    <span className="text-[11px] font-bold uppercase tracking-[0.2em] text-[#8A7369] group-hover:text-[#2C2826] transition-colors">
-                                        {t('filters.load_more')}
-                                    </span>
-                                </motion.button>
-                            </div>
-                        )}
-
-                        <div className="mt-32 pt-20 border-t border-[#F1EBE6] text-center max-w-2xl mx-auto">
-                            <p className="text-[11px] font-bold tracking-[0.3em] text-[#8A7369] uppercase mb-6 opacity-70">
-                                {t('product_bottom.tag')}
-                            </p>
-                            <h3 className="text-3xl md:text-4xl font-light text-[#2C2826] mb-8 leading-snug">
-                                {t('product_bottom.title_1')} <span className="font-light">{t('product_bottom.title_2')}</span>
-                            </h3>
-                            <p className="text-[#5C534F] text-[15px] font-light leading-relaxed opacity-80 mb-10">
-                                {t('product_bottom.desc')}
-                            </p>
+                    {visibleCount < filteredAndSortedProducts.length && (
+                        <div className="mt-20 flex justify-center">
+                            <motion.button
+                                onClick={() => setVisibleCount(prev => prev + 4)}
+                                whileHover={{ scale: 1.05 }}
+                                whileTap={{ scale: 0.95 }}
+                                className="group flex flex-col items-center gap-4 focus:outline-none"
+                            >
+                                <div className="w-16 h-16 rounded-full border border-[#F1EBE6] flex items-center justify-center text-[#2C2826] group-hover:bg-[#2C2826] group-hover:text-white transition-all duration-500 shadow-sm">
+                                    <Plus size={24} strokeWidth={1.5} />
+                                </div>
+                                <span className="text-[11px] font-bold uppercase tracking-[0.2em] text-[#8A7369] group-hover:text-[#2C2826] transition-colors">
+                                    {t('filters.load_more')}
+                                </span>
+                            </motion.button>
                         </div>
+                    )}
+
+                    <div className="mt-32 pt-20 border-t border-[#F1EBE6] text-center max-w-2xl mx-auto">
+                        <p className="text-[11px] font-bold tracking-[0.3em] text-[#8A7369] uppercase mb-6 opacity-70">
+                            {t('product_bottom.tag')}
+                        </p>
+                        <h3 className="text-3xl md:text-4xl font-light text-[#2C2826] mb-8 leading-snug">
+                            {t('product_bottom.title_1')} <span className="font-light">{t('product_bottom.title_2')}</span>
+                        </h3>
+                        <p className="text-[#5C534F] text-[15px] font-light leading-relaxed opacity-80 mb-10">
+                            {t('product_bottom.desc')}
+                        </p>
                     </div>
                 </div>
         </div >
     );
 }
-
-
