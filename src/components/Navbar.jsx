@@ -6,8 +6,7 @@ import { useCart } from '../context/CartContext';
 import { useLanguage } from '../context/LanguageContext';
 import { useCRO } from '../context/CROContext';
 
-const topNavKeys = ["rostro", "maquillaje", "cuerpo", "cabello", "perfumes", "exclusivos"];
-
+const topNavKeys = ["rostro", "maquillaje", "cuerpo", "cabello", "perfumes", "outlet"];
 
 // Mega Menu Data using translation keys with static, high-quality images
 const megaMenuData = {
@@ -43,13 +42,12 @@ const megaMenuData = {
         { name: "unisex", imgs: ["https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?auto=format&fit=crop&q=80&w=300"] },
         { name: "hogar", imgs: ["https://images.unsplash.com/photo-1588152844436-056503b0d75b?auto=format&fit=crop&q=80&w=300"] },
     ],
-    "exclusivos": [
-        { name: "promociones", imgs: ["https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&q=80&w=300"] },
-        { name: "ultimas", imgs: ["https://images.unsplash.com/photo-1596462502278-27bfdc403348?auto=format&fit=crop&q=80&w=300"] },
+    "outlet": [
+        { name: "promociones", imgs: ["https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?auto=format&fit=crop&q=80&w=300"] },
+        { name: "ultimas", imgs: ["https://images.unsplash.com/photo-1591348113494-51543664906a?auto=format&fit=crop&q=80&w=300"] },
         { name: "best_sellers", imgs: ["https://images.unsplash.com/photo-1473496169904-658ba7c44d8a?auto=format&fit=crop&q=80&w=300"] },
     ],
 };
-
 
 
 const searchSuggestions = [

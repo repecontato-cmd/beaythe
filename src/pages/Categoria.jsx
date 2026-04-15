@@ -11,7 +11,7 @@ export default function Categoria() {
     const { slug: rawSlug } = useParams();
     const slug = rawSlug?.toLowerCase();
     const { addToCart } = useCart();
-    const { t, lang, translateProduct } = useLanguage();
+    const { t } = useLanguage();
     const { toggleFavorite, isFavorite } = useFavorites();
 
     const [allProducts, setAllProducts] = useState([]);
@@ -31,7 +31,7 @@ export default function Categoria() {
         price: ["0 - 25€", "25€ - 50€", "50€ - 75€", "75€+"],
         skin_tone: [t('history.purity'), "Medio", "Bronceado", "Oscuro"],
         color_name: ["Nude", "Rosado", "Rojo", "Tierra"],
-        product_type: ["serums", "cremas", "limpiadores", "exclusivos", "labios", "hidratacion"]
+        product_type: ["serums", "cremas", "limpiadores", "solares", "labios", "hidratacion"]
     };
 
     const sortOptions = [
@@ -69,17 +69,20 @@ export default function Categoria() {
         setSortOption(null);
     }, [slug]);
 
+    const { lang, translateProduct } = useLanguage();
+
+
     const filteredAndSortedProducts = useMemo(() => {
+        // First filter by Category/Slug
         let result = [];
         const normalizedSlug = slug === 'rosto' ? 'rostro' : (slug === 'maquilhagem' || slug === 'maquillagem' ? 'maquillaje' : slug);
 
         if (normalizedSlug === 'tendencias') {
             result = allProducts.filter(p => p.placement === 'TRENDING');
-        } else if (normalizedSlug === 'exclusivos') {
-            result = allProducts.filter(p => (p.manual_price || p.price) > 75);
         } else if (normalizedSlug === 'todos' || !normalizedSlug) {
             result = [...allProducts];
         } else {
+            // Flexible matching for categories: check name, description, or tags
             result = allProducts.filter(p => {
                 const content = (p.name + " " + (p.description || "")).toLowerCase();
                 const terms = {
@@ -87,6 +90,7 @@ export default function Categoria() {
                     maquillaje: ['maquillaje', 'maquilhagem', 'makeup', 'labios', 'ojos', 'olhos'],
                     cuerpo: ['cuerpo', 'corpo', 'baño', 'banho', 'hidratacion', 'body'],
                     cabello: ['cabello', 'cabelo', 'hair', 'capilar'],
+                    solares: ['solar', 'proteccion', 'spf', 'sun'],
                     bienestar: ['bienestar', 'bem-estar', 'relax', 'zen'],
                     hombre: ['hombre', 'homem', 'men', 'masculino']
                 };
@@ -95,10 +99,12 @@ export default function Categoria() {
             });
         }
 
+        // Search filter
         if (searchTerm) {
             result = result.filter(p => p.name.toLowerCase().includes(searchTerm.toLowerCase()));
         }
 
+        // Dropdown filters (simplified mapping for real data)
         if (selectedFilters.price) {
             result = result.filter(p => {
                 const price = p.manual_price || p.price;
@@ -110,8 +116,10 @@ export default function Categoria() {
             });
         }
 
+        // Apply translations
         result = result.map(p => translateProduct(p));
 
+        // Sort
         if (sortOption === "menor_preco") result.sort((a, b) => (a.manual_price || a.price) - (b.manual_price || b.price));
         else if (sortOption === "maior_preco") result.sort((a, b) => (b.manual_price || b.price) - (a.manual_price || a.price));
         else if (sortOption === "a_z") result.sort((a, b) => a.name.localeCompare(b.name));
@@ -119,6 +127,7 @@ export default function Categoria() {
 
         return result;
     }, [allProducts, slug, searchTerm, selectedFilters, sortOption, translateProduct]);
+
 
     const visibleProducts = filteredAndSortedProducts.slice(0, visibleCount);
 
@@ -130,25 +139,51 @@ export default function Categoria() {
     };
 
     const normalizedSlugForTitle = slug === 'rosto' ? 'rostro' : (slug === 'maquilhagem' || slug === 'maquillagem' ? 'maquillaje' : slug);
-    const title = normalizedSlugForTitle === 'todos' ? t('categories.todos.title') : (slug ? slug.charAt(0).toUpperCase() + slug.slice(1).replace(/-/g, ' ') : t('categories.collection'));
+    const title = normalizedSlugForTitle === 'todos' ? t('categories.all_collection') : (slug ? slug.charAt(0).toUpperCase() + slug.slice(1).replace(/-/g, ' ') : t('categories.collection'));
 
+    // Category Visuals Mapping
     const categoryVisuals = {
-        rostro: { img: "https://images.unsplash.com/photo-1596462502278-27bfdc403348?auto=format&fit=crop&q=80&w=2000", tagline: t('categories.rostro.tagline') },
-        maquillaje: { img: "https://images.unsplash.com/photo-1512496015851-a90fb38ba796?auto=format&fit=crop&q=80&w=2000", tagline: t('categories.maquillaje.tagline') },
-        cabello: { img: "https://images.unsplash.com/photo-1522337660859-02fbefca4702?auto=format&fit=crop&q=80&w=2000", tagline: t('categories.cabello.tagline') },
-        tendencias: { img: "https://images.unsplash.com/photo-1556228578-0d85b1a4d571?auto=format&fit=crop&q=80&w=2000", tagline: t('categories.tendencias.tagline') },
-        cuerpo: { img: "https://images.unsplash.com/photo-1522337660859-02fbefca4702?auto=format&fit=crop&q=80&w=2000", tagline: t('categories.cuerpo.tagline') },
-        exclusivos: { img: "https://images.unsplash.com/photo-1552046122-03184de85e08?auto=format&fit=crop&q=80&w=2000", tagline: t('categories.exclusivos.tagline') },
-        bienestar: { img: "https://images.unsplash.com/photo-1540555700478-4be289aef79b?auto=format&fit=crop&q=80&w=2000", tagline: t('categories.bienestar.tagline') },
-        hombre: { img: "https://images.unsplash.com/photo-1616117403483-36e2f1837ac6?auto=format&fit=crop&q=80&w=2000", tagline: t('categories.hombre.tagline') },
-        todos: { img: "https://images.unsplash.com/photo-1552046122-03184de85e08?auto=format&fit=crop&w=2000", tagline: t('categories.todos.tagline') },
-        default: { img: "https://images.unsplash.com/photo-1552046122-03184de85e08?auto=format&fit=crop&w=2000", tagline: t('categories.default.tagline') }
+        rostro: {
+            img: "https://images.unsplash.com/photo-1596462502278-27bfdc403348?auto=format&fit=crop&q=80&w=2000",
+            tagline: t('categories.rostro.tagline')
+        },
+        maquillaje: {
+            img: "https://images.unsplash.com/photo-1512496015851-a90fb38ba796?auto=format&fit=crop&q=80&w=2000",
+            tagline: t('categories.maquillaje.tagline')
+        },
+        cabello: {
+            img: "https://images.unsplash.com/photo-1522337660859-02fbefca4702?auto=format&fit=crop&q=80&w=2000",
+            tagline: t('categories.cabello.tagline')
+        },
+        tendencias: {
+            img: "https://images.unsplash.com/photo-1556228578-0d85b1a4d571?auto=format&fit=crop&q=80&w=2000",
+            tagline: t('categories.tendencias.tagline')
+        },
+        cuerpo: {
+            img: "https://images.unsplash.com/photo-1522337660859-02fbefca4702?auto=format&fit=crop&q=80&w=2000",
+            tagline: t('categories.cuerpo.tagline')
+        },
+        solares: {
+            img: "https://images.unsplash.com/photo-1552046122-03184de85e08?auto=format&fit=crop&q=80&w=2000",
+            tagline: t('categories.solares.tagline')
+        },
+        bienestar: {
+            img: "https://images.unsplash.com/photo-1540555700478-4be289aef79b?auto=format&fit=crop&q=80&w=2000",
+            tagline: t('categories.bienestar.tagline')
+        },
+        hombre: {
+            img: "https://images.unsplash.com/photo-1616117403483-36e2f1837ac6?auto=format&fit=crop&q=80&w=2000",
+            tagline: t('categories.hombre.tagline')
+        },
+        default: {
+            img: "https://images.unsplash.com/photo-1552046122-03184de85e08?auto=format&fit=crop&w=2000",
+            tagline: t('categories.default.tagline')
+        }
     };
 
     const currentVisual = categoryVisuals[normalizedSlugForTitle] || categoryVisuals.default;
     const PLACEHOLDER_IMG = "https://images.unsplash.com/photo-1556228578-0d85b1a4d571?auto=format&fit=crop&q=80&w=300";
 
-    if (loading) return null;
 
     return (
         <div className="w-full bg-[#FCFAF8] pb-24">
@@ -175,6 +210,7 @@ export default function Categoria() {
                     <p className="text-[15px] md:text-lg font-light tracking-wide opacity-90 text-[#F4EFEA] max-w-2xl mx-auto leading-relaxed">
                         {t(`categories.${normalizedSlugForTitle}.desc`) || currentVisual.tagline}
                     </p>
+
                 </div>
             </section>
 
@@ -293,6 +329,8 @@ export default function Categoria() {
                                     />
                                 </Link>
 
+
+
                                 <div className="absolute inset-x-0 bottom-0 p-5 opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500 hidden md:block">
                                     <button
                                         onClick={() => addToCart(product)}
@@ -309,9 +347,7 @@ export default function Categoria() {
                                     <p className="text-[10px] font-bold tracking-[0.2em] text-[#8A7369] uppercase leading-none">Beauthé</p>
                                     <p className="text-[10px] font-medium text-[#A69B97] uppercase tracking-wide leading-none">{product.colors > 1 ? `+ ${product.colors} ${t('common.shades')}` : t('common.essential')}</p>
                                 </div>
-                                <Link to={`/producto/${product.id}`} className="block text-[15px] font-normal text-[#2C2826] mb-2 hover:text-[#C4A49A] transition-colors leading-tight uppercase tracking-tight truncate">
-                                    {product.name}
-                                </Link>
+                                <Link to={`/producto/${product.id}`} className="block text-[15px] font-normal text-[#2C2826] mb-2 hover:text-[#C4A49A] transition-colors leading-tight uppercase tracking-tight">{product.name}</Link>
                                 <div className="flex items-baseline gap-3">
                                     <span className="text-[16px] font-normal text-[#2C2826]">{product.price.toFixed(2)} €</span>
                                     {product.oldPrice && <span className="text-[13px] text-[#A69B97] line-through font-light">{product.oldPrice.toFixed(2)} €</span>}
@@ -343,10 +379,10 @@ export default function Categoria() {
                     <p className="text-[11px] font-bold tracking-[0.3em] text-[#8A7369] uppercase mb-6 opacity-70">
                         {t('product_bottom.tag')}
                     </p>
-                    <h2 className="text-3xl md:text-5xl font-light text-[#2C2826] mb-8 leading-snug">
-                        {t('product_bottom.title_1')} <span className="italic">{t('product_bottom.title_2')}</span>
-                    </h2>
-                    <p className="text-[#5C534F] text-lg font-light leading-relaxed opacity-80 mb-10">
+                    <h3 className="text-3xl md:text-4xl font-light text-[#2C2826] mb-8 leading-snug">
+                        {t('product_bottom.title_1')} <span className="font-light">{t('product_bottom.title_2')}</span>
+                    </h3>
+                    <p className="text-[#5C534F] text-[15px] font-light leading-relaxed opacity-80 mb-10">
                         {t('product_bottom.desc')}
                     </p>
                 </div>

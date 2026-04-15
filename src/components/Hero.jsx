@@ -100,7 +100,7 @@ export default function Hero() {
                         <h2 className="text-white text-2xl md:text-3xl font-bold mb-2 uppercase tracking-tight">{t('hero.sun_care.title')}</h2>
                         <p className="text-[#F4EFEA] text-[12px] md:text-[13px] font-light mb-5 opacity-80 max-w-[200px]">{t('hero.sun_care.desc')}</p>
                         <Link
-                            to="/categoria/exclusivos"
+                            to="/categoria/solares"
                             className="bg-white text-[#2C2826] px-6 py-2.5 text-[10px] md:text-[11px] font-bold tracking-widest uppercase rounded-xl shadow-lg hover:bg-[#C4A49A] hover:text-white transition-all transform active:scale-95"
                         >
                             {t('hero.discover')}

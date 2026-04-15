@@ -69,13 +69,13 @@ const translationsData = {
             more: "Ver más"
         },
         categories: {
-            todos: { title: "Toda la Colección", tagline: "Esencia Beauthé", desc: "Explora nuestro universo completo de belleza consciente." },
+            all_collection: "Toda la Colección",
             collection: "Colección",
             rostro: { title: "Cuidado Facial", tagline: "Rituales de Pureza", desc: "Sérums, tónicos y cremas formulados para una piel radiante." },
             maquillaje: { title: "Maquillaje", tagline: "Belleza Consciente", desc: "Texturas sensoriales que realzan tu belleza natural." },
             cabello: { title: "Cuidado Capilar", tagline: "Nutrición Intensa", desc: "Fórmulas exclusivas para un cabello fuerte y brillante." },
             tendencias: { title: "Tendencias", tagline: "Lo Último de Beauthé", desc: "Descubre los productos más deseados de esta temporada." },
-            exclusivos: { title: "Exclusivos", tagline: "Ediciones Limitadas", desc: "Selección premium de alta gama para resultados excepcionales." },
+            solares: { title: "Protección Solar", tagline: "Escudo Diario", desc: "Protección avanzada contra el fotoenvejecimiento." },
             cuerpo: { title: "Baño y Cuerpo", tagline: "Bienestar Total", desc: "Hidratación profunda para cada centímetro de tu piel." },
             bienestar: { title: "Bienestar", tagline: "Mente y Cuerpo", desc: "Productos diseñados para tu momento de relax diario." },
             hombre: { title: "Línea Hombre", tagline: "Cuidado Masculino", desc: "Fórmulas prácticas y eficaces para el hombre moderno." },
@@ -83,12 +83,13 @@ const translationsData = {
         },
 
         nav: {
-            exclusivos: "Exclusivos",
+            outlet: "Outlet",
             marcas: "Marcas",
             rostro: "Rostro",
             cuerpo: "Cuerpo y Baño",
             bienestar: "Bienestar",
             cabello: "Cabello",
+            solares: "Solares",
             maquillaje: "Maquillaje",
             perfumes: "Perfumes",
             hombre: "Hombre",
@@ -635,25 +636,26 @@ const translationsData = {
             more: "Ver mais"
         },
         categories: {
-            todos: { title: "Toda a Coleção", tagline: "Essência Beauthé", desc: "Explore o nosso universo completo de beleza consciente." },
+            all_collection: "Toda a Coleção",
             collection: "Coleção",
             rostro: { title: "Cuidado Facial", tagline: "Rituais de Pureza", desc: "Séruns, tónicos e cremes formulados para uma pele radiante." },
             maquillaje: { title: "Maquilhagem", tagline: "Beleza Consciente", desc: "Texturas sensoriais que realçam a sua beleza natural." },
             cabello: { title: "Cuidado Capilar", tagline: "Nutrição Intensa", desc: "Fórmulas exclusivas para um cabelo forte e brilhante." },
             tendencias: { title: "Tendências", tagline: "O Último da Beauthé", desc: "Descubra os produtos mais desejados desta temporada." },
-            exclusivos: { title: "Exclusivos", tagline: "Edições Limitadas", desc: "Seleção premium de alta gama para resultados excecionais." },
+            solares: { title: "Proteção Solar", tagline: "Escudo Diário", desc: "Proteção avançada contra o fotoenvelhecimento." },
             cuerpo: { title: "Banho e Corpo", tagline: "Bem-estar Total", desc: "Hidratação profunda para cada centímetro da sua pele." },
             bienestar: { title: "Bem-estar", tagline: "Mente e Corpo", desc: "Produtos desenhados para o seu momento de relax diário." },
             hombre: { title: "Linha Homem", tagline: "Cuidado Masculino", desc: "Fórmulas práticas e eficazes para o homem moderno." },
             default: { title: "Beauthé", tagline: "Beleza com Propósito", desc: "Explore a nossa seleção de alta cosmética natural." }
         },
         nav: {
-            exclusivos: "Exclusivos",
+            outlet: "Outlet",
             marcas: "Marcas",
             rostro: "Rosto",
             cuerpo: "Corpo & Banho",
             bienestar: "Bem-estar",
             cabello: "Cabelo",
+            solares: "Solares",
             maquillaje: "Maquilhagem",
             perfumes: "Perfumes",
             hombre: "Homem",
@@ -785,8 +787,8 @@ const translationsData = {
                 desc: "Tratamentos capilares formulados para nutrir, reparar e proteger os seus fios.",
                 tagline: "Cuidado Profundo"
             },
-            exclusivos: {
-                title: "Exclusivos",
+            solares: {
+                title: "Solares",
                 desc: "Proteção avançada contra os raios UV para uma pele saudável durante todo o ano.",
                 tagline: "Proteção Vital"
             },
@@ -1194,25 +1196,26 @@ const translationsData = {
             more: "View more"
         },
         categories: {
-            todos: { title: "All Collection", tagline: "Beauthé Essence", desc: "Explore our complete universe of conscious beauty." },
+            all_collection: "All Collection",
             collection: "Collection",
             rostro: { title: "Facial Care", tagline: "Purity Rituals", desc: "Serums, tonics and creams formulated for radiant skin." },
             maquillaje: { title: "Makeup", tagline: "Conscious Beauty", desc: "Sensory textures that enhance your natural beauty." },
             cabello: { title: "Hair Care", tagline: "Intense Nutrition", desc: "Exclusive formulas for strong, shiny hair." },
             tendencias: { title: "Trending", tagline: "Latest from Beauthé", desc: "Discover this season's most wanted products." },
-            exclusivos: { title: "Exclusives", tagline: "Limited Editions", desc: "Premium high-end selection for exceptional results." },
+            solares: { title: "Sun Care", tagline: "Daily Shield", desc: "Advanced protection against photoaging." },
             cuerpo: { title: "Bath & Body", tagline: "Total Well-being", desc: "Deep hydration for every inch of your skin." },
             bienestar: { title: "Wellness", tagline: "Mind & Body", desc: "Products designed for your daily relax moment." },
             hombre: { title: "Men's Line", tagline: "Male Care", desc: "Practical and effective formulas for the modern man." },
             default: { title: "Beauthé", tagline: "Beauty with Purpose", desc: "Explore our selection of natural high cosmetics." }
         },
         nav: {
-            exclusivos: "Exclusives",
+            outlet: "Outlet",
             marcas: "Brands",
             rostro: "Face",
             cuerpo: "Body & Bath",
             bienestar: "Wellness",
             cabello: "Hair",
+            solares: "Sun Care",
             maquillaje: "Makeup",
             perfumes: "Perfumes",
             hombre: "Men",
@@ -1344,8 +1347,8 @@ const translationsData = {
                 desc: "Premium treatments for strong, shiny and healthy hair.",
                 tagline: "Deep Care"
             },
-            exclusivos: {
-                title: "Exclusives",
+            solares: {
+                title: "Sun Care",
                 desc: "Advanced protection to keep your skin radiant and young under the sun.",
                 tagline: "Vital Protection"
             },

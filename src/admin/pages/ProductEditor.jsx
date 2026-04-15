@@ -130,7 +130,7 @@ export default function ProductEditor() {
                     {activeTab === 'basic' && (
                         <div className="space-y-6">
                             <h2 className="text-xl font-bold mb-4">Informações e Categorização</h2>
-                            <p className="text-sm text-gray-500">Altere o nome e coloque tags/palavras-chave (ex: "rosto", "exclusivos", "maquillaje") para forçar este produto a aparecer nas categorias correspondentes do site.</p>
+                            <p className="text-sm text-gray-500">Altere o nome e coloque tags/palavras-chave (ex: "rosto", "solares", "maquillaje") para forçar este produto a aparecer nas categorias correspondentes do site.</p>
 
                             <div>
                                 <label className="block text-sm font-bold text-gray-700 mb-1">Nome Principal</label>
@@ -139,7 +139,7 @@ export default function ProductEditor() {
 
                             <div>
                                 <label className="block text-sm font-bold text-gray-700 mb-1">Miniatura Principal (URL)</label>
-                                <input type="url" value={basicInfo.image_url} onChange={e => setBasicInfo({ ...basicInfo, image_url: e.target.value })} className="w-full border p-3 rounded-xl" placeholder="https://images.unsplash.com/..." />
+                                <input type="url" value={basicInfo.image_url} onChange={e => setBasicInfo({ ...basicInfo, image_url: e.target.value })} className="w-full border p-3 rounded-xl" />
                             </div>
 
                             <div>
