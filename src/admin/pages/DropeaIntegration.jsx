@@ -184,7 +184,11 @@ export default function DropeaIntegration() {
                     <div className="flex flex-col md:flex-row gap-4 w-full xl:w-auto items-stretch md:items-center">
                         <div className="flex items-center bg-white border border-gray-200 rounded-xl px-2 shadow-sm flex-1 md:flex-auto">
                             <Search className="text-gray-400 ml-2" size={18} />
-                            <input type="text" placeholder="Importar por DId..." value={manualId} onChange={e => setManualId(e.target.value)} className="bg-transparent border-none outline-none px-3 py-3 text-sm w-full md:w-36 font-mono" />
+                            <input type="text" placeholder="Buscar catálogo (ex: Beleza)..." value={searchQuery} onChange={e => setSearchQuery(e.target.value)} className="bg-transparent border-none outline-none px-3 py-3 text-sm flex-1" />
+                        </div>
+                        <div className="flex items-center bg-white border border-gray-200 rounded-xl px-2 shadow-sm flex-1 md:flex-auto">
+                            <Box className="text-gray-400 ml-2" size={18} />
+                            <input type="text" placeholder="ID Dropea..." value={manualId} onChange={e => setManualId(e.target.value)} className="bg-transparent border-none outline-none px-3 py-3 text-sm w-full md:w-36 font-mono" />
                             <button onClick={() => { handleImportSingle(manualId); setManualId(''); }} disabled={!manualId} className="bg-black text-white p-2 rounded-lg hover:bg-gray-800 disabled:opacity-50">
                                 <Plus size={16} />
                             </button>
