@@ -7,17 +7,20 @@ import { CartProvider } from './context/CartContext.jsx'
 import { LanguageProvider } from './context/LanguageContext.jsx'
 import { FavoritesProvider } from './context/FavoritesContext.jsx'
 import { CROProvider } from './context/CROContext.jsx'
+import { AuthProvider } from './context/AuthContext.jsx'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <BrowserRouter>
       <LanguageProvider>
         <CROProvider>
-          <CartProvider>
-            <FavoritesProvider>
-              <App />
-            </FavoritesProvider>
-          </CartProvider>
+          <AuthProvider>
+            <CartProvider>
+              <FavoritesProvider>
+                <App />
+              </FavoritesProvider>
+            </CartProvider>
+          </AuthProvider>
         </CROProvider>
       </LanguageProvider>
     </BrowserRouter>
