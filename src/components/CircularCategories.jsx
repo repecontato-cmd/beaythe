@@ -12,7 +12,7 @@ const categories = [
     { name: "CUERPO", slug: "cuerpo", img: "https://images.unsplash.com/photo-1629198688000-71f23e745b6e?auto=format&fit=crop&w=300&q=80", color: "bg-[#E6E8E3]" },
     { name: "BIENESTAR", slug: "bienestar", img: "https://images.unsplash.com/photo-1512428559087-560fa5ceab42?auto=format&fit=crop&w=300&q=80", color: "bg-[#EAE4DF]" },
     { name: "CABELLO", slug: "cabello", img: "https://images.unsplash.com/photo-1522337660859-02fbefca4702?auto=format&fit=crop&w=300&q=80", color: "bg-[#EAEAE8]" },
-    { name: "SOLARES", slug: "solares", img: "https://images.unsplash.com/photo-1615397323886-0bf17b0ddec2?auto=format&fit=crop&w=300&q=80", color: "bg-[#F5EFE8]" },
+    { name: "EXCLUSIVOS", slug: "exclusivos", img: "https://images.unsplash.com/photo-1552046122-03184de85e08?auto=format&fit=crop&w=300&q=80", color: "bg-[#F5EFE8]" },
     { name: "HOMBRE", slug: "hombre", img: "https://images.unsplash.com/photo-1528698827591-e19ccd7bc23d?auto=format&fit=crop&w=300&q=80", color: "bg-[#E8ECEF]" },
 ];
 
