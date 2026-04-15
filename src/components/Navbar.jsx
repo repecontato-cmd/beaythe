@@ -392,7 +392,7 @@ export default function Navbar({ onCartClick, onFavoritesClick, onUserClick }) {
                                         </div>
                                         <div className="text-center w-full">
                                             <h4 className="text-[14px] font-bold text-[#C4A49A] mb-2 group-hover:text-[#8A7369] transition-colors truncate">
-                                                <Link to={`/categoria/${item.name === 'ultimas' ? 'outlet' : (item.name === 'promociones' ? 'outlet' : item.name)}`} onClick={() => setActiveMenu(null)}>{t(`nav.${item.name}`)}</Link>
+                                                <Link to={`/categoria/${item.name === 'ultimas' ? 'outlet' : (item.name === 'promociones' ? 'outlet' : (item.name === 'manos_pies' ? 'manos-pies' : item.name))}`} onClick={() => setActiveMenu(null)}>{t(`nav.${item.name}`)}</Link>
                                             </h4>
                                             <div className="flex flex-col gap-1.5 opacity-80 group-hover:opacity-100 transition-opacity">
                                                 {t(`nav.sub_${item.name}`) instanceof Array ? t(`nav.sub_${item.name}`).map((subItem, sIdx) => (
