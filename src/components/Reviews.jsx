@@ -40,6 +40,14 @@ const reviewsData = [
 
 export default function Reviews() {
     const { t } = useLanguage();
+    const [visibleCount, setVisibleCount] = React.useState(4);
+
+    const showMore = () => {
+        setVisibleCount(prev => prev + 4);
+    };
+
+    const reviews = reviewsData.slice(0, visibleCount);
+
     return (
         <section className="w-full bg-[#FCFAF8] py-20 px-4 sm:px-6 lg:px-8 border-t border-[#F1EBE6]">
             <div className="max-w-[1440px] mx-auto">
@@ -49,7 +57,7 @@ export default function Reviews() {
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                    {reviewsData.map((review) => (
+                    {reviews.map((review) => (
                         <motion.div
                             key={review.id}
                             whileHover={{ y: -5 }}
@@ -71,12 +79,18 @@ export default function Reviews() {
                 </div>
 
                 <div className="mt-16 text-center">
-                    <button className="border border-[#2C2826] text-[#2C2826] px-10 py-4 rounded-xl text-[11px] font-bold uppercase tracking-[0.2em] hover:bg-[#2C2826] hover:text-white transition-all shadow-sm active:scale-95">
-                        Ver Mais Reviews
-                    </button>
+                    {visibleCount < reviewsData.length && (
+                        <button
+                            onClick={showMore}
+                            className="border border-[#2C2826] text-[#2C2826] px-10 py-4 rounded-xl text-[11px] font-bold uppercase tracking-[0.2em] hover:bg-[#2C2826] hover:text-white transition-all shadow-sm active:scale-95"
+                        >
+                            Ver Mais Reviews
+                        </button>
+                    )}
                     <p className="text-[11px] text-[#A69B97] mt-4 font-light">Média de 4.9/5 estrelas baseada em clientes verificados</p>
                 </div>
             </div>
         </section>
     );
 }
+
