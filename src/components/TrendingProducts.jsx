@@ -8,7 +8,7 @@ import { useLanguage } from '../context/LanguageContext';
 import { getProducts } from '../admin/services/db';
 
 export default function TrendingProducts({ overrideTitle, removePadding, recommendedIds, type }) {
-    const { t } = useLanguage();
+    const { t, translateProduct } = useLanguage();
     const { addToCart } = useCart();
     const { toggleFavorite, isFavorite } = useFavorites();
     const [liveProducts, setLiveProducts] = React.useState([]);
@@ -33,14 +33,18 @@ export default function TrendingProducts({ overrideTitle, removePadding, recomme
 
     const PLACEHOLDER_IMG = "https://images.unsplash.com/photo-1556228578-0d85b1a4d571?auto=format&fit=crop&q=80&w=300";
 
-    const products = liveProducts.map(p => ({
-        id: p.id,
-        name: p.name,
-        brand: "Beauthé",
-        price: p.manual_price || p.price || 0,
-        image: p.image_url || PLACEHOLDER_IMG,
-        badge: p.placement === 'TRENDING' ? "trend" : (type === 'new' ? "new" : "trend")
-    }));
+    const products = liveProducts.map(p => {
+        const translated = translateProduct(p);
+        return {
+            id: p.id,
+            name: translated.name,
+            brand: "Beauthé",
+            price: p.manual_price || p.price || 0,
+            image: p.image_url || PLACEHOLDER_IMG,
+            badge: p.placement === 'TRENDING' ? "trend" : (type === 'new' ? "new" : "trend")
+        };
+    });
+
 
 
 
