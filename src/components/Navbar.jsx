@@ -6,7 +6,8 @@ import { useCart } from '../context/CartContext';
 import { useLanguage } from '../context/LanguageContext';
 import { useCRO } from '../context/CROContext';
 
-const topNavKeys = ["rostro", "maquillaje", "cuerpo", "cabello", "perfumes", "outlet"];
+const topNavKeys = ["rostro", "maquillaje", "cuerpo", "cabello", "perfumes", "exclusivos"];
+
 
 // Mega Menu Data using translation keys with static, high-quality images
 const megaMenuData = {
