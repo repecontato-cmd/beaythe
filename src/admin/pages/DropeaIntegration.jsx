@@ -118,7 +118,15 @@ export default function DropeaIntegration() {
         const pCat = (p.category || '').toLowerCase();
         const activeCat = activeCategory.toLowerCase();
 
-        const matchesCategory = activeCategory === 'Todas' || pCat === activeCat || (activeCat === 'beleza' && pCat.includes('beleza'));
+        // Beauty meta-category keywords
+        const beautyKeywords = ['beleza', 'beauty', 'cosmetic', 'maquillaje', 'maquiagem', 'perfum', 'higiene', 'saúde', 'salud', 'piel', 'pele', 'rostro', 'rosto'];
+
+        const isBeautyMatch = activeCat === 'beleza' && (
+            pCat.includes('beleza') ||
+            beautyKeywords.some(kw => pCat.includes(kw) || p.name?.toLowerCase().includes(kw))
+        );
+
+        const matchesCategory = activeCategory === 'Todas' || pCat === activeCat || isBeautyMatch;
 
         const matchesSearch = p.name?.toLowerCase().includes(searchQuery.toLowerCase()) ||
             pCat.includes(searchQuery.toLowerCase());
