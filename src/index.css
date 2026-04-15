@@ -27,6 +27,20 @@
   h6 {
     font-family: var(--font-sans);
   }
+
+  button,
+  a,
+  input,
+  select,
+  textarea {
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  /* Ensure card images and overlays also feel smooth */
+  .group:hover img,
+  .group:hover .group-hover\:opacity-100 {
+    transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+  }
 }
 
 /* Custom scrollbar to look premium */
