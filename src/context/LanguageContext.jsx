@@ -635,6 +635,19 @@ const translationsData = {
             },
             more: "Ver mais"
         },
+        categories: {
+            all_collection: "Toda a Coleção",
+            collection: "Coleção",
+            rostro: { title: "Cuidado Facial", tagline: "Rituais de Pureza", desc: "Séruns, tónicos e cremes formulados para uma pele radiante." },
+            maquillaje: { title: "Maquilhagem", tagline: "Beleza Consciente", desc: "Texturas sensoriais que realçam a sua beleza natural." },
+            cabello: { title: "Cuidado Capilar", tagline: "Nutrição Intensa", desc: "Fórmulas exclusivas para um cabelo forte e brilhante." },
+            tendencias: { title: "Tendências", tagline: "O Último da Beauthé", desc: "Descubra os produtos mais desejados desta temporada." },
+            solares: { title: "Proteção Solar", tagline: "Escudo Diário", desc: "Proteção avançada contra o fotoenvelhecimento." },
+            cuerpo: { title: "Banho e Corpo", tagline: "Bem-estar Total", desc: "Hidratação profunda para cada centímetro da sua pele." },
+            bienestar: { title: "Bem-estar", tagline: "Mente e Corpo", desc: "Produtos desenhados para o seu momento de relax diário." },
+            hombre: { title: "Linha Homem", tagline: "Cuidado Masculino", desc: "Fórmulas práticas e eficazes para o homem moderno." },
+            default: { title: "Beauthé", tagline: "Beleza com Propósito", desc: "Explore a nossa seleção de alta cosmética natural." }
+        },
         nav: {
             outlet: "Outlet",
             marcas: "Marcas",
@@ -1180,7 +1193,20 @@ const translationsData = {
                 decline: "Decline",
                 more: "Learn more"
             },
-            more: "See more"
+            more: "View more"
+        },
+        categories: {
+            all_collection: "All Collection",
+            collection: "Collection",
+            rostro: { title: "Facial Care", tagline: "Purity Rituals", desc: "Serums, tonics and creams formulated for radiant skin." },
+            maquillaje: { title: "Makeup", tagline: "Conscious Beauty", desc: "Sensory textures that enhance your natural beauty." },
+            cabello: { title: "Hair Care", tagline: "Intense Nutrition", desc: "Exclusive formulas for strong, shiny hair." },
+            tendencias: { title: "Trending", tagline: "Latest from Beauthé", desc: "Discover this season's most wanted products." },
+            solares: { title: "Sun Care", tagline: "Daily Shield", desc: "Advanced protection against photoaging." },
+            cuerpo: { title: "Bath & Body", tagline: "Total Well-being", desc: "Deep hydration for every inch of your skin." },
+            bienestar: { title: "Wellness", tagline: "Mind & Body", desc: "Products designed for your daily relax moment." },
+            hombre: { title: "Men's Line", tagline: "Male Care", desc: "Practical and effective formulas for the modern man." },
+            default: { title: "Beauthé", tagline: "Beauty with Purpose", desc: "Explore our selection of natural high cosmetics." }
         },
         nav: {
             outlet: "Outlet",
