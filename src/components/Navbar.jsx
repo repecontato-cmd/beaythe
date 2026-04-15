@@ -8,46 +8,47 @@ import { useCRO } from '../context/CROContext';
 
 const topNavKeys = ["rostro", "maquillaje", "cuerpo", "cabello", "perfumes", "outlet"];
 
-// Mega Menu Data using translation keys with multiple images for transitions
+// Mega Menu Data using translation keys with static, high-quality images
 const megaMenuData = {
     "rostro": [
-        { name: "limpiadores", imgs: ["https://images.unsplash.com/photo-1556228578-0d85b1a4d571?auto=format&fit=crop&q=80&w=300", "https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&q=80&w=300"] },
-        { name: "tonicos", imgs: ["https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&q=80&w=300", "https://images.unsplash.com/photo-1556228578-0d85b1a4d571?auto=format&fit=crop&q=80&w=300"] },
-        { name: "serums", imgs: ["https://images.unsplash.com/photo-1615397323886-0bf17b0ddec2?auto=format&fit=crop&q=80&w=300", "https://images.unsplash.com/photo-1596462502278-27bfdc403348?auto=format&fit=crop&q=80&w=300"] },
-        { name: "cremas", imgs: ["https://images.unsplash.com/photo-1596462502278-27bfdc403348?auto=format&fit=crop&q=80&w=300", "https://images.unsplash.com/photo-1512496015851-a1c8d1720d29?auto=format&fit=crop&q=80&w=300"] },
-        { name: "contorno", imgs: ["https://images.unsplash.com/photo-1522337660859-02fbefca4702?auto=format&fit=crop&q=80&w=300", "https://images.unsplash.com/photo-1586495777744-4413f21062fa?auto=format&fit=crop&q=80&w=300"] },
-        { name: "mascarillas", imgs: ["https://images.unsplash.com/photo-1586495777744-4413f21062fa?auto=format&fit=crop&q=80&w=300", "https://images.unsplash.com/photo-1522337660859-02fbefca4702?auto=format&fit=crop&q=80&w=300"] }
+        { name: "limpiadores", imgs: ["https://images.unsplash.com/photo-1556228578-0d85b1a4d571?auto=format&fit=crop&q=80&w=300"] },
+        { name: "tonicos", imgs: ["https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&q=80&w=300"] },
+        { name: "serums", imgs: ["https://images.unsplash.com/photo-1610450531548-73587b14d557?auto=format&fit=crop&q=80&w=300"] },
+        { name: "cremas", imgs: ["https://images.unsplash.com/photo-1596462502278-27bfdc403348?auto=format&fit=crop&q=80&w=300"] },
+        { name: "contorno", imgs: ["https://images.unsplash.com/photo-1522337660859-02fbefca4702?auto=format&fit=crop&q=80&w=300"] },
+        { name: "mascarillas", imgs: ["https://images.unsplash.com/photo-1586495777744-4413f21062fa?auto=format&fit=crop&q=80&w=300"] }
     ],
     "maquillaje": [
-        { name: "base", imgs: ["https://images.unsplash.com/photo-1512496015851-a1c8d1720d29?auto=format&fit=crop&q=80&w=300", "https://images.unsplash.com/photo-1599305090598-fe179d501227?auto=format&fit=crop&q=80&w=300"] },
-        { name: "correctores", imgs: ["https://images.unsplash.com/photo-1599305090598-fe179d501227?auto=format&fit=crop&q=80&w=300", "https://images.unsplash.com/photo-1512496015851-a1c8d1720d29?auto=format&fit=crop&q=80&w=300"] },
-        { name: "polvo", imgs: ["https://images.unsplash.com/photo-1629198688000-71f23e745b6e?auto=format&fit=crop&q=80&w=300", "https://images.unsplash.com/photo-1583241475880-083f84372725?auto=format&fit=crop&q=80&w=300"] },
-        { name: "rubor", imgs: ["https://images.unsplash.com/photo-1583241475880-083f84372725?auto=format&fit=crop&q=80&w=300", "https://images.unsplash.com/photo-1629198688000-71f23e745b6e?auto=format&fit=crop&q=80&w=300"] },
-        { name: "labios", imgs: ["https://images.unsplash.com/photo-1586495777744-4413f21062fa?auto=format&fit=crop&q=80&w=300", "https://images.unsplash.com/photo-1512496015851-a1c8d1720d29?auto=format&fit=crop&q=80&w=300"] },
+        { name: "base", imgs: ["https://images.unsplash.com/photo-1599733594230-6b823276abcc?auto=format&fit=crop&q=80&w=300"] },
+        { name: "correctores", imgs: ["https://images.unsplash.com/photo-1599305090598-fe179d501227?auto=format&fit=crop&q=80&w=300"] },
+        { name: "polvo", imgs: ["https://images.unsplash.com/photo-1629198688000-71f23e745b6e?auto=format&fit=crop&q=80&w=300"] },
+        { name: "rubor", imgs: ["https://images.unsplash.com/photo-1583241475880-083f84372725?auto=format&fit=crop&q=80&w=300"] },
+        { name: "labios", imgs: ["https://images.unsplash.com/photo-1512496015851-a1c8d1720d29?auto=format&fit=crop&q=80&w=300"] },
     ],
     "cuerpo": [
-        { name: "higiene", imgs: ["https://images.unsplash.com/photo-1607006342411-0a6a7c36c649?auto=format&fit=crop&q=80&w=300", "https://images.unsplash.com/photo-1552046122-03184de85e08?auto=format&fit=crop&q=80&w=300"] },
-        { name: "hidratacion", imgs: ["https://images.unsplash.com/photo-1552046122-03184de85e08?auto=format&fit=crop&q=80&w=300", "https://images.unsplash.com/photo-1607006342411-0a6a7c36c649?auto=format&fit=crop&q=80&w=300"] },
-        { name: "cuidados", imgs: ["https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&q=80&w=300", "https://images.unsplash.com/photo-1519415510236-855bc9808d4e?auto=format&fit=crop&q=80&w=300"] },
-        { name: "manos_pies", imgs: ["https://images.unsplash.com/photo-1519415510236-855bc9808d4e?auto=format&fit=crop&q=80&w=300", "https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&q=80&w=300"] },
+        { name: "higiene", imgs: ["https://images.unsplash.com/photo-1607006342411-0a6a7c36c649?auto=format&fit=crop&q=80&w=300"] },
+        { name: "hidratacion", imgs: ["https://images.unsplash.com/photo-1552046122-03184de85e08?auto=format&fit=crop&q=80&w=300"] },
+        { name: "cuidados", imgs: ["https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&q=80&w=300"] },
+        { name: "manos_pies", imgs: ["https://images.unsplash.com/photo-1519415510236-855bc9808d4e?auto=format&fit=crop&q=80&w=300"] },
     ],
     "cabello": [
-        { name: "lavado", imgs: ["https://images.unsplash.com/photo-1532713109643-df1a5ca4cabd?auto=format&fit=crop&q=80&w=300", "https://images.unsplash.com/photo-1527799822367-3de88bc0c4a3?auto=format&fit=crop&q=80&w=300"] },
-        { name: "tratamiento", imgs: ["https://images.unsplash.com/photo-1527799822367-3de88bc0c4a3?auto=format&fit=crop&q=80&w=300", "https://images.unsplash.com/photo-1532713109643-df1a5ca4cabd?auto=format&fit=crop&q=80&w=300"] },
-        { name: "styling", imgs: ["https://images.unsplash.com/photo-1522337660859-02fbefca4702?auto=format&fit=crop&q=80&w=300", "https://images.unsplash.com/photo-1532713109643-df1a5ca4cabd?auto=format&fit=crop&q=80&w=300"] },
+        { name: "lavado", imgs: ["https://images.unsplash.com/photo-1532713109643-df1a5ca4cabd?auto=format&fit=crop&q=80&w=300"] },
+        { name: "tratamiento", imgs: ["https://images.unsplash.com/photo-1527799822367-3de88bc0c4a3?auto=format&fit=crop&q=80&w=300"] },
+        { name: "styling", imgs: ["https://images.unsplash.com/photo-1522337660859-02fbefca4702?auto=format&fit=crop&q=80&w=300"] },
     ],
     "perfumes": [
-        { name: "femeninos", imgs: ["https://images.unsplash.com/photo-1541643600914-78b084683601?auto=format&fit=crop&q=80&w=300", "https://images.unsplash.com/photo-1594035910387-fea47794261f?auto=format&fit=crop&q=80&w=300"] },
-        { name: "masculinos", imgs: ["https://images.unsplash.com/photo-1594035910387-fea47794261f?auto=format&fit=crop&q=80&w=300", "https://images.unsplash.com/photo-1541643600914-78b084683601?auto=format&fit=crop&q=80&w=300"] },
-        { name: "unisex", imgs: ["https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?auto=format&fit=crop&q=80&w=300", "https://images.unsplash.com/photo-1588152844436-056503b0d75b?auto=format&fit=crop&q=80&w=300"] },
-        { name: "hogar", imgs: ["https://images.unsplash.com/photo-1588152844436-056503b0d75b?auto=format&fit=crop&q=80&w=300", "https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?auto=format&fit=crop&q=80&w=300"] },
+        { name: "femeninos", imgs: ["https://images.unsplash.com/photo-1541643600914-78b084683601?auto=format&fit=crop&q=80&w=300"] },
+        { name: "masculinos", imgs: ["https://images.unsplash.com/photo-1594035910387-fea47794261f?auto=format&fit=crop&q=80&w=300"] },
+        { name: "unisex", imgs: ["https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?auto=format&fit=crop&q=80&w=300"] },
+        { name: "hogar", imgs: ["https://images.unsplash.com/photo-1588152844436-056503b0d75b?auto=format&fit=crop&q=80&w=300"] },
     ],
     "outlet": [
-        { name: "promociones", imgs: ["https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?auto=format&fit=crop&q=80&w=300", "https://images.unsplash.com/photo-1591348113494-51543664906a?auto=format&fit=crop&q=80&w=300"] },
-        { name: "ultimas", imgs: ["https://images.unsplash.com/photo-1591348113494-51543664906a?auto=format&fit=crop&q=80&w=300", "https://images.unsplash.com/photo-1473496169904-658ba7c44d8a?auto=format&fit=crop&q=80&w=300"] },
-        { name: "best_sellers", imgs: ["https://images.unsplash.com/photo-1473496169904-658ba7c44d8a?auto=format&fit=crop&q=80&w=300", "https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?auto=format&fit=crop&q=80&w=300"] },
+        { name: "promociones", imgs: ["https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?auto=format&fit=crop&q=80&w=300"] },
+        { name: "ultimas", imgs: ["https://images.unsplash.com/photo-1591348113494-51543664906a?auto=format&fit=crop&q=80&w=300"] },
+        { name: "best_sellers", imgs: ["https://images.unsplash.com/photo-1473496169904-658ba7c44d8a?auto=format&fit=crop&q=80&w=300"] },
     ],
 };
+
 
 const searchSuggestions = [
     { id: 1, name: "GLOSS FRANBOESA", price: "69,90", image: "https://images.unsplash.com/photo-1586495777744-4413f21062fa?auto=format&fit=crop&q=80&w=150" },
@@ -112,17 +113,11 @@ export default function Navbar({ onCartClick, onFavoritesClick, onUserClick }) {
         return () => clearInterval(interval);
     }, []);
 
-    // Effect for transitioning mega menu images
+    // Effect for transitioning mega menu images - REMOVED for static images
     useEffect(() => {
-        if (activeMenu) {
-            const interval = setInterval(() => {
-                setMegaImgIdx(prev => (prev + 1) % 2);
-            }, 3000);
-            return () => clearInterval(interval);
-        } else {
-            setMegaImgIdx(0);
-        }
+        setMegaImgIdx(0);
     }, [activeMenu]);
+
 
     useEffect(() => {
         const handleClickOutside = (event) => {
