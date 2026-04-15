@@ -78,6 +78,21 @@ export default function DropeaIntegration() {
         }
     };
 
+    const [isMasterSyncing, setIsMasterSyncing] = useState(false);
+    const handleMasterSync = async () => {
+        if (!window.confirm("Deseja sincronizar TODOS os produtos do catálogo Dropea (49+ itens) com sua loja automaticamente?")) return;
+        setIsMasterSyncing(true);
+        try {
+            const res = await bulkSyncDropea();
+            alert(`Sincronização Mestra Concluída! ${res.count} produtos novos ou atualizados.`);
+            loadCatalog(true);
+        } catch (e) {
+            alert("Erro na sincronização mestra.");
+        } finally {
+            setIsMasterSyncing(false);
+        }
+    };
+
     const handleImportCategoryMassive = async () => {
         if (filteredCatalog.length === 0) return;
 
