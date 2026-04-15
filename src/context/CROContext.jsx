@@ -36,13 +36,17 @@ export const CROProvider = ({ children }) => {
     useEffect(() => {
         // Initialize Consent
         const consentVal = CROCookie.get('cro_consent');
+        const hasSeenConsentThisSession = sessionStorage.getItem('beauthe_consent_seen');
+
         if (consentVal === 'true') {
             setConsent(true);
         } else if (consentVal === 'false') {
             setConsent(false);
-        } else {
+        } else if (!hasSeenConsentThisSession) {
             setShowConsentBanner(true);
+            sessionStorage.setItem('beauthe_consent_seen', 'true');
         }
+
 
         // Initialize Visits (Welcome Message)
         let v = parseInt(CROCookie.get('cro_visit_count')) || 0;
