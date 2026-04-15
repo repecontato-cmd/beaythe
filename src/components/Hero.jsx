@@ -88,8 +88,8 @@ export default function Hero() {
                 {/* Banner 3 */}
                 <motion.div variants={itemVariants} className="relative aspect-[4/5] md:aspect-[3/4] overflow-hidden bg-[#F4EFEA] flex flex-col justify-end group rounded-2xl shadow-sm">
                     <img
-                        src="https://images.unsplash.com/photo-1590156206657-366f064826f3?auto=format&fit=crop&q=80"
-                        alt={t('hero.sun_care.title')}
+                        src="https://images.unsplash.com/photo-1519014816548-bf5fe059798b?auto=format&fit=crop&q=80"
+                        alt={t('hero.manos_pies.title')}
                         className="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105 opacity-90"
                     />
 
@@ -97,10 +97,10 @@ export default function Hero() {
                     <div className="absolute inset-x-0 top-0 h-1/2 bg-gradient-to-b from-black/40 to-transparent pointer-events-none"></div>
 
                     <div className="relative z-10 p-6 md:p-8 flex flex-col items-center text-center">
-                        <h2 className="text-white text-2xl md:text-3xl font-bold mb-2 uppercase tracking-tight">{t('hero.sun_care.title')}</h2>
-                        <p className="text-[#F4EFEA] text-[12px] md:text-[13px] font-light mb-5 opacity-80 max-w-[200px]">{t('hero.sun_care.desc')}</p>
+                        <h2 className="text-white text-2xl md:text-3xl font-bold mb-2 uppercase tracking-tight">{t('hero.manos_pies.title')}</h2>
+                        <p className="text-[#F4EFEA] text-[12px] md:text-[13px] font-light mb-5 opacity-80 max-w-[200px]">{t('hero.manos_pies.desc')}</p>
                         <Link
-                            to="/categoria/solares"
+                            to="/categoria/manos-pies"
                             className="bg-white text-[#2C2826] px-6 py-2.5 text-[10px] md:text-[11px] font-bold tracking-widest uppercase rounded-xl shadow-lg hover:bg-[#C4A49A] hover:text-white transition-all transform active:scale-95"
                         >
                             {t('hero.discover')}
