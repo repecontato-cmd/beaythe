@@ -111,8 +111,15 @@ export default function DropeaIntegration() {
     };
 
     // Derived State for Categories
-    const uniqueCategories = ['Todas', ...new Set(catalogItems.map(item => item.category).filter(Boolean))].sort();
-    const filteredCatalog = activeCategory === 'Todas' ? catalogItems : catalogItems.filter(p => p.category === activeCategory);
+    const [searchQuery, setSearchQuery] = useState('');
+    const uniqueCategories = ['Todas', 'Beleza', ...new Set(catalogItems.map(item => item.category).filter(Boolean))].sort();
+
+    const filteredCatalog = catalogItems.filter(p => {
+        const matchesCategory = activeCategory === 'Todas' || p.category === activeCategory;
+        const matchesSearch = p.name?.toLowerCase().includes(searchQuery.toLowerCase()) ||
+            p.category?.toLowerCase().includes(searchQuery.toLowerCase());
+        return matchesCategory && matchesSearch;
+    });
 
     return (
         <div className="space-y-8 animate-in fade-in duration-500">
