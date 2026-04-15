@@ -62,7 +62,15 @@ export default function Categoria() {
         loadProducts();
     }, []);
 
+    useEffect(() => {
+        window.scrollTo(0, 0);
+        setVisibleCount(8);
+        setSelectedFilters({ price: null, skin_tone: null, color_name: null, product_type: null });
+        setSortOption(null);
+    }, [slug]);
+
     const { lang, translateProduct } = useLanguage();
+
 
     const filteredAndSortedProducts = useMemo(() => {
         // First filter by Category/Slug
