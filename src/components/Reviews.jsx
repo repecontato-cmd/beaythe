@@ -133,10 +133,10 @@ export default function Reviews() {
                             onClick={showMore}
                             className="border border-[#2C2826] text-[#2C2826] px-10 py-4 rounded-xl text-[11px] font-bold uppercase tracking-[0.2em] hover:bg-[#2C2826] hover:text-white transition-all shadow-sm active:scale-95"
                         >
-                            Ver Mais Reviews
+                            {t('reviews_section.show_more')}
                         </button>
                     )}
-                    <p className="text-[11px] text-[#A69B97] mt-4 font-light">Média de 4.9/5 estrelas baseada em clientes verificados</p>
+                    <p className="text-[11px] text-[#A69B97] mt-4 font-light">{t('reviews_section.average')}</p>
                 </div>
             </div>
         </section>
