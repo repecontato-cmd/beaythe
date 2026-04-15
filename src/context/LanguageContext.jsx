@@ -25,7 +25,7 @@ const translationsData = {
             results_found: "resultados encontrados",
             no_results: "No encontramos resultados",
             try_again: "Intenta con otras palabras clave o explora nuestras categorías principales para encontrar lo que buscas.",
-            view_all: "Explorar todo"
+            view_all: "Explora todo"
         },
         common: {
             buy_now: "Comprar Ahora",
@@ -84,7 +84,6 @@ const translationsData = {
         hero: {
             skin_care: { title: "Cuidado Facial", desc: "Sérums y cremas de alta eficacia." },
             hair_care: { title: "Cuidado Capilar", desc: "Brillo y nutrición para tu melena." },
-            sun_care: { title: "Días de Sol", desc: "Protección avanzada para tu piel." },
             manos_pies: { title: "Manos y Pies", desc: "Suavidad y nutrición diaria." },
             discover: "Descubrir",
             subtitle: "Lo Mejor para Ti",
@@ -105,23 +104,88 @@ const translationsData = {
             all_products: "Todos los productos",
             kits: "Kits"
         },
-        cart: {
-            title: "Tu Carrito",
-            empty: "Tu carrito está vacío",
-            empty_desc: "Explora nuestras categorías y encuentra tu ritual ideal.",
-            checkout: "Finalizar Compra",
-            total: "Total",
-            free: "Gratis"
-        },
-        filters: {
-            price: "Precio",
-            sort_by: "Ordenar por",
-            recommended: "Recomendados",
-            newest: "Novedades"
+        faq_section: {
+            title: "Preguntas Frecuentes",
+            subtitle: "Todo lo que necesitas saber sobre tu ritual de belleza.",
+            items: [
+                {
+                    question: "¿Cuánto tiempo tardan en hacer efecto los productos de Skin Care?",
+                    answer: "Depende del producto y de tu tipo de piel. Los resultados de hidratación inicial se notan de inmediato, mientras que los tratamientos profundos suelen mostrar cambios visibles tras 3 a 4 semanas de uso constante."
+                },
+                {
+                    question: "¿Los productos son adecuados para pieles sensibles?",
+                    answer: "Sí, toda nuestra colección Beauthé está testada dermatológicamente y formulada con ingredientes suaves, diseñados para respetar y calmar incluso las pieles más delicadas."
+                },
+                {
+                    question: "¿Puedo combinar Vitamina C con Retinol en mi rutina?",
+                    answer: "Recomendamos utilizar la Vitamina C en tu rutina de mañana para proteger la piel de los radicales libres, y dejar el Retinol para tu rutina nocturna, promoviendo la renovación celular sin causar irritación."
+                }
+            ]
         },
         history: {
+            banner_tag: "De una idea a un estilo de vida",
             banner_title: "Nuestra Historia",
+            banner_desc: "Nacimos para caminar con belleza, verdad y ligereza.",
+            values_title: "Valores y Propósitos",
+            transparency_title: "Transparencia Real",
+            transparency_desc: "Fórmulas limpias y éticas en cada producto.",
+            purity: "Pureza",
+            sustainability_title: "Sostenibilidad 100%",
+            sustainability_desc: "Envases reciclables y recursos renovables.",
+            lightness_title: "Ligereza con Propósito",
+            join_us_tag: "Únete a nosotros",
+            join_us_title_1: "Te invitamos a ser parte de",
+            join_us_title_2: "nuestra historia.",
+            join_us_desc: "Descubre lo que significa Vivir Bonito. Explora nuestra colección completa de cuidados.",
             view_collections: "Ver colecciones"
+        },
+        about_us: {
+            tag: "Valores y Propósitos",
+            title_1: "Te invitamos a ser",
+            title_2: "parte de nuestra historia",
+            desc: "Únete a nosotros en este viaje y descubre lo que significa cuidarse con cariño y propósito."
+        },
+        footer: {
+            customer_service: "Atención al Cliente",
+            about: "Sobre Nosotros",
+            legal: "Legal",
+            subscribe_btn: "Unirse",
+            placeholder: "Tu e-mail",
+            rights: "Todos los derechos reservados."
+        },
+        checkout: {
+            title: "Finalizar Compra",
+            shipping_address: "Dirección de Envío",
+            payment_method: "Método de Pago",
+            order_summary: "Resumo del Pedido",
+            place_order: "Confirmar Pedido"
+        },
+        product: {
+            add_to_cart: "Añadir al carrito",
+            paraben_free: "sin parabenos",
+            vegan: "vegano",
+            recommended: "Productos Recomendados"
+        },
+        badges: {
+            best_seller: "Más Vendido",
+            new: "Nuevo",
+            trend: "Tendencia"
+        },
+        profile: {
+            orders: "Mis Pedidos",
+            account: "Perfil",
+            logout: "Cerrar sesión"
+        },
+        auth: {
+            login_title: "Iniciar sesión",
+            register_title: "Crear cuenta",
+            login_btn: "Entrar",
+            register_btn: "Registrarme"
+        },
+        favorites: {
+            title: "Tus favoritos",
+            empty_title_1: "Aún no tienes",
+            empty_title_2: "favoritos"
         },
         products: {}
     },
@@ -185,7 +249,7 @@ const translationsData = {
         categories: {
             all_collection: "Toda a Coleção",
             collection: "Coleção",
-            rostro: { title: "Cuidado Facial", tagline: "Rituais de Pureza", desc: "Séruns, tónicos e cremes formulados para uma pele radiante." },
+            rostro: { title: "Cuidado Facial", tagline: "Rituais de Pureza", desc: "Sérums, tónicos e cremes formulados para uma pele radiante." },
             maquillaje: { title: "Maquilhagem", tagline: "Beleza Consciente", desc: "Texturas sensoriais que realçam a sua beleza natural." },
             cabello: { title: "Cuidado Capilar", tagline: "Nutrição Intensa", desc: "Fórmulas exclusivas para um cabelo forte e brilhante." },
             tendencias: { title: "Tendências", tagline: "O Último da Beauthé", desc: "Descubra os produtos mais desejados desta temporada." },
@@ -198,7 +262,6 @@ const translationsData = {
         hero: {
             skin_care: { title: "Cuidado Facial", desc: "Séruns e cremes de alta eficácia." },
             hair_care: { title: "Cuidado Capilar", desc: "Brilho e nutrição para o seu cabelo." },
-            sun_care: { title: "Dias de Sol", desc: "Proteção avançada para a sua pele." },
             manos_pies: { title: "Mãos e Pés", desc: "Suavidade e nutrição diária." },
             discover: "Descobrir",
             subtitle: "O Melhor para Si",
@@ -219,23 +282,84 @@ const translationsData = {
             all_products: "Todos os produtos",
             kits: "Kits"
         },
-        cart: {
-            title: "O seu Carrinho",
-            empty: "O seu carrinho está vazio",
-            empty_desc: "Comece a enchê-lo com os seus essenciais de beleza.",
-            checkout: "Finalizar Compra",
-            total: "Total",
-            free: "Grátis"
-        },
-        filters: {
-            price: "Preço",
-            sort_by: "Ordenar por",
-            recommended: "Recomendados",
-            newest: "Novidades"
+        faq_section: {
+            title: "Perguntas Frequentes",
+            subtitle: "Tudo o que precisa de saber sobre o seu ritual de beleza.",
+            items: [
+                {
+                    question: "¿Quanto tempo demoram a fazer efeito os produtos de Skin Care?",
+                    answer: "Depende do produto e do seu tipo de pele. Os resultados de hidratação inicial notam-se de imediato, enquanto os tratamentos profundos costumam mostrar mudanças visíveis após 3 a 4 semanas de uso constante."
+                },
+                {
+                    question: "¿Os produtos são adequados para peles sensíveis?",
+                    answer: "Sim, toda a nossa coleção Beauthé está testada dermatologicamente e formulada com ingredientes suaves, desenhados para respeitar e acalmar até as peles mais delicadas."
+                }
+            ]
         },
         history: {
+            banner_tag: "De uma ideia a um estilo de vida",
             banner_title: "A nossa História",
+            banner_desc: "Somos criados para caminhar com beleza, verdade e leveza.",
+            values_title: "Valores e Propósitos",
+            transparency_title: "Transparência Real",
+            transparency_desc: "Fórmulas limpas e éticas em cada produto.",
+            purity: "Pureza",
+            sustainability_title: "Sustentabilidade 100%",
+            sustainability_desc: "Embalagens recicláveis e recursos renováveis.",
+            lightness_title: "Leveza com propósito",
+            join_us_tag: "Junte-se a nós",
+            join_us_title_1: "Te convidamos a ser parte da",
+            join_us_title_2: "nossa história.",
+            join_us_desc: "Descubra o que significa Viver Bonito. Explore a nossa coleção completa de cuidados.",
             view_collections: "Ver coleções"
+        },
+        about_us: {
+            tag: "Valores e Propósitos",
+            title_1: "Te convidamos a ser",
+            title_2: "parte da nossa história",
+            desc: "Junte-se a nós nesta jornada e descubra o que significa cuidar-se com carinho e propósito."
+        },
+        footer: {
+            customer_service: "Apoio ao Cliente",
+            about: "Sobre Nós",
+            legal: "Legal",
+            subscribe_btn: "Aderir",
+            placeholder: "O seu e-mail",
+            rights: "Todos os direitos reservados."
+        },
+        checkout: {
+            title: "Finalizar Compra",
+            shipping_address: "Endereço de Envio",
+            payment_method: "Método de Pagamento",
+            order_summary: "Resumo do Pedido",
+            place_order: "Confirmar Pedido"
+        },
+        product: {
+            add_to_cart: "Adicionar ao carrinho",
+            paraben_free: "sem parabenos",
+            vegan: "vegano",
+            recommended: "Produtos Recomendados"
+        },
+        badges: {
+            best_seller: "Mais Vendido",
+            new: "Novo",
+            trend: "Tendência"
+        },
+        profile: {
+            orders: "Meus Pedidos",
+            account: "Perfil",
+            logout: "Sair da conta"
+        },
+        auth: {
+            login_title: "Iniciar sessão",
+            register_title: "Criar conta",
+            login_btn: "Entrar",
+            register_btn: "Registar-me"
+        },
+        favorites: {
+            title: "Os seus favoritos",
+            empty_title_1: "Ainda não tem",
+            empty_title_2: "favoritos"
         },
         products: {}
     },
@@ -312,7 +436,6 @@ const translationsData = {
         hero: {
             skin_care: { title: "Skin Care", desc: "High efficacy serums and creams." },
             hair_care: { title: "Hair Care", desc: "Shine and nutrition for your hair." },
-            sun_care: { title: "Sun Days", desc: "Advanced protection for your skin." },
             manos_pies: { title: "Hands & Feet", desc: "Daily softness and nutrition." },
             discover: "Discover",
             subtitle: "The Best for You",
@@ -333,23 +456,84 @@ const translationsData = {
             all_products: "All products",
             kits: "Kits"
         },
-        cart: {
-            title: "Your Cart",
-            empty: "Your cart is empty",
-            empty_desc: "Explore our categories and find your ideal ritual.",
-            checkout: "Finish Purchase",
-            total: "Total",
-            free: "Free"
-        },
-        filters: {
-            price: "Price",
-            sort_by: "Sort by",
-            recommended: "Recommended",
-            newest: "New arrivals"
+        faq_section: {
+            title: "Frequently Asked Questions",
+            subtitle: "Everything you need to know about your beauty ritual.",
+            items: [
+                {
+                    question: "How long does it take for Skin Care products to take effect?",
+                    answer: "It depends on the product and your skin type. Initial hydration results are noticed immediately, while deep treatments usually show visible changes after 3 to 4 weeks of consistent use."
+                },
+                {
+                    question: "Are the products suitable for sensitive skin?",
+                    answer: "Yes, our entire Beauthé collection is dermatologically tested and formulated with gentle ingredients, designed to respect and soothe even the most delicate skin."
+                }
+            ]
         },
         history: {
+            banner_tag: "From an idea to a lifestyle",
             banner_title: "Our Story",
+            banner_desc: "We are created to walk with beauty, truth and lightness.",
+            values_title: "Values and Purposes",
+            transparency_title: "Real Transparency",
+            transparency_desc: "Clean and ethical formulas in each product.",
+            purity: "Purity",
+            sustainability_title: "100% Sustainability",
+            sustainability_desc: "Recyclable packaging and renewable resources.",
+            lightness_title: "Lightness with purpose",
+            join_us_tag: "Join us",
+            join_us_title_1: "We invite you to be part of",
+            join_us_title_2: "our story.",
+            join_us_desc: "Discover what it means to Live Beautifully. Explore our full collection of care.",
             view_collections: "View collections"
+        },
+        about_us: {
+            tag: "Values and Purposes",
+            title_1: "We invite you to be",
+            title_2: "part of our story",
+            desc: "Join us on this journey and discover what it means to care for yourself with love and purpose."
+        },
+        footer: {
+            customer_service: "Customer Service",
+            about: "About Us",
+            legal: "Legal",
+            subscribe_btn: "Join",
+            placeholder: "Your email",
+            rights: "All rights reserved."
+        },
+        checkout: {
+            title: "Finish Purchase",
+            shipping_address: "Shipping Address",
+            payment_method: "Payment Method",
+            order_summary: "Order Summary",
+            place_order: "Confirm Order"
+        },
+        product: {
+            add_to_cart: "Add to cart",
+            paraben_free: "paraben free",
+            vegan: "vegan",
+            recommended: "Recommended Products"
+        },
+        badges: {
+            best_seller: "Best Seller",
+            new: "New",
+            trend: "Trend"
+        },
+        profile: {
+            orders: "My Orders",
+            account: "Profile",
+            logout: "Logout"
+        },
+        auth: {
+            login_title: "Login",
+            register_title: "Create account",
+            login_btn: "Enter",
+            register_btn: "Register"
+        },
+        favorites: {
+            title: "Your favorites",
+            empty_title_1: "You don't have",
+            empty_title_2: "favorites yet"
         },
         products: {}
     }
@@ -369,7 +553,7 @@ export const LanguageProvider = ({ children }) => {
 
         // Return empty string or fallback if it resolves to an object (prevents rendering [object Object])
         if (typeof value === 'object' && value !== null) {
-            return value.title || value.name || key;
+            return value.title || value.name || value.label || key;
         }
 
         return value || key;
