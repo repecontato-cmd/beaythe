@@ -59,12 +59,15 @@ export default function FeaturedCarousel() {
                     className="absolute inset-0 flex flex-col md:flex-row w-full h-full"
                 >
                     {/* Coluna Esquerda (Hidden on mobile) */}
-                    <div className="hidden md:block w-1/3 h-full overflow-hidden">
+                    <div className="hidden md:block w-1/3 h-full overflow-hidden relative">
                         <img src={slides[current].img} alt="" className="w-full h-full object-cover opacity-60 blur-sm" />
+                        <div className="absolute inset-0 bg-gradient-to-b from-black/40 to-transparent h-1/2"></div>
                     </div>
 
                     {/* Coluna Central */}
                     <div className={`w-full md:w-1/3 h-full ${slides[current].bgColor} flex flex-col items-center justify-center relative p-8`}>
+                        <div className="absolute inset-0 bg-gradient-to-b from-black/20 to-transparent h-1/2 pointer-events-none"></div>
+
                         <div className="text-center z-10 w-full flex flex-col items-center">
                             <h1 className="text-4xl md:text-5xl lg:text-7xl font-bold mb-3 text-white tracking-tight leading-tight text-center uppercase">
                                 {slides[current].title}
