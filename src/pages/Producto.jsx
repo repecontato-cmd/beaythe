@@ -14,7 +14,7 @@ export default function Producto() {
     const { addToCart } = useCart();
     const navigate = useNavigate();
     const { toggleFavorite, isFavorite } = useFavorites();
-    const { t } = useLanguage();
+    const { t, translateProduct } = useLanguage();
     const [activeAccordion, setActiveAccordion] = useState('description');
     const [liveProduct, setLiveProduct] = useState(null);
     const [loading, setLoading] = useState(true);
@@ -23,11 +23,12 @@ export default function Producto() {
         const load = async () => {
             const all = await getProducts();
             const found = all.find(p => p.id.toString() === id);
-            if (found) setLiveProduct(found);
+            if (found) setLiveProduct(translateProduct(found));
             setLoading(false);
         };
         load();
-    }, [id]);
+    }, [id, translateProduct]);
+
 
     const product = liveProduct ? {
         ...liveProduct,
