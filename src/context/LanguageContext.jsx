@@ -550,6 +550,12 @@ const translationsData = {
                 account: "Mi Cuenta y Pedidos"
             },
             most_accessed: "Más buscadas"
+        },
+        products: {
+            "crema_veneno_de_abeja_-_alivio_natural": { name: "Crema de Veneno de Abeja - Alivioso Natural" },
+            "mascara_black_volume_waterproof": { name: "Máscara Volumen Negro Waterproof" },
+            "barra_multibálsamo_con_calcio_9g_–_hidratación_y_cuidado_en_un_solo_producto": { name: "Barra Multibálsamo con Calcio 9G – Hidratación y Cuidado" },
+            "ampolla_exfoliante_de_arroz_negro_100ml_–_renovación_y_luminosidad_natural": { name: "Ampolla Exfoliante de Arroz Negro 100ML – Renovación y Luminosidad" }
         }
     },
     pt: {
@@ -1097,6 +1103,12 @@ const translationsData = {
                 account: "Minha Conta e Pedidos"
             },
             most_accessed: "Mais pesquisadas"
+        },
+        products: {
+            "crema_veneno_de_abeja_-_alivio_natural": { name: "Creme de Veneno de Abelha - Alívio Natural" },
+            "mascara_black_volume_waterproof": { name: "Máscara Black Volume à Prova de Água" },
+            "barra_multibálsamo_con_calcio_9g_–_hidratación_y_cuidado_en_un_solo_producto": { name: "Barra Multibálsamo com Cálcio 9G – Hidratação e Cuidado" },
+            "ampolla_exfoliante_de_arroz_negro_100ml_–_renovación_y_luminosidad_natural": { name: "Ampola Esfoliante de Arroz Negro 100ML – Renovação e Luminosidade" }
         }
     },
     en: {
@@ -1639,6 +1651,12 @@ const translationsData = {
                 account: "My Account and Orders"
             },
             most_accessed: "Most searched"
+        },
+        products: {
+            "crema_veneno_de_abeja_-_alivio_natural": { name: "Bee Venom Cream - Natural Relief" },
+            "mascara_black_volume_waterproof": { name: "Waterproof Black Volume Mascara" },
+            "barra_multibálsamo_con_calcio_9g_–_hidratación_y_cuidado_en_un_solo_producto": { name: "Calcium Multi-Balm Stick 9G – Hydration & Care" },
+            "ampolla_exfoliante_de_arroz_negro_100ml_–_renovación_y_luminosidad_natural": { name: "Black Rice Exfoliating Ampoule 100ML – Natural Renewal" }
         }
     }
 };
