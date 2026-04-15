@@ -156,216 +156,255 @@ export default function Producto() {
                 </div>
             </section>
 
-            {/* 2. Mosaic Experience Cards Section */}
-            <section className="bg-white py-24 md:py-40 px-4 sm:px-6 lg:px-8 border-t border-[#F1EBE6]">
-                <div className="max-w-[1400px] mx-auto">
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-10">
-                        <motion.div
-                            initial={{ opacity: 0, y: 30 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            className="group relative h-[600px] rounded-[48px] overflow-hidden"
-                        >
-                            <img src={theme.marketing.texture} alt="Texture" className="absolute inset-0 w-full h-full object-cover transition-transform duration-[3s] group-hover:scale-110" />
-                            <div className="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-colors" />
-                            <div className="absolute bottom-10 left-10 right-10 flex flex-col items-start gap-4">
-                                <div className="w-12 h-12 rounded-full bg-white/30 backdrop-blur-md flex items-center justify-center text-white border border-white/40">
-                                    <Sparkles size={24} />
+            {/* 2. Technical Specifications & Details (Elevated for Efficiency) */}
+            <section className="py-12 md:py-20 bg-[#FCFAF8] border-t border-[#F1EBE6]">
+                <div className="max-w-[1200px] mx-auto px-4 grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 items-start">
+                    <div>
+                        <h3 className="text-[11px] font-black uppercase tracking-[0.4em] text-[#C4A49A] mb-8">{t('product.specs_title')}</h3>
+                        <div className="border-t border-[#F1EBE6]/60">
+                            {['description', 'precautions', 'ingredients'].map((key) => (
+                                <div key={key} className="border-b border-[#F1EBE6]/60">
+                                    <button className="w-full flex items-center justify-between py-5 text-left group" onClick={() => setActiveAccordion(activeAccordion === key ? '' : key)}>
+                                        <span className="text-[13px] font-bold text-[#2C2826] uppercase tracking-[0.1em] group-hover:text-[#C4A49A] transition-colors">
+                                            {key === 'description' ? t('product.what_is') : key === 'precautions' ? t('product.care') : t('product.composition')}
+                                        </span>
+                                        {activeAccordion === key ? <Minus size={16} className="text-[#8A7369]" /> : <Plus size={16} className="text-[#8A7369]" />}
+                                    </button>
+                                    <motion.div animate={{ height: activeAccordion === key ? 'auto' : 0, opacity: activeAccordion === key ? 1 : 0 }} className="overflow-hidden">
+                                        <div
+                                            className="pb-6 text-[14px] text-[#5C534F] font-light leading-relaxed"
+                                            dangerouslySetInnerHTML={{ __html: key === 'description' ? product.description : key === 'precautions' ? t('helpbot.faq.returns') : "Aqua, Niacinamide, Glycerin, Rosa Centifolia Flower Extract, Hyaluronic Acid, Phenoxyethanol, Ethylhexylglycerin." }}
+                                        />
+                                    </motion.div>
                                 </div>
-                                <h3 className="text-4xl font-bold text-white uppercase tracking-tighter leading-none" dangerouslySetInnerHTML={{ __html: t('experience.sensory_title').replace('SENSORIAL', '<br />SENSORIAL') }}></h3>
-                                <p className="text-white/80 text-sm font-light leading-relaxed">{t('experience.sensory_desc')}</p>
-                            </div>
-                        </motion.div>
+                            ))}
+                        </div>
+                    </div>
 
-                        <motion.div
-                            initial={{ opacity: 0, y: 30 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            transition={{ delay: 0.1 }}
-                            viewport={{ once: true }}
-                            className="group relative h-[600px] rounded-[48px] overflow-hidden flex flex-col"
-                            style={{ backgroundColor: theme.primary }}
-                        >
-                            <div className="p-10 relative z-10">
-                                <span className="text-[11px] font-black uppercase tracking-[0.4em] text-white/60 mb-4 block">{t('experience.active_tag')}</span>
-                                <h3 className="text-5xl font-light text-white leading-tight tracking-tighter mb-6">
-                                    {t('experience.active_title').split(' ')[0]} <br />
-                                    <span className="font-black italic">{t('experience.active_title').split(' ')[1]}</span>
-                                </h3>
-                                <p className="text-white/80 text-sm leading-relaxed max-w-[80%]">{t('experience.active_desc')}</p>
+                    <div className="bg-white rounded-[40px] p-10 border border-[#F1EBE6] shadow-sm flex flex-col md:flex-row gap-8 items-center h-full">
+                        <div className="w-24 h-24 rounded-full bg-[#FCFAF8] flex items-center justify-center text-[#2C2826] shadow-inner mb-2 md:mb-0 shrink-0"><Shield size={32} strokeWidth={1.5} /></div>
+                        <div className="text-center md:text-left">
+                            <h4 className="font-bold text-[#2C2826] text-sm uppercase mb-2 tracking-widest">{t('product.purity_title') || 'Garantia de Pureza'}</h4>
+                            <p className="text-sm text-[#8A7369] font-light leading-relaxed mb-4">{t('product.purity_desc') || 'Nossa fórmula é 100% livre de toxinas e parabenos, garantindo os melhores resultados para sua pele.'}</p>
+                            <div className="flex gap-6 justify-center md:justify-start">
+                                <div className="flex items-center gap-2"><Leaf size={14} className="text-[#C4A49A]" /><span className="text-[10px] font-black uppercase tracking-widest text-[#2C2826]">{t('product.vegan_badge')}</span></div>
+                                <div className="flex items-center gap-2"><Shield size={14} className="text-[#C4A49A]" /><span className="text-[10px] font-black uppercase tracking-widest text-[#2C2826]">{t('product.cruelty_badge')}</span></div>
                             </div>
-                            <div className="mt-auto relative w-full aspect-square p-8 overflow-hidden">
-                                <motion.div animate={{ rotate: 360 }} transition={{ duration: 30, repeat: Infinity, ease: "linear" }} className="absolute inset-10 border-2 border-dashed border-white/20 rounded-full" />
-                                <img src={theme.marketing.ingredient} alt="Ingredient" className="relative z-10 w-full h-full object-contain drop-shadow-2xl md:mix-blend-luminosity group-hover:mix-blend-normal transition-all duration-700" />
-                            </div>
-                        </motion.div>
-
-                        <motion.div
-                            initial={{ opacity: 0, y: 30 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            transition={{ delay: 0.2 }}
-                            viewport={{ once: true }}
-                            className="group relative h-[600px] rounded-[48px] overflow-hidden"
-                        >
-                            <img src={theme.marketing.lifestyle} alt="Lifestyle" className="absolute inset-0 w-full h-full object-cover transition-transform duration-[3s] group-hover:scale-105" />
-                            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
-                            <div className="absolute top-10 right-10">
-                                <div className="bg-white/90 px-6 py-2 rounded-full flex items-center gap-2 shadow-xl">
-                                    <div className="w-2 h-2 rounded-full animate-pulse" style={{ backgroundColor: theme.primary }}></div>
-                                    <span className="text-[10px] font-bold uppercase tracking-widest text-[#2C2826]">{t('experience.lifestyle_tag')}</span>
-                                </div>
-                            </div>
-                            <div className="absolute bottom-10 left-10 right-10">
-                                <h3 className="text-4xl font-bold text-white uppercase tracking-tighter">
-                                    {t('experience.lifestyle_title').split(' ').slice(0, 2).join(' ')} <br />
-                                    {t('experience.lifestyle_title').split(' ').slice(2, 3).join(' ')} <span className="font-light italic" style={{ color: theme.primary }}>{t('experience.lifestyle_title').split(' ').slice(3).join(' ')}</span>
-                                </h3>
-                                <p className="text-white/70 text-sm mt-4 font-light">{t('experience.lifestyle_desc')}</p>
-                            </div>
-                        </motion.div>
+                        </div>
                     </div>
                 </div>
             </section>
 
-            {/* 3. LANDING PAGE PERSUASION SECTIONS - BLOCK 1 */}
-            {theme.landingPage && (
-                <>
-                    {/* A. Problem/Solution */}
-                    <section className="py-24 md:py-40 bg-[#FCFAF8] overflow-hidden">
-                        <div className="max-w-[1200px] mx-auto px-4 grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
-                            <motion.div whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }}>
-                                <h2 className="text-5xl md:text-7xl font-light text-[#2C2826] leading-tight tracking-tight mb-8">{theme.landingPage.problem.headline}</h2>
-                                <p className="text-xl text-[#8A7369] font-light leading-relaxed mb-12">{theme.landingPage.problem.description}</p>
-                                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                                    {theme.landingPage.solution.benefits.map((benefit, idx) => (
-                                        <div key={idx} className="flex flex-col gap-4">
-                                            <div className="w-12 h-12 rounded-2xl bg-white flex items-center justify-center shadow-sm border border-[#F1EBE6]" style={{ color: theme.primary }}>
-                                                {<benefit.icon size={24} />}
-                                            </div>
-                                            <div>
-                                                <h4 className="font-bold text-[#2C2826] uppercase text-xs tracking-widest mb-1">{benefit.title}</h4>
-                                                <p className="text-sm text-[#8A7369] font-light">{benefit.desc}</p>
-                                            </div>
+            {/* 3. EXPERIENCE EXPLORER (Condensed Marketing Sections) */}
+            <section className="bg-white py-20 px-4 border-t border-b border-[#F1EBE6]">
+                <div className="max-w-[1400px] mx-auto">
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    className="group relative h-[600px] rounded-[48px] overflow-hidden"
+                        >
+                    <img src={theme.marketing.texture} alt="Texture" className="absolute inset-0 w-full h-full object-cover transition-transform duration-[3s] group-hover:scale-110" />
+                    <div className="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-colors" />
+                    <div className="absolute bottom-10 left-10 right-10 flex flex-col items-start gap-4">
+                        <div className="w-12 h-12 rounded-full bg-white/30 backdrop-blur-md flex items-center justify-center text-white border border-white/40">
+                            <Sparkles size={24} />
+                        </div>
+                        <h3 className="text-4xl font-bold text-white uppercase tracking-tighter leading-none" dangerouslySetInnerHTML={{ __html: t('experience.sensory_title').replace('SENSORIAL', '<br />SENSORIAL') }}></h3>
+                        <p className="text-white/80 text-sm font-light leading-relaxed">{t('experience.sensory_desc')}</p>
+                    </div>
+                </motion.div>
+
+                <motion.div
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.1 }}
+                    viewport={{ once: true }}
+                    className="group relative h-[600px] rounded-[48px] overflow-hidden flex flex-col"
+                    style={{ backgroundColor: theme.primary }}
+                >
+                    <div className="p-10 relative z-10">
+                        <span className="text-[11px] font-black uppercase tracking-[0.4em] text-white/60 mb-4 block">{t('experience.active_tag')}</span>
+                        <h3 className="text-5xl font-light text-white leading-tight tracking-tighter mb-6">
+                            {t('experience.active_title').split(' ')[0]} <br />
+                            <span className="font-black italic">{t('experience.active_title').split(' ')[1]}</span>
+                        </h3>
+                        <p className="text-white/80 text-sm leading-relaxed max-w-[80%]">{t('experience.active_desc')}</p>
+                    </div>
+                    <div className="mt-auto relative w-full aspect-square p-8 overflow-hidden">
+                        <motion.div animate={{ rotate: 360 }} transition={{ duration: 30, repeat: Infinity, ease: "linear" }} className="absolute inset-10 border-2 border-dashed border-white/20 rounded-full" />
+                        <img src={theme.marketing.ingredient} alt="Ingredient" className="relative z-10 w-full h-full object-contain drop-shadow-2xl md:mix-blend-luminosity group-hover:mix-blend-normal transition-all duration-700" />
+                    </div>
+                </motion.div>
+
+                <motion.div
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.2 }}
+                    viewport={{ once: true }}
+                    className="group relative h-[600px] rounded-[48px] overflow-hidden"
+                >
+                    <img src={theme.marketing.lifestyle} alt="Lifestyle" className="absolute inset-0 w-full h-full object-cover transition-transform duration-[3s] group-hover:scale-105" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
+                    <div className="absolute top-10 right-10">
+                        <div className="bg-white/90 px-6 py-2 rounded-full flex items-center gap-2 shadow-xl">
+                            <div className="w-2 h-2 rounded-full animate-pulse" style={{ backgroundColor: theme.primary }}></div>
+                            <span className="text-[10px] font-bold uppercase tracking-widest text-[#2C2826]">{t('experience.lifestyle_tag')}</span>
+                        </div>
+                    </div>
+                    <div className="absolute bottom-10 left-10 right-10">
+                        <h3 className="text-4xl font-bold text-white uppercase tracking-tighter">
+                            {t('experience.lifestyle_title').split(' ').slice(0, 2).join(' ')} <br />
+                            {t('experience.lifestyle_title').split(' ').slice(2, 3).join(' ')} <span className="font-light italic" style={{ color: theme.primary }}>{t('experience.lifestyle_title').split(' ').slice(3).join(' ')}</span>
+                        </h3>
+                        <p className="text-white/70 text-sm mt-4 font-light">{t('experience.lifestyle_desc')}</p>
+                    </div>
+                </motion.div>
+        </div>
+                </div >
+            </section >
+
+        {/* 3. LANDING PAGE PERSUASION SECTIONS - BLOCK 1 */ }
+    {
+        theme.landingPage && (
+            <>
+                {/* A. Problem/Solution */}
+                <section className="py-24 md:py-40 bg-[#FCFAF8] overflow-hidden">
+                    <div className="max-w-[1200px] mx-auto px-4 grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+                        <motion.div whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }}>
+                            <h2 className="text-5xl md:text-7xl font-light text-[#2C2826] leading-tight tracking-tight mb-8">{theme.landingPage.problem.headline}</h2>
+                            <p className="text-xl text-[#8A7369] font-light leading-relaxed mb-12">{theme.landingPage.problem.description}</p>
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                                {theme.landingPage.solution.benefits.map((benefit, idx) => (
+                                    <div key={idx} className="flex flex-col gap-4">
+                                        <div className="w-12 h-12 rounded-2xl bg-white flex items-center justify-center shadow-sm border border-[#F1EBE6]" style={{ color: theme.primary }}>
+                                            {<benefit.icon size={24} />}
+                                        </div>
+                                        <div>
+                                            <h4 className="font-bold text-[#2C2826] uppercase text-xs tracking-widest mb-1">{benefit.title}</h4>
+                                            <p className="text-sm text-[#8A7369] font-light">{benefit.desc}</p>
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+                        </motion.div>
+                        <motion.div initial={{ opacity: 0, scale: 0.8 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} className="relative aspect-square rounded-[60px] overflow-hidden shadow-2xl">
+                            <img src={theme.marketing.texture} alt="Solution" className="w-full h-full object-cover" />
+                        </motion.div>
+                    </div>
+                </section>
+
+                {/* B. Formulation */}
+                <section className="py-24 md:py-40 bg-white">
+                    <div className="max-w-[1440px] mx-auto px-4 grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+                        <div className="order-2 lg:order-1 relative">
+                            <motion.div initial={{ opacity: 0, scale: 0.9 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} className="rounded-[60px] overflow-hidden shadow-2xl aspect-square">
+                                <img src={theme.landingPage.formulation.image} alt="Formulation" className="w-full h-full object-cover" />
+                            </motion.div>
+                            <div className="absolute -bottom-10 -right-10 bg-white p-10 rounded-[40px] shadow-xl border border-[#F1EBE6] max-w-[280px] hidden md:block">
+                                <div className="flex items-center gap-4 mb-4">
+                                    <div className="w-10 h-10 rounded-full bg-[#F4EFEA] flex items-center justify-center text-[#C4A49A]"><Beaker size={20} /></div>
+                                    <span className="text-[10px] font-black uppercase tracking-widest text-[#2C2826]">Dermatologically Tested</span>
+                                </div>
+                                <p className="text-[12px] text-[#8A7369] leading-relaxed">Clinically proven to increase hydration by 42%.</p>
+                            </div>
+                        </div>
+                        <div className="order-1 lg:order-2">
+                            <span className="text-[12px] font-black uppercase tracking-[0.4em] text-[#C4A49A] mb-4 block">Formulation</span>
+                            <h2 className="text-5xl md:text-7xl font-light text-[#2C2826] leading-tight tracking-tight mb-8">{theme.landingPage.formulation.title}</h2>
+                            <p className="text-xl text-[#8A7369] font-light leading-relaxed mb-12">{theme.landingPage.formulation.description}</p>
+                            <div className="space-y-8">
+                                {theme.landingPage.formulation.ingredients.map((ing, i) => (
+                                    <div key={i} className="flex gap-6">
+                                        <div className="flex-shrink-0 w-8 h-8 rounded-full bg-[#F4EFEA] flex items-center justify-center text-[#C4A49A]"><Check size={16} /></div>
+                                        <div>
+                                            <h4 className="font-bold text-[#2C2826] text-sm uppercase mb-1">{ing.name}</h4>
+                                            <p className="text-sm text-[#8A7369] font-light">{ing.benefit}</p>
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                {/* C. Comparison */}
+                <section className="py-24 md:py-40 bg-white border-t border-[#F1EBE6]">
+                    <div className="max-w-[1000px] mx-auto px-4">
+                        <div className="text-center mb-20">
+                            <span className="text-[12px] font-black uppercase tracking-[0.4em] text-[#C4A49A] mb-4 block">Us vs Others</span>
+                            <h2 className="text-5xl font-light text-[#2C2826] tracking-tighter">Why Choose Beauthé?</h2>
+                        </div>
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+                            <div className="p-12 rounded-[48px] bg-[#FCFAF8] border border-[#F1EBE6]">
+                                <h4 className="text-2xl font-bold text-[#2C2826] mb-8 flex items-center gap-3">
+                                    <div className="w-1.5 h-6 rounded-full" style={{ backgroundColor: theme.primary }} />
+                                    The Beauthé Secret
+                                </h4>
+                                <ul className="flex flex-col gap-6">
+                                    {theme.landingPage.comparison.us.map((item, i) => (
+                                        <li key={i} className="flex items-center gap-4 text-[#2C2826] font-medium">
+                                            <div className="w-5 h-5 rounded-full flex items-center justify-center bg-green-50 text-green-600"><Sparkles size={12} /></div>
+                                            {item}
+                                        </li>
+                                    ))}
+                                </ul>
+                            </div>
+                            <div className="p-12 rounded-[48px] bg-white border border-[#F1EBE6] opacity-60">
+                                <h4 className="text-2xl font-bold text-[#8A7369] mb-8">Traditional Products</h4>
+                                <ul className="flex flex-col gap-6">
+                                    {theme.landingPage.comparison.them.map((item, i) => (
+                                        <li key={i} className="flex items-center gap-4 text-[#8A7369]">
+                                            <div className="w-5 h-5 rounded-full flex items-center justify-center bg-red-50 text-red-400"><Minus size={12} /></div>
+                                            {item}
+                                        </li>
+                                    ))}
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                {/* D. Social Proof */}
+                <section className="py-24 md:py-40 bg-[#FCFAF8] overflow-hidden">
+                    <div className="max-w-[1440px] mx-auto px-4">
+                        <div className="flex flex-col lg:flex-row gap-20 items-center mb-24">
+                            <div className="lg:w-1/2">
+                                <span className="text-[12px] font-black uppercase tracking-[0.4em] text-[#C4A49A] mb-4 block">{theme.landingPage.socialProof.tag}</span>
+                                <h2 className="text-5xl md:text-7xl font-light text-[#2C2826] leading-tight tracking-tight mb-8">{theme.landingPage.socialProof.title}</h2>
+                                <div className="grid grid-cols-3 gap-8 mt-12">
+                                    {theme.landingPage.socialProof.stats.map((stat, i) => (
+                                        <div key={i}>
+                                            <div className="text-4xl font-bold text-[#2C2826] mb-2">{stat.value}</div>
+                                            <div className="text-[10px] font-black uppercase tracking-widest text-[#8A7369]">{stat.label}</div>
                                         </div>
                                     ))}
                                 </div>
-                            </motion.div>
-                            <motion.div initial={{ opacity: 0, scale: 0.8 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} className="relative aspect-square rounded-[60px] overflow-hidden shadow-2xl">
-                                <img src={theme.marketing.texture} alt="Solution" className="w-full h-full object-cover" />
-                            </motion.div>
-                        </div>
-                    </section>
-
-                    {/* B. Formulation */}
-                    <section className="py-24 md:py-40 bg-white">
-                        <div className="max-w-[1440px] mx-auto px-4 grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
-                            <div className="order-2 lg:order-1 relative">
-                                <motion.div initial={{ opacity: 0, scale: 0.9 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} className="rounded-[60px] overflow-hidden shadow-2xl aspect-square">
-                                    <img src={theme.landingPage.formulation.image} alt="Formulation" className="w-full h-full object-cover" />
-                                </motion.div>
-                                <div className="absolute -bottom-10 -right-10 bg-white p-10 rounded-[40px] shadow-xl border border-[#F1EBE6] max-w-[280px] hidden md:block">
-                                    <div className="flex items-center gap-4 mb-4">
-                                        <div className="w-10 h-10 rounded-full bg-[#F4EFEA] flex items-center justify-center text-[#C4A49A]"><Beaker size={20} /></div>
-                                        <span className="text-[10px] font-black uppercase tracking-widest text-[#2C2826]">Dermatologically Tested</span>
-                                    </div>
-                                    <p className="text-[12px] text-[#8A7369] leading-relaxed">Clinically proven to increase hydration by 42%.</p>
-                                </div>
                             </div>
-                            <div className="order-1 lg:order-2">
-                                <span className="text-[12px] font-black uppercase tracking-[0.4em] text-[#C4A49A] mb-4 block">Formulation</span>
-                                <h2 className="text-5xl md:text-7xl font-light text-[#2C2826] leading-tight tracking-tight mb-8">{theme.landingPage.formulation.title}</h2>
-                                <p className="text-xl text-[#8A7369] font-light leading-relaxed mb-12">{theme.landingPage.formulation.description}</p>
-                                <div className="space-y-8">
-                                    {theme.landingPage.formulation.ingredients.map((ing, i) => (
-                                        <div key={i} className="flex gap-6">
-                                            <div className="flex-shrink-0 w-8 h-8 rounded-full bg-[#F4EFEA] flex items-center justify-center text-[#C4A49A]"><Check size={16} /></div>
+                            <div className="lg:w-1/2 grid grid-cols-1 md:grid-cols-2 gap-6 relative">
+                                {theme.landingPage.socialProof.testimonials.slice(0, 2).map((t, i) => (
+                                    <motion.div key={i} initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} className="bg-white p-8 rounded-[40px] shadow-xl border border-[#F1EBE6]">
+                                        <div className="flex items-center gap-4 mb-6">
+                                            <img src={t.avatar} alt={t.name} className="w-12 h-12 rounded-full object-cover" />
                                             <div>
-                                                <h4 className="font-bold text-[#2C2826] text-sm uppercase mb-1">{ing.name}</h4>
-                                                <p className="text-sm text-[#8A7369] font-light">{ing.benefit}</p>
+                                                <h4 className="font-bold text-[#2C2826] text-sm uppercase">{t.name}</h4>
+                                                <span className="text-[10px] text-[#8A7369] uppercase tracking-widest">{t.role}</span>
                                             </div>
                                         </div>
-                                    ))}
-                                </div>
+                                        <div className="flex gap-1 mb-4">
+                                            {[...Array(t.rating)].map((_, i) => <Star key={i} size={12} className="fill-[#FF9529] text-[#FF9529]" />)}
+                                        </div>
+                                        <p className="text-sm text-[#2C2826] italic font-light leading-relaxed">"{t.text}"</p>
+                                    </motion.div>
+                                ))}
                             </div>
                         </div>
-                    </section>
+                    </div>
+                </section>
+            </>
+        )
+    }
 
-                    {/* C. Comparison */}
-                    <section className="py-24 md:py-40 bg-white border-t border-[#F1EBE6]">
-                        <div className="max-w-[1000px] mx-auto px-4">
-                            <div className="text-center mb-20">
-                                <span className="text-[12px] font-black uppercase tracking-[0.4em] text-[#C4A49A] mb-4 block">Us vs Others</span>
-                                <h2 className="text-5xl font-light text-[#2C2826] tracking-tighter">Why Choose Beauthé?</h2>
-                            </div>
-                            <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-                                <div className="p-12 rounded-[48px] bg-[#FCFAF8] border border-[#F1EBE6]">
-                                    <h4 className="text-2xl font-bold text-[#2C2826] mb-8 flex items-center gap-3">
-                                        <div className="w-1.5 h-6 rounded-full" style={{ backgroundColor: theme.primary }} />
-                                        The Beauthé Secret
-                                    </h4>
-                                    <ul className="flex flex-col gap-6">
-                                        {theme.landingPage.comparison.us.map((item, i) => (
-                                            <li key={i} className="flex items-center gap-4 text-[#2C2826] font-medium">
-                                                <div className="w-5 h-5 rounded-full flex items-center justify-center bg-green-50 text-green-600"><Sparkles size={12} /></div>
-                                                {item}
-                                            </li>
-                                        ))}
-                                    </ul>
-                                </div>
-                                <div className="p-12 rounded-[48px] bg-white border border-[#F1EBE6] opacity-60">
-                                    <h4 className="text-2xl font-bold text-[#8A7369] mb-8">Traditional Products</h4>
-                                    <ul className="flex flex-col gap-6">
-                                        {theme.landingPage.comparison.them.map((item, i) => (
-                                            <li key={i} className="flex items-center gap-4 text-[#8A7369]">
-                                                <div className="w-5 h-5 rounded-full flex items-center justify-center bg-red-50 text-red-400"><Minus size={12} /></div>
-                                                {item}
-                                            </li>
-                                        ))}
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </section>
-
-                    {/* D. Social Proof */}
-                    <section className="py-24 md:py-40 bg-[#FCFAF8] overflow-hidden">
-                        <div className="max-w-[1440px] mx-auto px-4">
-                            <div className="flex flex-col lg:flex-row gap-20 items-center mb-24">
-                                <div className="lg:w-1/2">
-                                    <span className="text-[12px] font-black uppercase tracking-[0.4em] text-[#C4A49A] mb-4 block">{theme.landingPage.socialProof.tag}</span>
-                                    <h2 className="text-5xl md:text-7xl font-light text-[#2C2826] leading-tight tracking-tight mb-8">{theme.landingPage.socialProof.title}</h2>
-                                    <div className="grid grid-cols-3 gap-8 mt-12">
-                                        {theme.landingPage.socialProof.stats.map((stat, i) => (
-                                            <div key={i}>
-                                                <div className="text-4xl font-bold text-[#2C2826] mb-2">{stat.value}</div>
-                                                <div className="text-[10px] font-black uppercase tracking-widest text-[#8A7369]">{stat.label}</div>
-                                            </div>
-                                        ))}
-                                    </div>
-                                </div>
-                                <div className="lg:w-1/2 grid grid-cols-1 md:grid-cols-2 gap-6 relative">
-                                    {theme.landingPage.socialProof.testimonials.slice(0, 2).map((t, i) => (
-                                        <motion.div key={i} initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} className="bg-white p-8 rounded-[40px] shadow-xl border border-[#F1EBE6]">
-                                            <div className="flex items-center gap-4 mb-6">
-                                                <img src={t.avatar} alt={t.name} className="w-12 h-12 rounded-full object-cover" />
-                                                <div>
-                                                    <h4 className="font-bold text-[#2C2826] text-sm uppercase">{t.name}</h4>
-                                                    <span className="text-[10px] text-[#8A7369] uppercase tracking-widest">{t.role}</span>
-                                                </div>
-                                            </div>
-                                            <div className="flex gap-1 mb-4">
-                                                {[...Array(t.rating)].map((_, i) => <Star key={i} size={12} className="fill-[#FF9529] text-[#FF9529]" />)}
-                                            </div>
-                                            <p className="text-sm text-[#2C2826] italic font-light leading-relaxed">"{t.text}"</p>
-                                        </motion.div>
-                                    ))}
-                                </div>
-                            </div>
-                        </div>
-                    </section>
-                </>
-            )}
-
-            {/* 4. STANDARD E-COMMERCE SECTIONS */}
+    {/* 4. STANDARD E-COMMERCE SECTIONS */ }
             <div className="w-full bg-[#FFFBF8] py-24 md:py-32 px-4 border-t border-b border-[#F4EFEA] overflow-hidden relative">
                 <div className="max-w-[1200px] mx-auto relative z-10 text-center">
                     <h2 className="text-4xl md:text-5xl font-light text-[#2C2826] mb-20 tracking-tight">
@@ -451,7 +490,7 @@ export default function Producto() {
                         </div>
                     </div>
             </div>
-        </div>
+        </div >
             </div >
 
         {/* 5. LANDING PAGE PERSUASION SECTIONS - BLOCK 2 */ }
