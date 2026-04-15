@@ -156,9 +156,51 @@ export default function Categoria() {
 
     const title = getSafeTitle();
 
-    // ... (categoryVisuals logic)
+    // Category Visuals Mapping
+    const categoryVisuals = {
+        rostro: {
+            img: "https://images.unsplash.com/photo-1596462502278-27bfdc403348?auto=format&fit=crop&q=80&w=2000",
+            tagline: t('categories.rostro.tagline')
+        },
+        maquillaje: {
+            img: "https://images.unsplash.com/photo-1512496015851-a90fb38ba796?auto=format&fit=crop&q=80&w=2000",
+            tagline: t('categories.maquillaje.tagline')
+        },
+        cabello: {
+            img: "https://images.unsplash.com/photo-1522337660859-02fbefca4702?auto=format&fit=crop&q=80&w=2000",
+            tagline: t('categories.cabello.tagline')
+        },
+        tendencias: {
+            img: "https://images.unsplash.com/photo-1556228578-0d85b1a4d571?auto=format&fit=crop&q=80&w=2000",
+            tagline: t('categories.tendencias.tagline')
+        },
+        cuerpo: {
+            img: "https://images.unsplash.com/photo-1522337660859-02fbefca4702?auto=format&fit=crop&q=80&w=2000",
+            tagline: t('categories.cuerpo.tagline')
+        },
+        manos_pies: {
+            img: "https://images.unsplash.com/photo-1519014816548-bf5fe059798b?auto=format&fit=crop&q=80&w=2000",
+            tagline: t('categories.manos_pies.tagline')
+        },
+        bienestar: {
+            img: "https://images.unsplash.com/photo-1540555700478-4be289aef79b?auto=format&fit=crop&q=80&w=2000",
+            tagline: t('categories.bienestar.tagline')
+        },
+        hombre: {
+            img: "https://images.unsplash.com/photo-1616117403483-36e2f1837ac6?auto=format&fit=crop&q=80&w=2000",
+            tagline: t('categories.hombre.tagline')
+        },
+        default: {
+            img: "https://images.unsplash.com/photo-1552046122-03184de85e08?auto=format&fit=crop&w=2000",
+            tagline: t('categories.default.tagline')
+        }
+    };
+
+    const currentVisual = categoryVisuals[normalizedSlugForTitle] || categoryVisuals.default;
+    const PLACEHOLDER_IMG = "https://images.unsplash.com/photo-1556228578-0d85b1a4d571?auto=format&fit=crop&q=80&w=300";
 
     const desc = t(`categories.${normalizedSlugForTitle}.desc`);
+
     const finalDesc = (desc && desc !== `categories.${normalizedSlugForTitle}.desc`) ? desc : currentVisual.tagline;
 
     return (
