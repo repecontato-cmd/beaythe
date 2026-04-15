@@ -31,14 +31,17 @@ export default function TrendingProducts({ overrideTitle, removePadding, recomme
         loadTrendings();
     }, [recommendedIds, type]);
 
+    const PLACEHOLDER_IMG = "https://images.unsplash.com/photo-1556228578-0d85b1a4d571?auto=format&fit=crop&q=80&w=300";
+
     const products = liveProducts.map(p => ({
         id: p.id,
         name: p.name,
         brand: "Beauthé",
-        price: p.manual_price || p.price,
-        image: p.image_url,
-        badge: "trend"
+        price: p.manual_price || p.price || 0,
+        image: p.image_url || PLACEHOLDER_IMG,
+        badge: p.placement === 'TRENDING' ? "trend" : (type === 'new' ? "new" : "trend")
     }));
+
 
 
     return (
