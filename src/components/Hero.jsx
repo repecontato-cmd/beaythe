@@ -88,10 +88,11 @@ export default function Hero() {
                 {/* Banner 3 */}
                 <motion.div variants={itemVariants} className="relative aspect-[4/5] md:aspect-[3/4] overflow-hidden bg-[#F4EFEA] flex flex-col justify-end group rounded-2xl shadow-sm">
                     <img
-                        src="https://images.unsplash.com/photo-1615397323886-0bf17b0ddec2?auto=format&fit=crop&q=80"
+                        src="https://images.unsplash.com/photo-1590156206657-366f064826f3?auto=format&fit=crop&q=80"
                         alt={t('hero.sun_care.title')}
                         className="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105 opacity-90"
                     />
+
                     <div className="absolute inset-0 bg-gradient-to-t from-[#2C2826]/80 via-[#2C2826]/10 to-transparent"></div>
                     <div className="absolute inset-x-0 top-0 h-1/2 bg-gradient-to-b from-black/40 to-transparent pointer-events-none"></div>
 
