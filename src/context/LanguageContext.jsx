@@ -25,7 +25,7 @@ const translationsData = {
             results_found: "resultados encontrados",
             no_results: "No encontramos resultados",
             try_again: "Intenta con otras palabras clave o explora nuestras categorías principales para encontrar lo que buscas.",
-            view_all: "Explorar todo"
+            view_all: "Explora todo"
         },
         common: {
             buy_now: "Comprar Ahora",
@@ -74,7 +74,7 @@ const translationsData = {
             rostro: { title: "Cuidado Facial", tagline: "Rituales de Pureza", desc: "Sérums, tónicos y cremas formulados para una piel radiante." },
             maquillaje: { title: "Maquillaje", tagline: "Belleza Consciente", desc: "Texturas sensoriales que realzan tu belleza natural." },
             cabello: { title: "Cuidado Capilar", tagline: "Nutrición Intensa", desc: "Fórmulas exclusivas para un cabello fuerte y brillante." },
-            tendencias: { title: "Tendencias", tagline: "Lo Último de Beauthé", desc: "Descubre los productos más de moda." },
+            tendencias: { title: "Tendencias", tagline: "Lo Último de Beauthé", desc: "Descubre los productos más deseados de esta temporada." },
             manos_pies: { title: "Manos y Pies", tagline: "Cuidado Esencial", desc: "Hidratación y nutrición profunda para tus extremidades." },
             cuerpo: { title: "Baño y Cuerpo", tagline: "Bienestar Total", desc: "Hidratación profunda para cada centímetro de tu piel." },
             bienestar: { title: "Bienestar", tagline: "Mente y Cuerpo", desc: "Productos diseñados para tu momento de relax diario." },
@@ -84,7 +84,7 @@ const translationsData = {
         hero: {
             skin_care: { title: "Cuidado Facial", desc: "Sérums y cremas de alta eficacia." },
             hair_care: { title: "Cuidado Capilar", desc: "Brillo y nutrición para tu melena." },
-            manos_pies: { title: "Manos y Pies", desc: "Suavidade e nutrição diária." },
+            manos_pies: { title: "Manos y Pies", desc: "Suavidad y nutrición diaria." },
             discover: "Descubrir",
             subtitle: "Lo Mejor para Ti",
             title_part1: "Siente tu",
@@ -101,6 +101,7 @@ const translationsData = {
             solares: "Solares",
             maquillaje: "Maquillaje",
             perfumes: "Perfumes",
+            regalos: "Regalos",
             manos_pies: "Manos y Pies",
             all_products: "Todos los productos",
             kits: "Kits",
@@ -154,31 +155,65 @@ const translationsData = {
             sub_ultimas: ["Stock Final"],
             sub_best_sellers: ["Top Ventas", "Favoritos"]
         },
-        filters: {
-            price: "Precio",
-            skin_tone: "Tono de piel",
-            color_name: "Color",
-            product_type: "Tipo de producto",
-            items: "artículos",
-            sort: "Clasificar",
-            show_filters: "Mostrar Filtros",
-            sort_by: "Ordenar por",
-            recommended: "Recomendados",
-            newest: "Novedades",
-            price_low: "Menor precio",
-            price_high: "Mayor precio",
-            load_more: "Cargar más productos",
-            sort_options: {
-                recomendados: "Recomendados",
-                mais_vendidos: "Más Vendidos",
-                novidades: "Novedades",
-                maior_desconto: "Mayor Descuento",
-                menor_preco: "Menor precio",
-                maior_preco: "Mayor precio",
-                a_z: "A - Z",
-                z_a: "Z - A",
-                melhor_avaliados: "Mejor Valorados",
-                em_tendencia: "Tendencia"
+        cart: {
+            title: "Tu Carrito",
+            clear_cart: "Vaciar carrito",
+            empty: "Tu carrito está vacío",
+            empty_desc: "Parece que aún no has añadido rituales de belleza.",
+            subtotal: "Subtotal",
+            shipping: "Envío",
+            shipping_calc: "Calculado en el checkout",
+            total: "Total",
+            checkout: "Finalizar Compra"
+        },
+        auth: {
+            login_title: "Iniciar sesión",
+            login_desc: "Entra para gestionar tus pedidos y favoritos.",
+            register_title: "Crear cuenta",
+            register_desc: "Únete a Beauthé y disfruta de ventajas exclusivas.",
+            name_label: "Nombre completo",
+            name_placeholder: "Tu nombre",
+            email_label: "E-mail",
+            password_label: "Contraseña",
+            forgot_password: "¿Olvidaste tu contraseña?",
+            login_btn: "Entrar",
+            register_btn: "Crear Perfil",
+            google_btn: "Continuar con Google",
+            no_account: "¿No tienes una cuenta?",
+            has_account: "¿Ya tienes cuenta?",
+            register_now: "Regístrate ahora",
+            login_now: "Inicia sesión",
+            next_step: "Próximo paso",
+            account_created: "¡Cuenta creada!",
+            interests_label: "Intereses",
+            birth_label: "Fecha de Nacimiento",
+            complete_profile: "Finalizar Perfil",
+            skip_step: "Saltar por ahora"
+        },
+        profile: {
+            account: "Mi Perfil",
+            personal_data: "Datos Personales",
+            addresses: "Direcciones",
+            addresses_desc: "Gestiona tus direcciones de envío.",
+            orders: "Mis Pedidos",
+            settings: "Configuración",
+            logout: "Cerrar sesión",
+            add_address: "Añadir dirección",
+            edit_address: "Editar dirección"
+        },
+        checkout: {
+            title: "Finalizar Pedido",
+            shipping_address: "Dirección de Envío",
+            payment_method: "Método de Pago",
+            order_summary: "Resumen del Pedido",
+            place_order: "Confirmar y Pagar",
+            secure: "Pago 100% Seguro",
+            returns_guarantee: "Devolución garantizada",
+            save_info: "Guardar mis datos para la próxima vez",
+            payments: {
+                card: "Tarjeta de Crédito",
+                paypal: "PayPal",
+                transfer: "Transferencia Bancaria"
             }
         },
         faq_section: {
@@ -195,9 +230,49 @@ const translationsData = {
                 },
                 {
                     question: "¿Puedo combinar Vitamina C con Retinol en mi rutina?",
-                    answer: "Recomendamos utilizar la Vitamina C en tu rutina de mañana para proteger la piel de los radicales libres, y dejar el Retinol para tu rutina nocturna, promoviendo la renovación celular sin causar irritación."
+                    answer: "Recomendamos utilizar la Vitamina C en tu rutina de mañana para proteger la piel de los radicales libres, y dejar el Retinol para tu rutina nocturna, promoviendo la renovación celular."
+                },
+                {
+                    question: "¿Ofrecen envío gratuito?",
+                    answer: "Sí, todos los pedidos superiores a 50€ disfrutan de envío estándar gratuito a toda la península y Baleares."
+                },
+                {
+                    question: "¿Son los productos 100% veganos?",
+                    answer: "Absolutamente. No utilizamos ingredientes de origen animal y estamos orgullosos de ser una marca certificada Cruelty-Free."
+                },
+                {
+                    question: "¿Cómo puedo rastrear mi pedido?",
+                    answer: "Una vez que tu pedido salga de nuestro almacén, recibirás un correo electrónico con el número de seguimiento y un enlace directo a la mensajería."
+                },
+                {
+                    question: "¿Cuál es vuestra política de devoluciones?",
+                    answer: "Dispones de 14 días para devolver productos sin abrir en su embalaje original si no estás satisfecha con tu compra."
+                },
+                {
+                    question: "¿En qué orden debo aplicar mis productos?",
+                    answer: "La regla de oro es aplicar de la textura más ligera a la más densa: Limpiador > Tónico > Sérum > Contorno de Ojos > Crema Hidratante > Protector Solar (mañana)."
                 }
             ]
+        },
+        filters: {
+            price: "Precio",
+            skin_tone: "Tono de piel",
+            color_name: "Color",
+            product_type: "Tipo de producto",
+            items: "artículos",
+            sort: "Ordenar",
+            sort_options: {
+                recomendados: "Recomendados",
+                mais_vendidos: "Más Vendidos",
+                novidades: "Novedades",
+                maior_desconto: "Mayor Descuento",
+                menor_preco: "Menor precio",
+                maior_preco: "Mayor precio",
+                a_z: "A - Z",
+                z_a: "Z - A",
+                melhor_avaliados: "Mejor Valorados",
+                em_tendencia: "Tendencia"
+            }
         },
         history: {
             banner_tag: "De una idea a un estilo de vida",
@@ -228,14 +303,8 @@ const translationsData = {
             legal: "Legal",
             subscribe_btn: "Unirse",
             placeholder: "Tu e-mail",
-            rights: "Todos los derechos reservados."
-        },
-        checkout: {
-            title: "Finalizar Compra",
-            shipping_address: "Dirección de Envío",
-            payment_method: "Método de Pago",
-            order_summary: "Resumen del Pedido",
-            place_order: "Confirmar Pedido"
+            rights: "Todos los derechos reservados.",
+            back_to_top: "Volver arriba"
         },
         product: {
             add_to_cart: "Añadir al carrito",
@@ -247,17 +316,6 @@ const translationsData = {
             best_seller: "Más Vendido",
             new: "Nuevo",
             trend: "Tendencia"
-        },
-        profile: {
-            orders: "Mis Pedidos",
-            account: "Perfil",
-            logout: "Cerrar sesión"
-        },
-        auth: {
-            login_title: "Iniciar sesión",
-            register_title: "Crear cuenta",
-            login_btn: "Entrar",
-            register_btn: "Registrarme"
         },
         favorites: {
             title: "Tus favoritos",
@@ -329,7 +387,7 @@ const translationsData = {
             rostro: { title: "Cuidado Facial", tagline: "Rituais de Pureza", desc: "Sérums, tónicos e cremes formulados para uma pele radiante." },
             maquillaje: { title: "Maquilhagem", tagline: "Beleza Consciente", desc: "Texturas sensoriais que realçam a sua beleza natural." },
             cabello: { title: "Cuidado Capilar", tagline: "Nutrição Intensa", desc: "Fórmulas exclusivas para um cabelo forte e brilhante." },
-            tendencias: { title: "Tendências", tagline: "O Último da Beauthé", desc: "Descubra os produtos mais tendência." },
+            tendencias: { title: "Tendências", tagline: "O Último da Beauthé", desc: "Descubra os produtos mais desejados desta temporada." },
             manos_pies: { title: "Mãos e Pés", tagline: "Cuidado Essencial", desc: "Hidratação e nutrição profunda para as suas extremidades." },
             cuerpo: { title: "Banho e Corpo", tagline: "Bem-estar Total", desc: "Hidratação profunda para cada centímetro da sua pele." },
             bienestar: { title: "Bem-estar", tagline: "Mente e Corpo", desc: "Produtos desenhados para o seu momento de relax diário." },
@@ -356,6 +414,7 @@ const translationsData = {
             solares: "Solares",
             maquillaje: "Maquilhagem",
             perfumes: "Perfumes",
+            regalos: "Presentes",
             manos_pies: "Mãos e Pés",
             all_products: "Todos os produtos",
             kits: "Kits",
@@ -409,31 +468,65 @@ const translationsData = {
             sub_ultimas: ["Stock Final"],
             sub_best_sellers: ["Top Vendas", "Favoritos"]
         },
-        filters: {
-            price: "Preço",
-            skin_tone: "Grupo de tons",
-            color_name: "Cor",
-            product_type: "Tipo de produto",
-            items: "artigos",
-            sort: "Classificar",
-            show_filters: "Mostrar Filtros",
-            sort_by: "Ordenar por",
-            recommended: "Recomendados",
-            newest: "Novidades",
-            price_low: "Menor preço",
-            price_high: "Maior preço",
-            load_more: "Carregar mais produtos",
-            sort_options: {
-                recomendados: "Recomendados",
-                mais_vendidos: "Mais Vendidos",
-                novidades: "Novidades",
-                maior_desconto: "Maior Desconto",
-                menor_preco: "Menor preço",
-                maior_preco: "Maior preço",
-                a_z: "A - Z",
-                z_a: "Z - A",
-                melhor_avaliados: "Melhor Avaliados",
-                em_tendencia: "Tendência"
+        cart: {
+            title: "O seu Carrinho",
+            clear_cart: "Esvaziar carrinho",
+            empty: "O seu cesto está vazio",
+            empty_desc: "Parece que ainda não adicionou rituais de beleza.",
+            subtotal: "Subtotal",
+            shipping: "Envio",
+            shipping_calc: "Calculado no checkout",
+            total: "Total",
+            checkout: "Finalizar Compra"
+        },
+        auth: {
+            login_title: "Iniciar sessão",
+            login_desc: "Entre para gerir as suas encomendas e favoritos.",
+            register_title: "Criar conta",
+            register_desc: "Junte-se à Beauthé e desfrute de vantagens exclusivas.",
+            name_label: "Nome completo",
+            name_placeholder: "O seu nome",
+            email_label: "E-mail",
+            password_label: "Palavra-passe",
+            forgot_password: "Esqueceu a palavra-passe?",
+            login_btn: "Entrar",
+            register_btn: "Criar Perfil",
+            google_btn: "Continuar com Google",
+            no_account: "Não tem uma conta?",
+            has_account: "Já tem conta?",
+            register_now: "Registe-se agora",
+            login_now: "Inicie sessão",
+            next_step: "Próximo passo",
+            account_created: "Conta criada!",
+            interests_label: "Interesses",
+            birth_label: "Data de Nascimento",
+            complete_profile: "Finalizar Perfil",
+            skip_step: "Saltar por agora"
+        },
+        profile: {
+            account: "Meu Perfil",
+            personal_data: "Dados Pessoais",
+            addresses: "Endereços",
+            addresses_desc: "Gira os seus endereços de envio.",
+            orders: "Minhas Encomendas",
+            settings: "Configurações",
+            logout: "Sair da conta",
+            add_address: "Adicionar endereço",
+            edit_address: "Editar endereço"
+        },
+        checkout: {
+            title: "Finalizar Encomenda",
+            shipping_address: "Endereço de Envio",
+            payment_method: "Método de Pagamento",
+            order_summary: "Resumo da Encomenda",
+            place_order: "Confirmar e Pagar",
+            secure: "Pagamento 100% Seguro",
+            returns_guarantee: "Devolução garantida",
+            save_info: "Guardar os meus dados para a próxima vez",
+            payments: {
+                card: "Cartão de Crédito",
+                paypal: "PayPal",
+                transfer: "Transferência Bancária"
             }
         },
         faq_section: {
@@ -447,8 +540,52 @@ const translationsData = {
                 {
                     question: "¿Os produtos são adequados para peles sensíveis?",
                     answer: "Sim, toda a nossa coleção Beauthé está testada dermatologicamente e formulada com ingredientes suaves, desenhados para respeitar e acalmar até as peles mais delicadas."
+                },
+                {
+                    question: "¿Posso combinar Vitamina C com Retinol na minha rotina?",
+                    answer: "Recomendamos utilizar a Vitamina C na rotina de manhã para proteger a pele, e deixar o Retinol para a noite, promovendo a renovação celular."
+                },
+                {
+                    question: "¿Oferecem envio gratuito?",
+                    answer: "Sim, todas as encomendas superiores a 50€ desfrutam de envio padrão gratuito para Portugal Continental."
+                },
+                {
+                    question: "¿Os produtos são 100% veganos?",
+                    answer: "Absolutamente. Não utilizamos ingredientes de origem animal e orgulhamo-nos de ser uma marca certificada Cruelty-Free."
+                },
+                {
+                    question: "¿Como posso seguir a minha encomenda?",
+                    answer: "Assim que a encomenda sair do armazém, receberá um e-mail com o número de seguimento e um link direto."
+                },
+                {
+                    question: "¿Qual é a vossa política de devoluções?",
+                    answer: "Dispõe de 14 dias para devolver produtos não abertos na embalagem original se não estiver satisfeita."
+                },
+                {
+                    question: "¿Em que ordem devo aplicar os produtos?",
+                    answer: "A regra de ouro é: Limpador > Tónico > Sérum > Contorno > Hidratante > Protetor Solar."
                 }
             ]
+        },
+        filters: {
+            price: "Preço",
+            skin_tone: "Grupo de tons",
+            color_name: "Cor",
+            product_type: "Tipo de produto",
+            items: "artigos",
+            sort: "Ordenar",
+            sort_options: {
+                recomendados: "Recomendados",
+                mais_vendidos: "Mais Vendidos",
+                novidades: "Novidades",
+                maior_desconto: "Maior Desconto",
+                menor_preco: "Menor preço",
+                maior_preco: "Maior preço",
+                a_z: "A - Z",
+                z_a: "Z - A",
+                melhor_avaliados: "Melhor Avaliados",
+                em_tendencia: "Tendência"
+            }
         },
         history: {
             banner_tag: "De uma ideia a um estilo de vida",
@@ -479,14 +616,8 @@ const translationsData = {
             legal: "Legal",
             subscribe_btn: "Aderir",
             placeholder: "O seu e-mail",
-            rights: "Todos os direitos reservados."
-        },
-        checkout: {
-            title: "Finalizar Compra",
-            shipping_address: "Endereço de Envio",
-            payment_method: "Método de Pagamento",
-            order_summary: "Resumo do Pedido",
-            place_order: "Confirmar Pedido"
+            rights: "Todos os direitos reservados.",
+            back_to_top: "Voltar ao topo"
         },
         product: {
             add_to_cart: "Adicionar ao carrinho",
@@ -498,17 +629,6 @@ const translationsData = {
             best_seller: "Mais Vendido",
             new: "Novo",
             trend: "Tendência"
-        },
-        profile: {
-            orders: "Meus Pedidos",
-            account: "Perfil",
-            logout: "Sair da conta"
-        },
-        auth: {
-            login_title: "Iniciar sessão",
-            register_title: "Criar conta",
-            login_btn: "Entrar",
-            register_btn: "Registar-me"
         },
         favorites: {
             title: "Os seus favoritos",
@@ -607,6 +727,7 @@ const translationsData = {
             solares: "Sun Care",
             maquillaje: "Makeup",
             perfumes: "Perfumes",
+            regalos: "Gifts",
             manos_pies: "Hands & Feet",
             all_products: "All products",
             kits: "Kits",
@@ -638,7 +759,7 @@ const translationsData = {
             sub_tonicos: ["Hydrating", "Astringent"],
             sub_serums: ["Vitamin C", "Retinol"],
             sub_cremas: ["Day", "Night"],
-            sub_contorno: ["Bags", "Dark Circles"],
+            sub_contorno: ["Bolsas", "Ojeras"],
             sub_mascarillas: ["Clay", "Hydrogel"],
             sub_base: ["Liquid", "Powder"],
             sub_correctores: ["Cream", "Stick"],
@@ -660,20 +781,112 @@ const translationsData = {
             sub_ultimas: ["Final Stock"],
             sub_best_sellers: ["Top Sellers", "Favorites"]
         },
+        cart: {
+            title: "Your Cart",
+            clear_cart: "Clear cart",
+            empty: "Your cart is empty",
+            empty_desc: "Looks like you haven't added any beauty rituals.",
+            subtotal: "Subtotal",
+            shipping: "Shipping",
+            shipping_calc: "Calculated at checkout",
+            total: "Total",
+            checkout: "Checkout"
+        },
+        auth: {
+            login_title: "Login",
+            login_desc: "Log in to manage your orders and favorites.",
+            register_title: "Create account",
+            register_desc: "Join Beauthé and enjoy exclusive benefits.",
+            name_label: "Full name",
+            name_placeholder: "Your name",
+            email_label: "Email",
+            password_label: "Password",
+            forgot_password: "Forgot your password?",
+            login_btn: "Login",
+            register_btn: "Create Profile",
+            google_btn: "Continue with Google",
+            no_account: "Don't have an account?",
+            has_account: "Already have an account?",
+            register_now: "Register now",
+            login_now: "Login now",
+            next_step: "Next step",
+            account_created: "Account created!",
+            interests_label: "Interests",
+            birth_label: "Date of Birth",
+            complete_profile: "Complete Profile",
+            skip_step: "Skip for now"
+        },
+        profile: {
+            account: "My Profile",
+            personal_data: "Personal Data",
+            addresses: "Addresses",
+            addresses_desc: "Manage your shipping addresses.",
+            orders: "My Orders",
+            settings: "Settings",
+            logout: "Logout",
+            add_address: "Add address",
+            edit_address: "Edit address"
+        },
+        checkout: {
+            title: "Finish Order",
+            shipping_address: "Shipping Address",
+            payment_method: "Payment Method",
+            order_summary: "Order Summary",
+            place_order: "Confirm and Pay",
+            secure: "100% Secure Payment",
+            returns_guarantee: "Returns guaranteed",
+            save_info: "Save my info for next time",
+            payments: {
+                card: "Credit Card",
+                paypal: "PayPal",
+                transfer: "Bank Transfer"
+            }
+        },
+        faq_section: {
+            title: "Frequently Asked Questions",
+            subtitle: "Everything you need to know about your beauty ritual.",
+            items: [
+                {
+                    question: "How long does it take for Skin Care products to take effect?",
+                    answer: "Initial hydration results are noticed immediately, while deep treatments show visible changes after 3 to 4 weeks."
+                },
+                {
+                    question: "Are the products suitable for sensitive skin?",
+                    answer: "Yes, our collection is dermatologically tested for the most delicate skin."
+                },
+                {
+                    question: "Can I combine Vitamin C with Retinol?",
+                    answer: "We recommend Vitamin C in the morning and Retinol at night."
+                },
+                {
+                    question: "Do you offer free shipping?",
+                    answer: "Yes, on orders over 50€."
+                },
+                {
+                    question: "Are the products vegan?",
+                    answer: "Yes, 100% vegan and Cruelty-Free."
+                },
+                {
+                    question: "How can I track my order?",
+                    answer: "You will receive a tracking number via email once it ships."
+                },
+                {
+                    question: "What is your return policy?",
+                    answer: "14 days for unopened products in original packaging."
+                },
+                {
+                    question: "In what order should I apply products?",
+                    answer: "Thinnest to thickest: Cleanser > Toner > Serum > Eye Contour > Moisturizer > SPF."
+                }
+            ]
+        },
         filters: {
             price: "Price",
             skin_tone: "Skin tone",
             color_name: "Color",
             product_type: "Product type",
             items: "items",
-            sort: "Classify",
-            show_filters: "Show Filters",
-            sort_by: "Sort by",
-            recommended: "Recommended",
-            newest: "New arrivals",
-            price_low: "Lowest price",
-            price_high: "Highest price",
-            load_more: "Load more products",
+            sort: "Sort",
             sort_options: {
                 recomendados: "Recommended",
                 mais_vendidos: "Best Sellers",
@@ -686,20 +899,6 @@ const translationsData = {
                 melhor_avaliados: "Best Rated",
                 em_tendencia: "Trend"
             }
-        },
-        faq_section: {
-            title: "Frequently Asked Questions",
-            subtitle: "Everything you need to know about your beauty ritual.",
-            items: [
-                {
-                    question: "How long does it take for Skin Care products to take effect?",
-                    answer: "It depends on the product and your skin type. Initial hydration results are noticed immediately, while deep treatments usually show visible changes after 3 to 4 weeks of consistent use."
-                },
-                {
-                    question: "Are the products suitable for sensitive skin?",
-                    answer: "Yes, our entire Beauthé collection is dermatologically tested and formulated with gentle ingredients, designed to respect and soothe even the most delicate skin."
-                }
-            ]
         },
         history: {
             banner_tag: "From an idea to a lifestyle",
@@ -715,7 +914,7 @@ const translationsData = {
             join_us_tag: "Join us",
             join_us_title_1: "We invite you to be part of",
             join_us_title_2: "our story.",
-            join_us_desc: "Discover what it means to Live Beautifully. Explore our full collection of care.",
+            join_us_desc: "Discover what it means to Live Beautifully. Explore our full collection.",
             view_collections: "View collections"
         },
         about_us: {
@@ -730,14 +929,8 @@ const translationsData = {
             legal: "Legal",
             subscribe_btn: "Join",
             placeholder: "Your email",
-            rights: "All rights reserved."
-        },
-        checkout: {
-            title: "Finish Purchase",
-            shipping_address: "Shipping Address",
-            payment_method: "Payment Method",
-            order_summary: "Order Summary",
-            place_order: "Confirm Order"
+            rights: "All rights reserved.",
+            back_to_top: "Back to top"
         },
         product: {
             add_to_cart: "Add to cart",
@@ -749,17 +942,6 @@ const translationsData = {
             best_seller: "Best Seller",
             new: "New",
             trend: "Trend"
-        },
-        profile: {
-            orders: "My Orders",
-            account: "Profile",
-            logout: "Logout"
-        },
-        auth: {
-            login_title: "Login",
-            register_title: "Create account",
-            login_btn: "Enter",
-            register_btn: "Register"
         },
         favorites: {
             title: "Your favorites",
@@ -784,7 +966,7 @@ export const LanguageProvider = ({ children }) => {
 
         // Return empty string or fallback if it resolves to an object (prevents rendering [object Object])
         if (typeof value === 'object' && value !== null) {
-            // Check if it's an array (like sub_*)
+            // Check if it's an array (like faq_section.items or sub_*)
             if (Array.isArray(value)) return value;
             return value.title || value.name || value.label || key;
         }
