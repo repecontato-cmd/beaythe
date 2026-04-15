@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useLanguage } from '../context/LanguageContext';
 import { getProducts } from '../admin/services/db';
@@ -16,30 +16,44 @@ export default function ProductTabs() {
     const [loading, setLoading] = useState(true);
 
     const tabs = [
-        { id: 'ALL', label: t('nav.all_products') },
+        { id: 'ALL', label: t('categories.todos.title') || 'Explorar Todo' },
         { id: 'gels', label: 'Gels', match: ['gel', 'limpiador', 'cleaning'] },
         { id: 'serums', label: 'Sérums', match: ['serum', 'sérum', 'concentrado'] },
         { id: 'cremas', label: 'Cremas', match: ['crema', 'creme', 'hidratante'] },
-        { id: 'ojos', label: 'Ojos', match: ['contorno', 'ojos', 'olhos'] },
-        { id: 'labios', label: 'Labios', match: ['labios', 'lips', 'batom'] }
+        { id: 'exclusivos', label: 'Exclusivos', match: ['exclusive', 'limitada', 'premium'] },
+        { id: 'bienestar', label: 'Bienestar', match: ['bienestar', 'bem-estar', 'relax', 'zen'] }
     ];
 
     useEffect(() => {
         const load = async () => {
             setLoading(true);
-            const data = await getProducts();
-            setAllProducts(data.filter(p => p.is_active));
-            setLoading(false);
+            try {
+                const data = await getProducts();
+                setAllProducts(data.filter(p => p.is_active));
+            } catch (error) {
+                console.error("Error loading products for tabs:", error);
+            } finally {
+                setLoading(false);
+            }
         };
         load();
     }, []);
 
-    const filteredProducts = allProducts.filter(p => {
-        if (activeTab === 'ALL') return true;
-        const currentTab = tabs.find(tab => tab.id === activeTab);
-        const content = (p.name + " " + (p.description || "") + " " + (p.tags?.join(' ') || "")).toLowerCase();
-        return currentTab.match.some(term => content.includes(term));
-    }).slice(0, 8);
+    const filteredProducts = useMemo(() => {
+        let result = [];
+        if (activeTab === 'ALL') {
+            result = [...allProducts];
+        } else if (activeTab === 'exclusivos') {
+            result = allProducts.filter(p => (p.manual_price || p.price) > 75 || (p.tags?.some(tag => ['exclusive', 'premium'].includes(tag.toLowerCase()))));
+        } else {
+            const currentTab = tabs.find(tab => tab.id === activeTab);
+            result = allProducts.filter(p => {
+                const content = (p.name + " " + (p.description || "") + " " + (p.tags?.join(' ') || "")).toLowerCase();
+                return currentTab.match.some(term => content.includes(term));
+            });
+        }
+        return result.slice(0, 8);
+    }, [allProducts, activeTab]);
 
     const PLACEHOLDER_IMG = "https://images.unsplash.com/photo-1556228578-0d85b1a4d571?auto=format&fit=crop&q=80&w=300";
 
@@ -59,8 +73,8 @@ export default function ProductTabs() {
                                 key={tab.id}
                                 onClick={() => setActiveTab(tab.id)}
                                 className={`px-6 py-3 rounded-2xl text-[11px] font-bold uppercase tracking-widest transition-all duration-300 ${activeTab === tab.id
-                                        ? 'bg-[#2C2826] text-white shadow-xl scale-105'
-                                        : 'bg-[#FCFAF8] text-[#8A7369] hover:bg-[#F1EBE6]'
+                                    ? 'bg-[#2C2826] text-white shadow-xl scale-105'
+                                    : 'bg-[#FCFAF8] text-[#8A7369] hover:bg-[#F1EBE6]'
                                     }`}
                             >
                                 {tab.label}
