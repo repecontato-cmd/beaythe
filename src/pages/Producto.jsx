@@ -413,124 +413,122 @@ export default function Producto() {
                     </div>
                 </div>
 
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-24">
-                    <div>
-                        <h3 className="text-[11px] font-black uppercase tracking-[0.4em] text-[#C4A49A] mb-10">{t('product.specs_title')}</h3>
-                        <div className="border-t border-[#F1EBE6]">
-                            {['description', 'precautions', 'ingredients'].map((key) => (
-                                <div key={key} className="border-b border-[#F1EBE6]">
-                                    <button className="w-full flex items-center justify-between py-5 text-left group" onClick={() => setActiveAccordion(activeAccordion === key ? '' : key)}>
-                                        <span className="text-[13px] font-bold text-[#2C2826] uppercase tracking-[0.1em] group-hover:text-[#C4A49A] transition-colors">
-                                            {key === 'description' ? t('product.what_is') : key === 'precautions' ? t('product.care') : t('product.composition')}
-                                        </span>
-                                        {activeAccordion === key ? <Minus size={16} className="text-[#8A7369]" /> : <Plus size={16} className="text-[#8A7369]" />}
-                                    </button>
-                                    <motion.div animate={{ height: activeAccordion === key ? 'auto' : 0, opacity: activeAccordion === key ? 1 : 0 }} className="overflow-hidden">
-                                        <div
-                                            className="pb-6 text-[14px] text-[#5C534F] font-light leading-relaxed"
-                                            dangerouslySetInnerHTML={{ __html: key === 'description' ? product.description : key === 'precautions' ? t('helpbot.faq.returns') : "Aqua, Niacinamide, Glycerin, Rosa Centifolia Flower Extract, Hyaluronic Acid, Phenoxyethanol, Ethylhexylglycerin." }}
-                                        />
-                                    </motion.div>
-                                </div>
-                            ))}
-                        </div>
-                    </div>
-
-                    <div className="bg-[#2C2826] rounded-[48px] p-12 md:p-24 flex flex-col items-center text-center text-white relative overflow-hidden group">
-                        <motion.div animate={{ scale: [1, 1.2, 1], rotate: [0, 10, 0] }} transition={{ duration: 15, repeat: Infinity }} className="absolute top-0 right-0 w-64 h-64 bg-white/5 blur-[100px] rounded-full" />
-                        <div className="w-24 h-24 rounded-full bg-white/10 backdrop-blur-md flex items-center justify-center text-white mb-10 shadow-lg border border-white/20"><Shield size={40} strokeWidth={1} /></div>
-                        <h4 className="text-4xl md:text-5xl font-light mb-6 tracking-tight">
-                            {t('product.purity_title').split(' ').slice(0, 2).join(' ')} <br />
-                            <span className="font-bold italic uppercase" style={{ color: theme.primary }}>{t('product.purity_title').split(' ').slice(2).join(' ')}</span>
-                        </h4>
-                        <p className="text-lg text-white/60 font-light leading-relaxed mb-12 max-w-lg">{t('product.purity_desc')}</p>
-                        <div className="flex gap-16">
-                            <div className="flex flex-col items-center gap-4 group/item">
-                                <div className="p-4 rounded-3xl bg-white/5 border border-white/10 transition-all group-hover/item:bg-white/10"><Leaf size={32} className="text-white" /></div>
-                                <span className="text-[10px] font-black uppercase tracking-widest text-white/80">{t('product.vegan_badge')}</span>
-                            </div>
-                            <div className="flex flex-col items-center gap-4 group/item">
-                                <div className="p-4 rounded-3xl bg-white/5 border border-white/10 transition-all group-hover/item:bg-white/10"><Shield size={32} className="text-white" /></div>
-                                <span className="text-[10px] font-black uppercase tracking-widest text-white/80">{t('product.cruelty_badge')}</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            {/* 5. LANDING PAGE PERSUASION SECTIONS - BLOCK 2 */}
-            {theme.landingPage && (
-                <>
-                    {theme.landingPage.faq && (
-                        <section className="py-24 md:py-40 bg-[#FCFAF8]">
-                            <div className="max-w-[800px] mx-auto px-4">
-                                <div className="text-center mb-20">
-                                    <span className="text-[12px] font-black uppercase tracking-[0.4em] text-[#C4A49A] mb-4 block">Q&A</span>
-                                    <h2 className="text-4xl font-light text-[#2C2826] tracking-tighter">Common Questions</h2>
-                                </div>
-                                <div className="flex flex-col gap-4">
-                                    {theme.landingPage.faq.map((item, idx) => (
-                                        <div key={idx} className="bg-white rounded-3xl p-8 border border-[#F1EBE6] shadow-sm">
-                                            <h4 className="text-lg font-bold text-[#2C2826] mb-4">{item.question}</h4>
-                                            <p className="text-[#8A7369] font-light leading-relaxed">{item.answer}</p>
-                                        </div>
-                                    ))}
-                                </div>
-                                <div className="mt-32 pt-32 border-t border-[#F1EBE6]">
-                                    <div className="text-center mb-20">
-                                        <span className="text-[12px] font-black uppercase tracking-[0.4em] text-[#C4A49A] mb-4 block">Secrets from the lab</span>
-                                        <h2 className="text-4xl md:text-6xl font-light text-[#2C2826] tracking-tight">{theme.landingPage.expertTips.title}</h2>
-                                    </div>
-                                    <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
-                                        {theme.landingPage.expertTips.tips.map((tip, i) => (
-                                            <div key={i} className="flex flex-col items-center text-center group">
-                                                <div className="w-16 h-16 rounded-full bg-white shadow-lg border border-[#F1EBE6] flex items-center justify-center text-[#C4A49A] mb-8 group-hover:scale-110 transition-transform duration-500"><Lightbulb size={24} /></div>
-                                                <h4 className="font-bold text-[#2C2826] text-sm uppercase mb-4 tracking-widest">{tip.title}</h4>
-                                                <p className="text-sm text-[#8A7369] font-light leading-relaxed">{tip.text}</p>
-                                            </div>
-                                        ))}
-                                    </div>
-                                </div>
-                            </div>
-                        </section>
-                    )}
-
-                    <section className="py-24 md:py-40 bg-[#2C2826] text-white">
-                        <div className="max-w-[1440px] mx-auto px-4">
-                            <div className="text-center mb-24">
-                                <span className="text-[12px] font-black uppercase tracking-[0.4em] text-white/40 mb-4 block">Exclusive Offers</span>
-                                <h2 className="text-5xl md:text-7xl font-light tracking-tight mb-6">{theme.landingPage.kits.title}</h2>
-                                <p className="text-white/60 font-light max-w-xl mx-auto">{theme.landingPage.kits.description}</p>
-                            </div>
-                            <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
-                                {theme.landingPage.kits.items.map((kit, i) => (
-                                    <div key={i} className="group relative bg-white/5 border border-white/10 rounded-[60px] overflow-hidden flex flex-col md:flex-row items-center p-8 gap-10 hover:bg-white/10 transition-colors">
-                                        <div className="w-full md:w-1/2 aspect-square rounded-[40px] overflow-hidden">
-                                            <img src={kit.image} alt={kit.name} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
-                                        </div>
-                                        <div className="w-full md:w-1/2">
-                                            <h4 className="text-3xl font-light mb-4">{kit.name}</h4>
-                                            <div className="flex items-center gap-4 mb-6">
-                                                <span className="text-2xl font-bold">{kit.price.toFixed(2)} €</span>
-                                                <span className="text-sm text-white/40 line-through">{kit.originalPrice.toFixed(2)} €</span>
-                                                <div className="bg-[#C4A49A] text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-widest">Save 20%</div>
-                                            </div>
-                                            <ul className="space-y-3 mb-10">
-                                                {kit.items.map((item, j) => (
-                                                    <li key={j} className="flex items-center gap-3 text-sm text-white/60"><Check size={14} className="text-[#C4A49A]" /> {item}</li>
-                                                ))}
-                                            </ul>
-                                            <button className="w-full py-4 bg-white text-[#2C2826] rounded-2xl text-[11px] font-black uppercase tracking-[0.2em] hover:bg-[#C4A49A] hover:text-white transition-all">{t('common.add_kit') || 'Adicionar Kit'}</button>
-                                        </div>
+                {/* 2. Technical Specifications & Details (Elevated) */}
+                <section className="py-12 md:py-20 bg-[#FCFAF8] border-t border-[#F1EBE6]">
+                    <div className="max-w-[1200px] mx-auto px-4 grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 items-start">
+                        <div>
+                            <h3 className="text-[11px] font-black uppercase tracking-[0.4em] text-[#C4A49A] mb-8">{t('product.specs_title')}</h3>
+                            <div className="border-t border-[#F1EBE6]/60">
+                                {['description', 'precautions', 'ingredients'].map((key) => (
+                                    <div key={key} className="border-b border-[#F1EBE6]/60">
+                                        <button className="w-full flex items-center justify-between py-5 text-left group" onClick={() => setActiveAccordion(activeAccordion === key ? '' : key)}>
+                                            <span className="text-[13px] font-bold text-[#2C2826] uppercase tracking-[0.1em] group-hover:text-[#C4A49A] transition-colors">
+                                                {key === 'description' ? t('product.what_is') : key === 'precautions' ? t('product.care') : t('product.composition')}
+                                            </span>
+                                            {activeAccordion === key ? <Minus size={16} className="text-[#8A7369]" /> : <Plus size={16} className="text-[#8A7369]" />}
+                                        </button>
+                                        <motion.div animate={{ height: activeAccordion === key ? 'auto' : 0, opacity: activeAccordion === key ? 1 : 0 }} className="overflow-hidden">
+                                            <div
+                                                className="pb-6 text-[14px] text-[#5C534F] font-light leading-relaxed"
+                                                dangerouslySetInnerHTML={{ __html: key === 'description' ? product.description : key === 'precautions' ? t('helpbot.faq.returns') : "Aqua, Niacinamide, Glycerin, Rosa Centifolia Flower Extract, Hyaluronic Acid, Phenoxyethanol, Ethylhexylglycerin." }}
+                                            />
+                                        </motion.div>
                                     </div>
                                 ))}
                             </div>
                         </div>
-                    </section>
-                </>
-            )}
+                        <span className="font-bold italic uppercase" style={{ color: theme.primary }}>{t('product.purity_title').split(' ').slice(2).join(' ')}</span>
+                    </h4>
+                    <p className="text-lg text-white/60 font-light leading-relaxed mb-12 max-w-lg">{t('product.purity_desc')}</p>
+                    <div className="flex gap-16">
+                        <div className="flex flex-col items-center gap-4 group/item">
+                            <div className="p-4 rounded-3xl bg-white/5 border border-white/10 transition-all group-hover/item:bg-white/10"><Leaf size={32} className="text-white" /></div>
+                            <span className="text-[10px] font-black uppercase tracking-widest text-white/80">{t('product.vegan_badge')}</span>
+                        </div>
+                        <div className="flex flex-col items-center gap-4 group/item">
+                            <div className="p-4 rounded-3xl bg-white/5 border border-white/10 transition-all group-hover/item:bg-white/10"><Shield size={32} className="text-white" /></div>
+                            <span className="text-[10px] font-black uppercase tracking-widest text-white/80">{t('product.cruelty_badge')}</span>
+                        </div>
+                    </div>
+            </div>
+        </div>
+            </div >
 
-            {/* 6. STICKY UI */}
+        {/* 5. LANDING PAGE PERSUASION SECTIONS - BLOCK 2 */ }
+    {
+        theme.landingPage && (
+            <>
+                {theme.landingPage.faq && (
+                    <section className="py-24 md:py-40 bg-[#FCFAF8]">
+                        <div className="max-w-[800px] mx-auto px-4">
+                            <div className="text-center mb-20">
+                                <span className="text-[12px] font-black uppercase tracking-[0.4em] text-[#C4A49A] mb-4 block">Q&A</span>
+                                <h2 className="text-4xl font-light text-[#2C2826] tracking-tighter">Common Questions</h2>
+                            </div>
+                            <div className="flex flex-col gap-4">
+                                {theme.landingPage.faq.map((item, idx) => (
+                                    <div key={idx} className="bg-white rounded-3xl p-8 border border-[#F1EBE6] shadow-sm">
+                                        <h4 className="text-lg font-bold text-[#2C2826] mb-4">{item.question}</h4>
+                                        <p className="text-[#8A7369] font-light leading-relaxed">{item.answer}</p>
+                                    </div>
+                                ))}
+                            </div>
+                            <div className="mt-32 pt-32 border-t border-[#F1EBE6]">
+                                <div className="text-center mb-20">
+                                    <span className="text-[12px] font-black uppercase tracking-[0.4em] text-[#C4A49A] mb-4 block">Secrets from the lab</span>
+                                    <h2 className="text-4xl md:text-6xl font-light text-[#2C2826] tracking-tight">{theme.landingPage.expertTips.title}</h2>
+                                </div>
+                                <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
+                                    {theme.landingPage.expertTips.tips.map((tip, i) => (
+                                        <div key={i} className="flex flex-col items-center text-center group">
+                                            <div className="w-16 h-16 rounded-full bg-white shadow-lg border border-[#F1EBE6] flex items-center justify-center text-[#C4A49A] mb-8 group-hover:scale-110 transition-transform duration-500"><Lightbulb size={24} /></div>
+                                            <h4 className="font-bold text-[#2C2826] text-sm uppercase mb-4 tracking-widest">{tip.title}</h4>
+                                            <p className="text-sm text-[#8A7369] font-light leading-relaxed">{tip.text}</p>
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                )}
+
+                <section className="py-24 md:py-40 bg-[#2C2826] text-white">
+                    <div className="max-w-[1440px] mx-auto px-4">
+                        <div className="text-center mb-24">
+                            <span className="text-[12px] font-black uppercase tracking-[0.4em] text-white/40 mb-4 block">Exclusive Offers</span>
+                            <h2 className="text-5xl md:text-7xl font-light tracking-tight mb-6">{theme.landingPage.kits.title}</h2>
+                            <p className="text-white/60 font-light max-w-xl mx-auto">{theme.landingPage.kits.description}</p>
+                        </div>
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+                            {theme.landingPage.kits.items.map((kit, i) => (
+                                <div key={i} className="group relative bg-white/5 border border-white/10 rounded-[60px] overflow-hidden flex flex-col md:flex-row items-center p-8 gap-10 hover:bg-white/10 transition-colors">
+                                    <div className="w-full md:w-1/2 aspect-square rounded-[40px] overflow-hidden">
+                                        <img src={kit.image} alt={kit.name} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
+                                    </div>
+                                    <div className="w-full md:w-1/2">
+                                        <h4 className="text-3xl font-light mb-4">{kit.name}</h4>
+                                        <div className="flex items-center gap-4 mb-6">
+                                            <span className="text-2xl font-bold">{kit.price.toFixed(2)} €</span>
+                                            <span className="text-sm text-white/40 line-through">{kit.originalPrice.toFixed(2)} €</span>
+                                            <div className="bg-[#C4A49A] text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-widest">Save 20%</div>
+                                        </div>
+                                        <ul className="space-y-3 mb-10">
+                                            {kit.items.map((item, j) => (
+                                                <li key={j} className="flex items-center gap-3 text-sm text-white/60"><Check size={14} className="text-[#C4A49A]" /> {item}</li>
+                                            ))}
+                                        </ul>
+                                        <button className="w-full py-4 bg-white text-[#2C2826] rounded-2xl text-[11px] font-black uppercase tracking-[0.2em] hover:bg-[#C4A49A] hover:text-white transition-all">{t('common.add_kit') || 'Adicionar Kit'}</button>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                </section>
+            </>
+        )
+    }
+
+    {/* 6. STICKY UI */ }
             <motion.div initial={{ y: 100 }} animate={{ y: 0 }} className="fixed bottom-0 left-0 right-0 z-50 p-4 bg-white/90 backdrop-blur-xl border-t border-[#F1EBE6] md:hidden flex items-center justify-between gap-4 shadow-[0_-10px_30px_rgba(0,0,0,0.05)]">
                 <div className="flex-1 min-w-0">
                     <span className="text-[10px] font-bold text-[#8A7369] uppercase block truncate">{product.name}</span>
@@ -540,6 +538,6 @@ export default function Producto() {
             </motion.div>
 
             <TrendingProducts overrideTitle={t('product.recommended')} removePadding={false} recommendedIds={product.recommended_products} />
-        </div>
+        </div >
     );
 }
