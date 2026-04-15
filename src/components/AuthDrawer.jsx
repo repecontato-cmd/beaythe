@@ -3,15 +3,28 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { X, User, ArrowRight, CheckCircle2 } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { useLanguage } from '../context/LanguageContext';
+import { useAuth } from '../context/AuthContext';
 
 export default function AuthDrawer({ isOpen, onClose }) {
     const [isLogin, setIsLogin] = useState(true);
-    const [step, setStep] = useState(1); // 1: Login/Reg, 2: Profile (if registering)
+    const [step, setStep] = useState(1);
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [name, setName] = useState('');
+    const [error, setError] = useState('');
     const { t } = useLanguage();
+    const { login, register, validateEmail } = useAuth();
     const navigate = useNavigate();
 
     const handleNextStep = (e) => {
         e.preventDefault();
+        setError('');
+
+        if (!validateEmail(email)) {
+            setError(t('auth.invalid_email') || 'Please enter a valid email address.');
+            return;
+        }
+
         if (isLogin) {
             handleComplete();
         } else {
@@ -20,13 +33,26 @@ export default function AuthDrawer({ isOpen, onClose }) {
     };
 
     const handleComplete = () => {
-        onClose();
-        navigate('/profile');
-        // Reset state for next time
-        setTimeout(() => {
-            setIsLogin(true);
-            setStep(1);
-        }, 500);
+        try {
+            if (isLogin) {
+                login({ email, name: name || email.split('@')[0] });
+            } else {
+                register({ email, name });
+            }
+            onClose();
+            navigate('/profile');
+            // Reset state
+            setTimeout(() => {
+                setIsLogin(true);
+                setStep(1);
+                setEmail('');
+                setName('');
+                setPassword('');
+                setError('');
+            }, 500);
+        } catch (err) {
+            setError(err.message);
+        }
     };
 
     return (
