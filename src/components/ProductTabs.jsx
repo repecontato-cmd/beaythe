@@ -15,14 +15,9 @@ export default function ProductTabs() {
     const [activeTab, setActiveTab] = useState('ALL');
     const [loading, setLoading] = useState(true);
 
-    const tabs = [
-        { id: 'ALL', label: t('nav.all_products') },
-        { id: 'gels', label: 'Gels', match: ['gel', 'limpiador', 'cleaning'] },
-        { id: 'serums', label: 'Sérums', match: ['serum', 'sérum', 'concentrado'] },
-        { id: 'cremas', label: 'Cremas', match: ['crema', 'creme', 'hidratante'] },
-        { id: 'ojos', label: 'Ojos', match: ['contorno', 'ojos', 'olhos'] },
-        { id: 'labios', label: 'Labios', match: ['labios', 'lips', 'batom'] }
+    { id: 'manos-pies', label: t('nav.manos_pies') || 'Manos y Pies', match: ['mano', 'pie', 'mão', 'pe', 'unha', 'uña', 'hand', 'foot', 'nails'] }
     ];
+
 
     useEffect(() => {
         const load = async () => {
