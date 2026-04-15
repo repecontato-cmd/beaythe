@@ -138,7 +138,7 @@ export default function Categoria() {
         }));
     };
 
-    const normalizedSlugForTitle = slug === 'rosto' ? 'rostro' : (slug === 'maquilhagem' || slug === 'maquillagem' ? 'maquillaje' : (slug === 'solares' ? 'manos-pies' : slug));
+    const normalizedSlugForTitle = slug === 'rosto' ? 'rostro' : (slug === 'maquilhagem' || slug === 'maquillagem' ? 'maquillaje' : (slug === 'solares' ? 'manos_pies' : (slug || 'todos').replace(/-/g, '_')));
 
     // Robust Title Sanitization helper
     const getSafeTitle = () => {
@@ -148,7 +148,7 @@ export default function Categoria() {
         if (!translated || translated === transKey) {
             if (normalizedSlugForTitle === 'todos') return t('categories.all_collection');
             // Manual cleanup of slug to title
-            const fallback = normalizedSlugForTitle ? normalizedSlugForTitle.replace(/-/g, ' ') : 'Beauthé';
+            const fallback = normalizedSlugForTitle ? normalizedSlugForTitle.replace(/_/g, ' ') : 'Beauthé';
             return fallback.charAt(0).toUpperCase() + fallback.slice(1);
         }
         return translated;
@@ -156,49 +156,10 @@ export default function Categoria() {
 
     const title = getSafeTitle();
 
-    // Category Visuals Mapping
-    const categoryVisuals = {
-        rostro: {
-            img: "https://images.unsplash.com/photo-1596462502278-27bfdc403348?auto=format&fit=crop&q=80&w=2000",
-            tagline: t('categories.rostro.tagline')
-        },
-        maquillaje: {
-            img: "https://images.unsplash.com/photo-1512496015851-a90fb38ba796?auto=format&fit=crop&q=80&w=2000",
-            tagline: t('categories.maquillaje.tagline')
-        },
-        cabello: {
-            img: "https://images.unsplash.com/photo-1522337660859-02fbefca4702?auto=format&fit=crop&q=80&w=2000",
-            tagline: t('categories.cabello.tagline')
-        },
-        tendencias: {
-            img: "https://images.unsplash.com/photo-1556228578-0d85b1a4d571?auto=format&fit=crop&q=80&w=2000",
-            tagline: t('categories.tendencias.tagline')
-        },
-        cuerpo: {
-            img: "https://images.unsplash.com/photo-1522337660859-02fbefca4702?auto=format&fit=crop&q=80&w=2000",
-            tagline: t('categories.cuerpo.tagline')
-        },
-        'manos-pies': {
-            img: "https://images.unsplash.com/photo-1519014816548-bf5fe059798b?auto=format&fit=crop&q=80&w=2000",
-            tagline: t('categories.manos_pies.tagline')
-        },
-        bienestar: {
-            img: "https://images.unsplash.com/photo-1540555700478-4be289aef79b?auto=format&fit=crop&q=80&w=2000",
-            tagline: t('categories.bienestar.tagline')
-        },
-        hombre: {
-            img: "https://images.unsplash.com/photo-1616117403483-36e2f1837ac6?auto=format&fit=crop&q=80&w=2000",
-            tagline: t('categories.hombre.tagline')
-        },
-        default: {
-            img: "https://images.unsplash.com/photo-1552046122-03184de85e08?auto=format&fit=crop&w=2000",
-            tagline: t('categories.default.tagline')
-        }
-    };
+    // ... (categoryVisuals logic)
 
-    const currentVisual = categoryVisuals[normalizedSlugForTitle] || categoryVisuals.default;
-    const PLACEHOLDER_IMG = "https://images.unsplash.com/photo-1556228578-0d85b1a4d571?auto=format&fit=crop&q=80&w=300";
-
+    const desc = t(`categories.${normalizedSlugForTitle}.desc`);
+    const finalDesc = (desc && desc !== `categories.${normalizedSlugForTitle}.desc`) ? desc : currentVisual.tagline;
 
     return (
         <div className="w-full bg-[#FCFAF8] pb-24">
@@ -206,7 +167,7 @@ export default function Categoria() {
                 <img
                     src={currentVisual.img}
                     alt={title}
-                    className="absolute inset-0 w-full h-full object-cover opacity-60 transition-scale duration-10000 hover:scale-105"
+                    className="absolute inset-0 w-full h-full object-cover opacity-60 transition-all duration-1000 group-hover:scale-105"
                 />
                 <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/20 to-black/60"></div>
 
@@ -223,8 +184,9 @@ export default function Categoria() {
                         {title}
                     </motion.h1>
                     <p className="text-[15px] md:text-lg font-light tracking-wide opacity-90 text-[#F4EFEA] max-w-2xl mx-auto leading-relaxed">
-                        {t(`categories.${normalizedSlugForTitle}.desc`) !== `categories.${normalizedSlugForTitle}.desc` ? t(`categories.${normalizedSlugForTitle}.desc`) : currentVisual.tagline}
+                        {finalDesc}
                     </p>
+
 
                 </div>
             </section>
