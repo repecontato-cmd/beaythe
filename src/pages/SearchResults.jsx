@@ -103,11 +103,12 @@ export default function SearchResults() {
 
                                     <Link to={`/producto/${product.id}`} className="block w-full h-full">
                                         <img
-                                            src={product.image}
+                                            src={product.image_url}
                                             alt={product.name}
                                             className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
                                         />
                                     </Link>
+
 
                                     <div className="absolute inset-x-0 bottom-0 p-5 opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500 hidden md:block">
                                         <button
