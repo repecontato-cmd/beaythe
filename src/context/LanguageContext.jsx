@@ -83,13 +83,12 @@ const translationsData = {
         },
 
         nav: {
-            outlet: "Outlet",
+            exclusivos: "Exclusivos",
             marcas: "Marcas",
             rostro: "Rostro",
             cuerpo: "Cuerpo y Baño",
             bienestar: "Bienestar",
             cabello: "Cabello",
-            solares: "Solares",
             maquillaje: "Maquillaje",
             perfumes: "Perfumes",
             hombre: "Hombre",
