@@ -138,7 +138,7 @@ export default function Categoria() {
         }));
     };
 
-    const normalizedSlugForTitle = slug === 'rosto' ? 'rostro' : (slug === 'maquilhagem' || slug === 'maquillagem' ? 'maquillaje' : (slug === 'solares' ? 'manos_pies' : (slug || 'todos').replace(/-/g, '_')));
+    const normalizedSlugForTitle = slug === 'rosto' ? 'rostro' : (slug === 'maquilhagem' || slug === 'maquillagem' ? 'maquillaje' : (slug === 'solares' ? 'manos_pies' : (slug || 'todos').toLowerCase().replace(/-/g, '_')));
 
     // Robust Title Sanitization helper
     const getSafeTitle = () => {
