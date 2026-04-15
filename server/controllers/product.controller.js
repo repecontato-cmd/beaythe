@@ -80,6 +80,48 @@ export const updateProduct = async (req, res) => {
     }
 };
 
+export const bulkImportFromDropea = async (req, res) => {
+    try {
+        // Fetch a large enough sample of the catalog
+        const catalog = await fetchCatalogService(1000, 1);
+        if (!catalog.success) return res.status(400).json({ error: catalog.error });
+
+        // Retrieve pricing settings
+        let settings = await prisma.storeSettings.findUnique({ where: { id: 1 } });
+        if (!settings) settings = { profit_margin_percent: 30.0, fixed_shipping_cost: 7.00 };
+
+        const items = catalog.data || [];
+        let successCount = 0;
+
+        for (const prd of items) {
+            const costPrice = parseFloat(prd.cost_price || prd.pvpr || 0);
+            const finalPrice = parseFloat(((costPrice + settings.fixed_shipping_cost) * (1 + (settings.profit_margin_percent / 100))).toFixed(2));
+
+            try {
+                await prisma.product.upsert({
+                    where: { dropea_id: prd.id.toString() },
+                    update: { price: finalPrice, stock: parseInt(prd.stock_available) || 0 },
+                    create: {
+                        dropea_id: prd.id.toString(),
+                        name: prd.name,
+                        price: finalPrice,
+                        stock: parseInt(prd.stock_available) || 0,
+                        description: prd.description || prd.name,
+                        image_url: prd.image || ''
+                    }
+                });
+                successCount++;
+            } catch (e) {
+                console.error(`Error importing item ${prd.id}:`, e.message);
+            }
+        }
+
+        res.json({ success: true, count: successCount, total: items.length });
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
+};
+
 export const getDropeaCatalog = async (req, res) => {
     try {
         const page = parseInt(req.query.page) || 1;

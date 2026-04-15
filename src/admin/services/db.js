@@ -80,6 +80,14 @@ export const importFromDropea = async (dropeaId) => {
     return res.json();
 };
 
+export const bulkSyncDropea = async () => {
+    const res = await fetch(`${API_URL}/products/bulk-import`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' }
+    });
+    return res.json();
+};
+
 export const getDropeaCatalog = async (page = 1) => {
     try {
         const res = await fetch(`${API_URL}/products/dropea-catalog?page=${page}`, { cache: 'no-store' });
