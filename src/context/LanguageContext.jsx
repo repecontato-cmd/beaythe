@@ -1644,26 +1644,28 @@ const translationsData = {
 };
 
 
-export const LanguageProvider = ({ children }) => {
-    const [lang, setLang] = useState(localStorage.getItem('beauthe_lang') || 'es');
+const translateProduct = (product) => {
+    if (!product) return product;
 
-    const t = (key) => {
-        const keys = key.split('.');
-        let value = translationsData[lang];
-        for (const k of keys) {
-            value = value?.[k];
-        }
-        return value || key;
-    };
+    // Try to find translation by name (lowercase, no spaces)
+    const productKey = product.name?.toLowerCase().replace(/\s+/g, '_');
+    const translatedProduct = translationsData[lang]?.products?.[productKey];
 
-    const toggleLanguage = (newLang) => {
-        setLang(newLang);
-        localStorage.setItem('beauthe_lang', newLang);
-    };
+    if (translatedProduct) {
+        return {
+            ...product,
+            name: translatedProduct.name || product.name,
+            description: translatedProduct.description || product.description
+        };
+    }
 
-    return (
-        <LanguageContext.Provider value={{ lang, t, toggleLanguage }}>
-            {children}
-        </LanguageContext.Provider>
-    );
+    return product;
 };
+
+return (
+    <LanguageContext.Provider value={{ lang, t, toggleLanguage, translateProduct }}>
+        {children}
+    </LanguageContext.Provider>
+);
+};
+
