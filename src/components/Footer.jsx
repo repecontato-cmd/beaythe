@@ -27,7 +27,7 @@ export default function Footer() {
                         <li><Link to="/categoria/maquillaje" className="hover:text-[#C4A49A] transition-colors">{t('nav.maquillaje')}</Link></li>
                         <li><Link to="/categoria/cuerpo" className="hover:text-[#C4A49A] transition-colors">{t('nav.cuerpo')}</Link></li>
                         <li><Link to="/categoria/cabello" className="hover:text-[#C4A49A] transition-colors">{t('nav.cabello')}</Link></li>
-                        <li><Link to="/categoria/solares" className="hover:text-[#C4A49A] transition-colors">{t('nav.solares')}</Link></li>
+                        <li><Link to="/categoria/exclusivos" className="hover:text-[#C4A49A] transition-colors">{t('nav.exclusivos')}</Link></li>
                     </ul>
                 </div>
 
