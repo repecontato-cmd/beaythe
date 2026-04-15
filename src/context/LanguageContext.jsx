@@ -53,6 +53,8 @@ const translationsData = {
             categories: "Categorías",
             language: "Idioma",
             favorites: "Favoritos",
+            back_to_top: "Volver arriba",
+            show_more: "Ver Más",
             seo: {
                 home: "Beauthé: Alta cosmética vegana y rituales de belleza con propósito. Descubre lo melhor en cuidado facial y corporal.",
                 skin: "Cuidado Facial: Sérums, cremas y tónicos formulados con ingredientes naturales para una piel radiante y saludable.",
@@ -188,7 +190,8 @@ const translationsData = {
             interests_label: "Intereses",
             birth_label: "Fecha de Nacimiento",
             complete_profile: "Finalizar Perfil",
-            skip_step: "Saltar por ahora"
+            skip_step: "Saltar por ahora",
+            invalid_email: "Por favor, introduce un email válido."
         },
         profile: {
             account: "Mi Perfil",
@@ -253,6 +256,12 @@ const translationsData = {
                     answer: "La regla de oro es aplicar de la textura más ligera a la más densa: Limpiador > Tónico > Sérum > Contorno de Ojos > Crema Hidratante > Protector Solar (mañana)."
                 }
             ]
+        },
+        reviews_section: {
+            tag: "Opiniones de Clientes",
+            title: "Lo que dicen de nosotros",
+            average: "Media de 4.9/5 estrellas baseada en clientes verificados",
+            show_more: "Ver Más Reviews"
         },
         filters: {
             price: "Precio",
@@ -366,6 +375,8 @@ const translationsData = {
             categories: "Categorias",
             language: "Idioma",
             favorites: "Favoritos",
+            back_to_top: "Voltar ao topo",
+            show_more: "Ver Mais",
             seo: {
                 home: "Beauthé: Alta cosmética vegana e rituais de beleza com propósito. Descubra o melhor em cuidado facial e corporal.",
                 skin: "Cuidado Facial: Séruns, cremes e tónicos formulados com ingredientes naturais para uma pele radiante e saudável.",
@@ -462,7 +473,7 @@ const translationsData = {
             sub_styling: ["Sprays", "Proteção Térmica"],
             sub_femeninos: ["Perfumes", "Colónias"],
             sub_masculinos: ["Frescos", "Intensos"],
-            sub_unisex: ["Cítricos", "Amadeirados"],
+            sub_unisex: ["Cítricos", "Amaderados"],
             sub_hogar: ["Velas", "Difusores"],
             sub_promociones: ["Até -50%", "Kits 2x1"],
             sub_ultimas: ["Stock Final"],
@@ -501,7 +512,8 @@ const translationsData = {
             interests_label: "Interesses",
             birth_label: "Data de Nascimento",
             complete_profile: "Finalizar Perfil",
-            skip_step: "Saltar por agora"
+            skip_step: "Saltar por agora",
+            invalid_email: "Por favor, introduza um e-mail válido."
         },
         profile: {
             account: "Meu Perfil",
@@ -526,7 +538,7 @@ const translationsData = {
             payments: {
                 card: "Cartão de Crédito",
                 paypal: "PayPal",
-                transfer: "Transferência Bancária"
+                transfer: "Transferência Bancaria"
             }
         },
         faq_section: {
@@ -566,6 +578,12 @@ const translationsData = {
                     answer: "A regra de ouro é: Limpador > Tónico > Sérum > Contorno > Hidratante > Protetor Solar."
                 }
             ]
+        },
+        reviews_section: {
+            tag: "Opiniões de Clientes",
+            title: "O que dizem de nós",
+            average: "Média de 4.9/5 estrelas baseada em clientes verificados",
+            show_more: "Ver Mais Reviews"
         },
         filters: {
             price: "Preço",
@@ -633,7 +651,7 @@ const translationsData = {
         favorites: {
             title: "Os seus favoritos",
             empty_title_1: "Ainda não tem",
-            empty_title_2: "favoritos"
+            empty_title_2: "favoritos ainda"
         },
         products: {}
     },
@@ -679,6 +697,8 @@ const translationsData = {
             categories: "Categories",
             language: "Language",
             favorites: "Favorites",
+            back_to_top: "Back to top",
+            show_more: "Show More",
             seo: {
                 home: "Beauthé: High-end vegan cosmetics and purposeful beauty rituals. Discover the best in facial and body care.",
                 skin: "Facial Care: Serums, creams and tonics formulated with natural ingredients for radiant and healthy skin.",
@@ -814,7 +834,8 @@ const translationsData = {
             interests_label: "Interests",
             birth_label: "Date of Birth",
             complete_profile: "Complete Profile",
-            skip_step: "Skip for now"
+            skip_step: "Skip for now",
+            invalid_email: "Please enter a valid email address."
         },
         profile: {
             account: "My Profile",
@@ -879,6 +900,12 @@ const translationsData = {
                     answer: "Thinnest to thickest: Cleanser > Toner > Serum > Eye Contour > Moisturizer > SPF."
                 }
             ]
+        },
+        reviews_section: {
+            tag: "Customer Reviews",
+            title: "What they say about us",
+            average: "Average of 4.9/5 stars based on verified customers",
+            show_more: "See More Reviews"
         },
         filters: {
             price: "Price",
