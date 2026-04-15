@@ -90,7 +90,7 @@ export default function Categoria() {
                     maquillaje: ['maquillaje', 'maquilhagem', 'makeup', 'labios', 'ojos', 'olhos'],
                     cuerpo: ['cuerpo', 'corpo', 'baño', 'banho', 'hidratacion', 'body'],
                     cabello: ['cabello', 'cabelo', 'hair', 'capilar'],
-                    solares: ['solar', 'proteccion', 'spf', 'sun'],
+                    'manos-pies': ['mano', 'pie', 'mão', 'pe', 'unha', 'uña', 'hand', 'foot', 'nails'],
                     bienestar: ['bienestar', 'bem-estar', 'relax', 'zen'],
                     hombre: ['hombre', 'homem', 'men', 'masculino']
                 };
@@ -138,8 +138,23 @@ export default function Categoria() {
         }));
     };
 
-    const normalizedSlugForTitle = slug === 'rosto' ? 'rostro' : (slug === 'maquilhagem' || slug === 'maquillagem' ? 'maquillaje' : slug);
-    const title = normalizedSlugForTitle === 'todos' ? t('categories.all_collection') : (slug ? slug.charAt(0).toUpperCase() + slug.slice(1).replace(/-/g, ' ') : t('categories.collection'));
+    const normalizedSlugForTitle = slug === 'rosto' ? 'rostro' : (slug === 'maquilhagem' || slug === 'maquillagem' ? 'maquillaje' : (slug === 'solares' ? 'manos-pies' : slug));
+
+    // Robust Title Sanitization helper
+    const getSafeTitle = () => {
+        const transKey = `categories.${normalizedSlugForTitle}.title`;
+        const translated = t(transKey);
+        // If translation is missing or returns the key itself
+        if (!translated || translated === transKey) {
+            if (normalizedSlugForTitle === 'todos') return t('categories.all_collection');
+            // Manual cleanup of slug to title
+            const fallback = normalizedSlugForTitle ? normalizedSlugForTitle.replace(/-/g, ' ') : 'Beauthé';
+            return fallback.charAt(0).toUpperCase() + fallback.slice(1);
+        }
+        return translated;
+    };
+
+    const title = getSafeTitle();
 
     // Category Visuals Mapping
     const categoryVisuals = {
@@ -163,9 +178,9 @@ export default function Categoria() {
             img: "https://images.unsplash.com/photo-1522337660859-02fbefca4702?auto=format&fit=crop&q=80&w=2000",
             tagline: t('categories.cuerpo.tagline')
         },
-        solares: {
-            img: "https://images.unsplash.com/photo-1552046122-03184de85e08?auto=format&fit=crop&q=80&w=2000",
-            tagline: t('categories.solares.tagline')
+        'manos-pies': {
+            img: "https://images.unsplash.com/photo-1519014816548-bf5fe059798b?auto=format&fit=crop&q=80&w=2000",
+            tagline: t('categories.manos_pies.tagline')
         },
         bienestar: {
             img: "https://images.unsplash.com/photo-1540555700478-4be289aef79b?auto=format&fit=crop&q=80&w=2000",
@@ -205,10 +220,10 @@ export default function Categoria() {
                         transition={{ duration: 1, ease: "easeOut" }}
                         className="text-6xl md:text-8xl lg:text-9xl font-normal mb-8 tracking-tighter drop-shadow-2xl uppercase"
                     >
-                        {t(`categories.${normalizedSlugForTitle}.title`) || title}
+                        {title}
                     </motion.h1>
                     <p className="text-[15px] md:text-lg font-light tracking-wide opacity-90 text-[#F4EFEA] max-w-2xl mx-auto leading-relaxed">
-                        {t(`categories.${normalizedSlugForTitle}.desc`) || currentVisual.tagline}
+                        {t(`categories.${normalizedSlugForTitle}.desc`) !== `categories.${normalizedSlugForTitle}.desc` ? t(`categories.${normalizedSlugForTitle}.desc`) : currentVisual.tagline}
                     </p>
 
                 </div>
