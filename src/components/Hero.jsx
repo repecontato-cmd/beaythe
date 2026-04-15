@@ -6,7 +6,7 @@ import { ArrowRight, Plus } from 'lucide-react';
 import { getProducts } from '../admin/services/db';
 
 export default function Hero() {
-    const { t } = useLanguage();
+    const { t, translateProduct } = useLanguage();
     const [featuredProduct, setFeaturedProduct] = useState(null);
 
     useEffect(() => {
@@ -14,10 +14,11 @@ export default function Hero() {
             const all = await getProducts();
             // Pick first trending product as hero feature
             const prod = all.find(p => p.is_active && p.placement === 'TRENDING');
-            if (prod) setFeaturedProduct(prod);
+            if (prod) setFeaturedProduct(translateProduct(prod));
         };
         loadHero();
     }, []);
+
 
     const containerVariants = {
         hidden: { opacity: 0 },
