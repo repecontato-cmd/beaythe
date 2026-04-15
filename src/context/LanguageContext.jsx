@@ -946,7 +946,9 @@ const translationsData = {
             empty_title_1: "Ainda não tem",
             empty_title_2: "favoritos",
             empty_desc: "Comece a guardar os seus produtos preferidos para os encontrar mais rápido.",
-            explore: "Explorar coleção"
+            sun_care: { title: "Dias de Sol", desc: "Proteção avançada para a sua pele." },
+            manos_pies: { title: "Mãos e Pés", desc: "Suavidade e nutrição diária." },
+            explore: "Explorar Tudo"
         },
         product_bottom: {
             tag: "Cuidado & Conscience",
@@ -1507,6 +1509,8 @@ const translationsData = {
             empty_title_1: "You don't have",
             empty_title_2: "favorites yet",
             empty_desc: "Start saving your favorite products to find them faster.",
+            sun_care: { title: "Sun Care", desc: "Advanced protection for your skin." },
+            manos_pies: { title: "Hands & Feet", desc: "Daily softness and nutrition." },
             explore: "Explore collection"
         },
         product_bottom: {
