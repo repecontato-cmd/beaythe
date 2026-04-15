@@ -9,15 +9,20 @@ export default function NewsletterPopup() {
     const [email, setEmail] = useState('');
 
     useEffect(() => {
-        const timer = setTimeout(() => {
-            setIsVisible(true);
-        }, 2000); // Show after 2 seconds
-        return () => clearTimeout(timer);
+        const hasSeenNewsletter = localStorage.getItem('beauthe_newsletter_seen');
+        if (!hasSeenNewsletter) {
+            const timer = setTimeout(() => {
+                setIsVisible(true);
+            }, 2000); // Show after 2 seconds
+            return () => clearTimeout(timer);
+        }
     }, []);
 
     const handleClose = () => {
         setIsVisible(false);
+        localStorage.setItem('beauthe_newsletter_seen', 'true');
     };
+
 
     const handleSubmit = (e) => {
         e.preventDefault();
