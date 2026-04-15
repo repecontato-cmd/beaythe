@@ -132,7 +132,7 @@ export default function Categoria() {
     };
 
     const normalizedSlugForTitle = slug === 'rosto' ? 'rostro' : (slug === 'maquilhagem' || slug === 'maquillagem' ? 'maquillaje' : slug);
-    const title = slug ? slug.charAt(0).toUpperCase() + slug.slice(1).replace(/-/g, ' ') : t('categories.collection');
+    const title = normalizedSlugForTitle === 'todos' ? t('categories.all_collection') : (slug ? slug.charAt(0).toUpperCase() + slug.slice(1).replace(/-/g, ' ') : t('categories.collection'));
 
     // Category Visuals Mapping
     const categoryVisuals = {
@@ -145,11 +145,11 @@ export default function Categoria() {
             tagline: t('categories.maquillaje.tagline')
         },
         cabello: {
-            img: "/assets/images/hair_category_hero.png",
+            img: "https://images.unsplash.com/photo-1522337660859-02fbefca4702?auto=format&fit=crop&q=80&w=2000",
             tagline: t('categories.cabello.tagline')
         },
         tendencias: {
-            img: "/assets/images/trending_category_hero.png",
+            img: "https://images.unsplash.com/photo-1556228578-0d85b1a4d571?auto=format&fit=crop&q=80&w=2000",
             tagline: t('categories.tendencias.tagline')
         },
         cuerpo: {
@@ -170,11 +170,13 @@ export default function Categoria() {
         },
         default: {
             img: "https://images.unsplash.com/photo-1552046122-03184de85e08?auto=format&fit=crop&w=2000",
-            tagline: ""
+            tagline: t('categories.default.tagline')
         }
     };
 
     const currentVisual = categoryVisuals[normalizedSlugForTitle] || categoryVisuals.default;
+    const PLACEHOLDER_IMG = "https://images.unsplash.com/photo-1556228578-0d85b1a4d571?auto=format&fit=crop&q=80&w=300";
+
 
     return (
         <div className="w-full bg-[#FCFAF8] pb-24">
@@ -313,11 +315,12 @@ export default function Categoria() {
 
                                 <Link to={`/producto/${product.id}`} className="block w-full h-full">
                                     <img
-                                        src={product.image}
+                                        src={product.image || PLACEHOLDER_IMG}
                                         alt={product.name}
                                         className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
                                     />
                                 </Link>
+
 
                                 <div className="absolute inset-x-0 bottom-0 p-5 opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500 hidden md:block">
                                     <button
