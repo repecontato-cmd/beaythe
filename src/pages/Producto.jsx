@@ -99,18 +99,18 @@ export default function Producto() {
                                     transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
                                     src={product.images[selectedImage]}
                                     alt={product.name}
-                                    className="w-full h-full object-contain mix-blend-multiply p-8 md:p-12"
+                                    className="w-full h-full object-contain mix-blend-multiply p-4 md:p-6"
                                 />
                             </AnimatePresence>
 
-                            <div className="absolute top-8 left-8">
-                                <span className="bg-black text-white text-[10px] font-black uppercase tracking-widest px-4 py-2 rounded-full">
+                            <div className="absolute top-6 left-6">
+                                <span className="bg-black text-white text-[9px] font-black uppercase tracking-widest px-3 py-1.5 rounded-full">
                                     {product.brand}
                                 </span>
                             </div>
 
-                            <button className="absolute bottom-8 right-8 w-12 h-12 bg-white/80 backdrop-blur rounded-full flex items-center justify-center text-gray-900 border border-white hover:bg-white transition-all shadow-xl">
-                                <Maximize2 size={20} />
+                            <button className="absolute bottom-6 right-6 w-10 h-10 bg-white/80 backdrop-blur rounded-full flex items-center justify-center text-gray-900 border border-white hover:bg-white transition-all shadow-xl">
+                                <Maximize2 size={18} />
                             </button>
                         </div>
                     </div>
