@@ -95,29 +95,51 @@ export default function AuthDrawer({ isOpen, onClose }) {
                                         animate={{ opacity: 1, x: 0 }}
                                         exit={{ opacity: 0, x: -20 }}
                                     >
-                                        <p className="text-[#5C534F] text-[15px] font-light mb-8">
-                                            {isLogin ? t('auth.login_desc') : t('auth.register_desc')}
-                                        </p>
+                                            {error && (
+                                                <div className="bg-red-50 border border-red-100 text-red-600 text-[12px] p-4 rounded-xl mb-4">
+                                                    {error}
+                                                </div>
+                                            )}
 
-                                        <form className="flex flex-col gap-6" onSubmit={handleNextStep}>
                                             {!isLogin && (
                                                 <div className="flex flex-col">
                                                     <label className="text-[11px] font-bold text-[#8A7369] uppercase tracking-wider mb-2">{t('auth.name_label')}</label>
-                                                    <input required type="text" className="bg-white border border-[#EBE1DA] px-4 py-3 outline-none focus:border-[#C4A49A] text-[13px] rounded-xl transition-colors shadow-sm" placeholder={t('auth.name_placeholder')} />
+                                                    <input 
+                                                        required 
+                                                        type="text" 
+                                                        value={name}
+                                                        onChange={(e) => setName(e.target.value)}
+                                                        className="bg-white border border-[#EBE1DA] px-4 py-3 outline-none focus:border-[#C4A49A] text-[13px] rounded-xl transition-colors shadow-sm" 
+                                                        placeholder={t('auth.name_placeholder')} 
+                                                    />
                                                 </div>
                                             )}
 
                                             <div className="flex flex-col">
-                                                <label className="text-[11px] font-bold text-[#8A7369] uppercase tracking-wider mb-2">E-mail</label>
-                                                <input required type="email" className="bg-white border border-[#EBE1DA] px-4 py-3 outline-none focus:border-[#C4A49A] text-[13px] rounded-xl transition-colors shadow-sm" placeholder="seu@email.com" />
+                                                <label className="text-[11px] font-bold text-[#8A7369] uppercase tracking-wider mb-2">{t('auth.email_label')}</label>
+                                                <input 
+                                                    required 
+                                                    type="email" 
+                                                    value={email}
+                                                    onChange={(e) => setEmail(e.target.value)}
+                                                    className="bg-white border border-[#EBE1DA] px-4 py-3 outline-none focus:border-[#C4A49A] text-[13px] rounded-xl transition-colors shadow-sm" 
+                                                    placeholder="seu@email.com" 
+                                                />
                                             </div>
 
                                             <div className="flex flex-col">
                                                 <div className="flex justify-between items-center mb-2">
-                                                    <label className="text-[11px] font-bold text-[#8A7369] uppercase tracking-wider">Senha</label>
+                                                    <label className="text-[11px] font-bold text-[#8A7369] uppercase tracking-wider">{t('auth.password_label')}</label>
                                                     {isLogin && <a href="#" className="text-[11px] text-[#C4A49A] hover:underline hover:text-[#8A7369]">{t('auth.forgot_password')}</a>}
                                                 </div>
-                                                <input required type="password" className="bg-white border border-[#EBE1DA] px-4 py-3 outline-none focus:border-[#C4A49A] text-[13px] rounded-xl transition-colors shadow-sm" placeholder="••••••••" />
+                                                <input 
+                                                    required 
+                                                    type="password" 
+                                                    value={password}
+                                                    onChange={(e) => setPassword(e.target.value)}
+                                                    className="bg-white border border-[#EBE1DA] px-4 py-3 outline-none focus:border-[#C4A49A] text-[13px] rounded-xl transition-colors shadow-sm" 
+                                                    placeholder="••••••••" 
+                                                />
                                             </div>
 
                                             <motion.button
@@ -125,7 +147,7 @@ export default function AuthDrawer({ isOpen, onClose }) {
                                                 whileTap={{ scale: 0.98 }}
                                                 className="w-full mt-4 bg-[#2C2826] text-white py-4 text-[12px] font-bold tracking-[0.15em] uppercase transition-all rounded-xl shadow-lg flex items-center justify-center gap-2"
                                             >
-                                                {isLogin ? t('auth.login_btn') : "Próximo passo"}
+                                                {isLogin ? t('auth.login_btn') : t('auth.next_step')}
                                                 {!isLogin && <ArrowRight size={16} />}
                                             </motion.button>
                                         </form>
@@ -154,57 +176,58 @@ export default function AuthDrawer({ isOpen, onClose }) {
                                             </p>
                                         </div>
                                     </motion.div>
-                                ) : (
-                                    <motion.div
-                                        key="step2"
-                                        initial={{ opacity: 0, x: 20 }}
-                                        animate={{ opacity: 1, x: 0 }}
-                                        exit={{ opacity: 0, x: -20 }}
-                                        className="flex flex-col h-full"
+                            ) : (
+                            <motion.div
+                                key="step2"
+                                initial={{ opacity: 0, x: 20 }}
+                                animate={{ opacity: 1, x: 0 }}
+                                exit={{ opacity: 0, x: -20 }}
+                                className="flex flex-col h-full"
+                            >
+                                <div className="bg-[#EBE1DA] rounded-3xl p-6 text-center mb-8 border border-[#D9CECB]">
+                                    <CheckCircle2 size={40} className="mx-auto text-[#8A7369] mb-4" />
+                                    <h3 className="text-lg font-bold text-[#2C2826] mb-2 uppercase tracking-tight">Conta criada!</h3>
+                                    <p className="text-[#8A7369] text-[13px] leading-relaxed lowercase">Complete seu perfil para uma experiência personalizada.</p>
+                                </div>
+
+                                <div className="space-y-6 flex-grow">
+                                    <div className="flex flex-col">
+                                        <label className="text-[11px] font-bold text-[#8A7369] uppercase tracking-wider mb-2">Interesses</label>
+                                        <div className="flex flex-wrap gap-2">
+                                            {['Skincare', 'Makeup', 'Cabelo', 'Corpo'].map(tag => (
+                                                <button key={tag} className="px-4 py-2 bg-white border border-[#EBE1DA] rounded-full text-[12px] hover:border-[#C4A49A] transition-all">
+                                                    {tag}
+                                                </button>
+                                            ))}
+                                        </div>
+                                    </div>
+                                    <div className="flex flex-col">
+                                        <label className="text-[11px] font-bold text-[#8A7369] uppercase tracking-wider mb-2">Data de Nascimento</label>
+                                        <input type="date" className="bg-white border border-[#EBE1DA] px-4 py-3 outline-none focus:border-[#C4A49A] text-[13px] rounded-xl shadow-sm" />
+                                    </div>
+                                </div>
+
+                                <div className="mt-8 flex flex-col gap-3">
+                                    <motion.button
+                                        onClick={handleComplete}
+                                        whileHover={{ scale: 1.01 }}
+                                        whileTap={{ scale: 0.98 }}
+                                        className="w-full bg-[#2C2826] text-white py-4 text-[12px] font-bold tracking-[0.15em] uppercase rounded-xl shadow-lg"
                                     >
-                                        <div className="bg-[#EBE1DA] rounded-3xl p-6 text-center mb-8 border border-[#D9CECB]">
-                                            <CheckCircle2 size={40} className="mx-auto text-[#8A7369] mb-4" />
-                                            <h3 className="text-lg font-bold text-[#2C2826] mb-2 uppercase tracking-tight">Conta criada!</h3>
-                                            <p className="text-[#8A7369] text-[13px] leading-relaxed lowercase">Complete seu perfil para uma experiência personalizada.</p>
-                                        </div>
-
-                                        <div className="space-y-6 flex-grow">
-                                            <div className="flex flex-col">
-                                                <label className="text-[11px] font-bold text-[#8A7369] uppercase tracking-wider mb-2">Interesses</label>
-                                                <div className="flex flex-wrap gap-2">
-                                                    {['Skincare', 'Makeup', 'Cabelo', 'Corpo'].map(tag => (
-                                                        <button key={tag} className="px-4 py-2 bg-white border border-[#EBE1DA] rounded-full text-[12px] hover:border-[#C4A49A] transition-all">
-                                                            {tag}
-                                                        </button>
-                                                    ))}
-                                                </div>
-                                            </div>
-                                            <div className="flex flex-col">
-                                                <label className="text-[11px] font-bold text-[#8A7369] uppercase tracking-wider mb-2">Data de Nascimento</label>
-                                                <input type="date" className="bg-white border border-[#EBE1DA] px-4 py-3 outline-none focus:border-[#C4A49A] text-[13px] rounded-xl shadow-sm" />
-                                            </div>
-                                        </div>
-
-                                        <div className="mt-8 flex flex-col gap-3">
-                                            <motion.button
-                                                onClick={handleComplete}
-                                                whileHover={{ scale: 1.01 }}
-                                                whileTap={{ scale: 0.98 }}
-                                                className="w-full bg-[#2C2826] text-white py-4 text-[12px] font-bold tracking-[0.15em] uppercase rounded-xl shadow-lg"
-                                            >
-                                                Finalizar Perfil
-                                            </motion.button>
-                                            <button onClick={handleComplete} className="text-[11px] font-bold text-[#A69B97] uppercase tracking-widest hover:text-[#8A7369] py-2 transition-all">
-                                                Pular por agora
-                                            </button>
-                                        </div>
-                                    </motion.div>
+                                        {t('auth.complete_profile')}
+                                    </motion.button>
+                                    <button onClick={handleComplete} className="text-[11px] font-bold text-[#A69B97] uppercase tracking-widest hover:text-[#8A7369] py-2 transition-all">
+                                        {t('auth.skip_step')}
+                                    </button>
+                                </div>
+                            </motion.div>
                                 )}
-                            </AnimatePresence>
-                        </div>
-                    </motion.div>
-                </>
-            )}
-        </AnimatePresence>
+                        </AnimatePresence>
+                    </div>
+                </motion.div>
+        </>
+    )
+}
+        </AnimatePresence >
     );
 }
