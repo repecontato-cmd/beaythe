@@ -315,6 +315,71 @@ const translationsData = {
             rights: "Todos los derechos reservados.",
             back_to_top: "Volver arriba"
         },
+        trust: [
+            { id: 1, icon: 'Truck', title: 'ENVÍO GRATUITO DESDE 50€' },
+            { id: 2, icon: 'Headphones', title: 'SOPORTE AL CLIENTE 24/7' },
+            { id: 3, icon: 'Layers', title: 'PRODUCTOS 100% VEGANOS' },
+            { id: 4, icon: 'PiggyBank', title: '30 DÍAS DE DEVOLUCIÓN' },
+            { id: 5, icon: 'Calendar', title: 'ENTREGA EN 48/72 HORAS' }
+        ],
+        quiz: {
+            tag: "Skin Quiz",
+            title: "¿Cuál es tu tipo de piel?",
+            desc: "Responde 3 preguntas y descubre tu ritual ideal.",
+            start: "EMPEZAR QUIZ",
+            result_title: "TU RESULTADO",
+            result_button: "VER MI RITUAL",
+            types: {
+                dry: "Piel Seca",
+                oily: "Piel Grasa",
+                sensitive: "Piel Sensible",
+                normal: "Piel Normal"
+            },
+            questions: [
+                {
+                    q: "¿Cómo sientes tu piel al despertar?",
+                    options: [
+                        { text: "Tirante y seca", type: "dry" },
+                        { text: "Con brillos en la zona T", type: "oily" },
+                        { text: "Irritada o roja", type: "sensitive" },
+                        { text: "Equilibrada", type: "normal" }
+                    ]
+                },
+                {
+                    q: "¿Qué te preocupa más?",
+                    options: [
+                        { text: "Líneas de expresión", type: "dry" },
+                        { text: "Poros y granitos", type: "oily" },
+                        { text: "Rojeces y picores", type: "sensitive" },
+                        { text: "Mantener el brillo", type: "normal" }
+                    ]
+                },
+                {
+                    q: "¿Cómo reacciona tu piel al sol?",
+                    options: [
+                        { text: "Se quema fácil", type: "sensitive" },
+                        { text: "Broncea lento", type: "normal" },
+                        { text: "Se siente más grasa", type: "oily" },
+                        { text: "Se descama", type: "dry" }
+                    ]
+                }
+            ]
+        },
+        popup: {
+            title: "15% DE DESCUENTO",
+            desc: "Suscríbete a nuestra newsletter y recibe un cupón exclusivo para tu primera compra.",
+            subscribe: "SUSCRIBIRME",
+            no_thanks: "NO, GRACIAS",
+            privacy: "Al suscribirte, aceptas nuestra política de privacidad."
+        },
+        marquee: [
+            "ALTA COSMÉTICA VEGANA",
+            "CRUELTY FREE",
+            "MADE IN EUROPE",
+            "ENVÍO GRATIS +50€",
+            "10% DESC. PRIMERA COMPRA",
+            "RITUALES CON PROPÓSITO"
+        ],
         product: {
             add_to_cart: "Añadir al carrito",
             paraben_free: "sin parabenos",
@@ -637,6 +702,71 @@ const translationsData = {
             rights: "Todos os direitos reservados.",
             back_to_top: "Voltar ao topo"
         },
+        trust: [
+            { id: 1, icon: 'Truck', title: 'ENVIO GRATUITO DESDE 50€' },
+            { id: 2, icon: 'Headphones', title: 'SUPORTE AO CLIENTE 24/7' },
+            { id: 3, icon: 'Layers', title: 'PRODUTOS 100% VEGANOS' },
+            { id: 4, icon: 'PiggyBank', title: '30 DIAS DE DEVOLUÇÃO' },
+            { id: 5, icon: 'Calendar', title: 'ENTREGA EM 48/72 HORAS' }
+        ],
+        quiz: {
+            tag: "Skin Quiz",
+            title: "Qual é o seu tipo de pele?",
+            desc: "Responda a 3 perguntas e descubra o seu ritual ideal.",
+            start: "COMEÇAR QUIZ",
+            result_title: "O SEU RESULTADO",
+            result_button: "VER MEU RITUAL",
+            types: {
+                dry: "Pele Seca",
+                oily: "Pele Oleosa",
+                sensitive: "Pele Sensível",
+                normal: "Pele Normal"
+            },
+            questions: [
+                {
+                    q: "Como sente a sua pele ao acordar?",
+                    options: [
+                        { text: "Esticada e seca", type: "dry" },
+                        { text: "Com brilhos na zona T", type: "oily" },
+                        { text: "Irritada ou vermelha", type: "sensitive" },
+                        { text: "Equilibrada", type: "normal" }
+                    ]
+                },
+                {
+                    q: "O que mais o preocupa?",
+                    options: [
+                        { text: "Linhas de expressão", type: "dry" },
+                        { text: "Poros e borbulhas", type: "oily" },
+                        { text: "Vermelhidão e comichão", type: "sensitive" },
+                        { text: "Manter o brilho", type: "normal" }
+                    ]
+                },
+                {
+                    q: "Como reage a sua pele ao sol?",
+                    options: [
+                        { text: "Queima-se facilmente", type: "sensitive" },
+                        { text: "Bronzeia lentamente", type: "normal" },
+                        { text: "Sente-se mais oleosa", type: "oily" },
+                        { text: "Fica a descamar", type: "dry" }
+                    ]
+                }
+            ]
+        },
+        popup: {
+            title: "15% DE DESCONTO",
+            desc: "Subscreva a nossa newsletter e receba um cupão exclusivo para a sua primeira compra.",
+            subscribe: "SUBSCREVER",
+            no_thanks: "NÃO, OBRIGADO",
+            privacy: "Ao subscrever, aceita a nossa política de privacidade."
+        },
+        marquee: [
+            "ALTA COSMÉTICA VEGANA",
+            "CRUELTY FREE",
+            "MADE IN EUROPE",
+            "ENVIO GRÁTIS +50€",
+            "10% DESC. PRIMEIRA COMPRA",
+            "RITUAIS COM PROPÓSITO"
+        ],
         product: {
             add_to_cart: "Adicionar ao carrinho",
             paraben_free: "sem parabenos",
@@ -959,6 +1089,71 @@ const translationsData = {
             rights: "All rights reserved.",
             back_to_top: "Back to top"
         },
+        trust: [
+            { id: 1, icon: 'Truck', title: 'FREE SHIPPING FROM 50€' },
+            { id: 2, icon: 'Headphones', title: '24/7 CUSTOMER SUPPORT' },
+            { id: 3, icon: 'Layers', title: '100% VEGAN PRODUCTS' },
+            { id: 4, icon: 'PiggyBank', title: '30 DAYS RETURNS' },
+            { id: 5, icon: 'Calendar', title: 'DELIVERY IN 48/72H' }
+        ],
+        quiz: {
+            tag: "Skin Quiz",
+            title: "What is your skin type?",
+            desc: "Answer 3 questions and discover your ideal ritual.",
+            start: "START QUIZ",
+            result_title: "YOUR RESULT",
+            result_button: "VIEW MY RITUAL",
+            types: {
+                dry: "Dry Skin",
+                oily: "Oily Skin",
+                sensitive: "Sensitive Skin",
+                normal: "Normal Skin"
+            },
+            questions: [
+                {
+                    q: "How does your skin feel when you wake up?",
+                    options: [
+                        { text: "Tight and dry", type: "dry" },
+                        { text: "Shiny in the T-zone", type: "oily" },
+                        { text: "Irritated or red", type: "sensitive" },
+                        { text: "Balanced", type: "normal" }
+                    ]
+                },
+                {
+                    q: "What concerns you most?",
+                    options: [
+                        { text: "Expression lines", type: "dry" },
+                        { text: "Pores and breakouts", type: "oily" },
+                        { text: "Redness and itching", type: "sensitive" },
+                        { text: "Maintaining glow", type: "normal" }
+                    ]
+                },
+                {
+                    q: "How does your skin react to the sun?",
+                    options: [
+                        { text: "Burns easily", type: "sensitive" },
+                        { text: "Tans slowly", type: "normal" },
+                        { text: "Feels more oily", type: "oily" },
+                        { text: "Flakes or peels", type: "dry" }
+                    ]
+                }
+            ]
+        },
+        popup: {
+            title: "15% DISCOUNT",
+            desc: "Subscribe to our newsletter and receive an exclusive coupon for your first purchase.",
+            subscribe: "SUBSCRIBE",
+            no_thanks: "NO, THANKS",
+            privacy: "By subscribing, you accept our privacy policy."
+        },
+        marquee: [
+            "HIGH-END VEGAN COSMETICS",
+            "CRUELTY FREE",
+            "MADE IN EUROPE",
+            "FREE SHIPPING +50€",
+            "10% OFF FIRST PURCHASE",
+            "RITUALS WITH PURPOSE"
+        ],
         product: {
             add_to_cart: "Add to cart",
             paraben_free: "paraben free",
