@@ -152,10 +152,12 @@ export default function Navbar({ onCartClick, onFavoritesClick, onUserClick }) {
     };
 
     return (
-        <header ref={navRef} className={`fixed w-full top-0 z-50 transition-all duration-500 ease-in-out ${isVisible ? 'translate-y-0' : '-translate-y-full'} ${forceSolid ? 'bg-white shadow-sm' : 'bg-transparent'}`}>
+        <header ref={navRef} className={`fixed w-full top-0 z-50 transition-all duration-500 ease-in-out ${isVisible ? 'translate-y-0' : '-translate-y-full'} ${forceSolid ? 'bg-white shadow-sm' : 'bg-gradient-to-b from-black/50 via-black/20 to-transparent'}`}>
+
 
             {/* Announcement Bar */}
-            <div className={`transition-colors duration-500 ${forceSolid ? 'bg-[#EBE1DA] text-[#4A423F]' : 'bg-black/10 text-white backdrop-blur-md'} py-2.5 px-4 flex justify-between items-center relative overflow-hidden h-10`}>
+            <div className={`transition-colors duration-500 ${forceSolid ? 'bg-[#EBE1DA] text-[#4A423F]' : 'bg-black/30 text-white backdrop-blur-md'} py-2.5 px-4 flex justify-between items-center relative overflow-hidden h-10`}>
+
                 <div className="flex items-center gap-3">
                     <button
                         onClick={() => toggleLanguage('pt')}
@@ -163,14 +165,16 @@ export default function Navbar({ onCartClick, onFavoritesClick, onUserClick }) {
                     >
                         PT
                     </button>
-                    <span className={`text-[10px] ${forceSolid ? 'text-[#EBE1DA]' : 'text-white/20'}`}>|</span>
+                    <span className={`text-[10px] ${forceSolid ? 'text-[#EBE1DA]' : 'text-white/40'}`}>|</span>
+
                     <button
                         onClick={() => toggleLanguage('es')}
                         className={`text-[11px] font-bold transition-all duration-300 ${lang === 'es' ? (forceSolid ? 'text-[#2C2826]' : 'text-white') : (forceSolid ? 'text-[#9C9490]' : 'text-white/50')} hover:text-[#C4A49A]`}
                     >
                         ES
                     </button>
-                    <span className={`ml-1 text-[10px] uppercase font-medium ${forceSolid ? 'text-[#7A706C]' : 'text-white/70'}`}>| EUR</span>
+                    <span className={`ml-1 text-[10px] uppercase font-medium ${forceSolid ? 'text-[#7A706C]' : 'text-white/90'}`}>| EUR</span>
+
                 </div>
 
                 <div className="absolute left-1/2 -translate-x-1/2 flex flex-col items-center">
@@ -181,7 +185,8 @@ export default function Navbar({ onCartClick, onFavoritesClick, onUserClick }) {
                             animate={{ y: 0, opacity: 1 }}
                             exit={{ y: -20, opacity: 0 }}
                             transition={{ duration: 0.8, ease: "easeInOut" }}
-                            className="opacity-90 uppercase tracking-[0.1em] text-[10px] md:text-[11px] font-bold whitespace-nowrap"
+                            className="opacity-100 uppercase tracking-[0.1em] text-[10px] md:text-[11px] font-bold whitespace-nowrap drop-shadow-sm"
+
                         >
                             {msgIndex === 0 ? t('announcement') : t('about_you')}
                         </motion.span>
@@ -214,7 +219,8 @@ export default function Navbar({ onCartClick, onFavoritesClick, onUserClick }) {
 
                     {/* Logo - Centered on mobile */}
                     <div className="absolute left-1/2 -translate-x-1/2 md:static md:translate-x-0 flex-shrink-0">
-                        <Link to="/" onClick={() => { setActiveMenu(null); setIsMobileMenuOpen(false); }} className={`text-2xl md:text-4xl font-semibold tracking-tight transition-colors duration-500 ${forceSolid ? 'text-[#2C2826] hover:text-[#C4A49A]' : 'text-white hover:text-white/80'}`}>
+                        <Link to="/" onClick={() => { setActiveMenu(null); setIsMobileMenuOpen(false); }} className={`text-2xl md:text-4xl font-semibold tracking-tight transition-colors duration-500 ${forceSolid ? 'text-[#2C2826] hover:text-[#C4A49A]' : 'text-white hover:text-white/80 drop-shadow-md'}`}>
+
                             Beauthé
                         </Link>
                     </div>
@@ -227,7 +233,8 @@ export default function Navbar({ onCartClick, onFavoritesClick, onUserClick }) {
                                     type="text"
                                     value={searchTerm}
                                     onChange={(e) => setSearchTerm(e.target.value)}
-                                    className={`w-full border placeholder-[#9C9490] text-sm py-2.5 px-6 pr-12 focus:outline-none transition-all duration-300 ${forceSolid ? 'bg-[#FCF9F7] border-[#EBE1DA] text-[#2C2826]' : 'bg-white/10 border-white/20 text-white placeholder-white/60 backdrop-blur-sm'} ${isSearchOpen ? 'border-[#C4A49A] rounded-[24px] shadow-sm bg-white text-[#2C2826]' : 'rounded-full focus:border-[#C4A49A] focus:ring-1 focus:ring-[#C4A49A]'}`}
+                                    className={`w-full border placeholder-[#9C9490] text-sm py-2.5 px-6 pr-12 focus:outline-none transition-all duration-300 ${forceSolid ? 'bg-[#FCF9F7] border-[#EBE1DA] text-[#2C2826]' : 'bg-white/20 border-white/30 text-white placeholder-white/80 backdrop-blur-md'} ${isSearchOpen ? 'border-[#C4A49A] rounded-[24px] shadow-sm bg-white text-[#2C2826]' : 'rounded-full focus:border-[#C4A49A] focus:ring-1 focus:ring-[#C4A49A]'}`}
+
                                     placeholder={t('search_placeholder')}
                                     onFocus={() => { setIsSearchOpen(true); setActiveMenu(null); }}
                                 />
@@ -322,7 +329,8 @@ export default function Navbar({ onCartClick, onFavoritesClick, onUserClick }) {
 
                 {/* Categories Navbar - Hidden on Profile Page */}
                 {!pathname.startsWith('/profile') && (
-                    <nav className={`hidden lg:flex items-center justify-center space-x-6 xl:space-x-8 py-4 overflow-x-auto whitespace-nowrap border-t ${forceSolid ? 'border-[#F1EBE6]' : 'border-white/10'} relative transition-colors duration-500`}>
+                    <nav className={`hidden lg:flex items-center justify-center space-x-6 xl:space-x-8 py-4 overflow-x-auto whitespace-nowrap border-t ${forceSolid ? 'border-[#F1EBE6]' : 'border-white/20'} relative transition-colors duration-500`}>
+
                         {topNavKeys.map((key, idx) => {
                             const hasMegaMenu = !!megaMenuData[key];
                             const isActive = activeMenu === key;
@@ -334,7 +342,8 @@ export default function Navbar({ onCartClick, onFavoritesClick, onUserClick }) {
                                     className={`relative text-[13px] tracking-wide transition-all duration-300 flex items-center gap-1.5 focus:outline-none
                   after:content-[''] after:absolute after:-bottom-1 after:left-0 after:h-[1px] after:w-full after:origin-left after:transition-transform after:duration-300 after:ease-out
                   ${isActive ? 'text-[#C4A49A] after:scale-x-100 after:bg-[#C4A49A]' : 'after:scale-x-0 outline-none'}
-                  ${!isActive ? (key === 'outlet' ? 'text-[#C4A49A] font-medium after:bg-[#C4A49A] hover:after:scale-x-100' : `${forceSolid ? 'text-[#5C534F] hover:text-[#2C2826]' : 'text-white/90 hover:text-white'} font-normal after:bg-current hover:after:scale-x-100`) : ''}
+                  ${!isActive ? (key === 'outlet' ? 'text-[#C4A49A] font-medium after:bg-[#C4A49A] hover:after:scale-x-100' : `${forceSolid ? 'text-[#5C534F] hover:text-[#2C2826]' : 'text-white/90 hover:text-white drop-shadow-sm'} font-normal after:bg-current hover:after:scale-x-100`) : ''}
+
                 `}
                                 >
                                     {t(`nav.${key}`)}
