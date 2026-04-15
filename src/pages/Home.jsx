@@ -22,7 +22,9 @@ export default function Home() {
             <Hero />
             <SkinQuiz />
             <CircularCategories />
+            <ProductTabs />
             <TrustStrip />
+
             <TrendingProducts type="new" overrideTitle={t('filters.sort_options.novidades')} />
             <TrendingProducts />
             <Reviews />
