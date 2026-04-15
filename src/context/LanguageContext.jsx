@@ -81,7 +81,14 @@ const translationsData = {
             hombre: { title: "Línea Hombre", tagline: "Cuidado Masculino", desc: "Fórmulas prácticas y eficaces para el hombre moderno." },
             default: { title: "Beauthé", tagline: "Belleza con Propósito", desc: "Explora nuestra selección de alta cosmética natural." }
         },
-
+        hero: {
+            skin_care: { title: "Cuidado Facial", desc: "Sérums y cremas de alta eficacia." },
+            hair_care: { title: "Cuidado Capilar", desc: "Brillo y nutrición para tu melena." },
+            sun_care: { title: "Días de Sol", desc: "Protección avanzada para tu piel." },
+            manos_pies: { title: "Manos y Pies", desc: "Suavidad y nutrición diaria." },
+            discover: "Descubrir",
+            subtitle: "Lo Mejor para Ti"
+        },
         nav: {
             outlet: "Outlet",
             marcas: "Marcas",
@@ -648,6 +655,14 @@ const translationsData = {
             hombre: { title: "Linha Homem", tagline: "Cuidado Masculino", desc: "Fórmulas práticas e eficazes para o homem moderno." },
             default: { title: "Beauthé", tagline: "Beleza com Propósito", desc: "Explore a nossa seleção de alta cosmética natural." }
         },
+        hero: {
+            skin_care: { title: "Cuidado Facial", desc: "Séruns e cremes de alta eficácia." },
+            hair_care: { title: "Cuidado Capilar", desc: "Brilho e nutrição para o seu cabelo." },
+            sun_care: { title: "Dias de Sol", desc: "Proteção avançada para a sua pele." },
+            manos_pies: { title: "Mãos e Pés", desc: "Suavidade e nutrição diária." },
+            discover: "Descobrir",
+            subtitle: "O Melhor para Si"
+        },
         nav: {
             outlet: "Outlet",
             marcas: "Marcas",
@@ -1209,6 +1224,14 @@ const translationsData = {
             bienestar: { title: "Wellness", tagline: "Mind & Body", desc: "Products designed for your daily relax moment." },
             hombre: { title: "Men's Line", tagline: "Male Care", desc: "Practical and effective formulas for the modern man." },
             default: { title: "Beauthé", tagline: "Beauty with Purpose", desc: "Explore our selection of natural high cosmetics." }
+        },
+        hero: {
+            skin_care: { title: "Skin Care", desc: "High efficacy serums and creams." },
+            hair_care: { title: "Hair Care", desc: "Shine and nutrition for your hair." },
+            sun_care: { title: "Sun Days", desc: "Advanced protection for your skin." },
+            manos_pies: { title: "Hands & Feet", desc: "Daily softness and nutrition." },
+            discover: "Discover",
+            subtitle: "The Best for You"
         },
         nav: {
             outlet: "Outlet",
