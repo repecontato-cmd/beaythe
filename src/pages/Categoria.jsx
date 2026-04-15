@@ -208,8 +208,9 @@ export default function Categoria() {
                         {t(`categories.${normalizedSlugForTitle}.title`) || title}
                     </motion.h1>
                     <p className="text-[15px] md:text-lg font-light tracking-wide opacity-90 text-[#F4EFEA] max-w-2xl mx-auto leading-relaxed">
-                        {t(`categories.${normalizedSlugForTitle}.desc`)}
+                        {t(`categories.${normalizedSlugForTitle}.desc`) || currentVisual.tagline}
                     </p>
+
                 </div>
             </section>
 
