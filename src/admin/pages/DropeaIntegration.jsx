@@ -115,9 +115,14 @@ export default function DropeaIntegration() {
     const uniqueCategories = ['Todas', 'Beleza', ...new Set(catalogItems.map(item => item.category).filter(Boolean))].sort();
 
     const filteredCatalog = catalogItems.filter(p => {
-        const matchesCategory = activeCategory === 'Todas' || p.category === activeCategory;
+        const pCat = (p.category || '').toLowerCase();
+        const activeCat = activeCategory.toLowerCase();
+
+        const matchesCategory = activeCategory === 'Todas' || pCat === activeCat || (activeCat === 'beleza' && pCat.includes('beleza'));
+
         const matchesSearch = p.name?.toLowerCase().includes(searchQuery.toLowerCase()) ||
-            p.category?.toLowerCase().includes(searchQuery.toLowerCase());
+            pCat.includes(searchQuery.toLowerCase());
+
         return matchesCategory && matchesSearch;
     });
 
