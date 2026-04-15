@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom';
 import { useLanguage } from '../context/LanguageContext';
 import { useCRO } from '../context/CROContext';
 
+import { getProducts } from '../admin/services/db';
+
 const categories = [
     { name: "ROSTRO", slug: "rostro", img: "https://images.unsplash.com/photo-1570174006409-90656641ab4e?auto=format&fit=crop&w=300&q=80", color: "bg-[#F3E8E3]" },
     { name: "MAQUILLAJE", slug: "maquillaje", img: "https://images.unsplash.com/photo-1596462502278-27bfdc403348?auto=format&fit=crop&w=300&q=80", color: "bg-[#EFE8E1]" },
@@ -17,15 +19,29 @@ const categories = [
 export default function CircularCategories() {
     const { t } = useLanguage();
     const { interest } = useCRO();
+    const [displayCategories, setDisplayCategories] = React.useState([]);
 
-    const displayCategories = [...categories];
-    if (interest) {
-        const index = displayCategories.findIndex(c => c.slug === interest);
-        if (index > -1) {
-            const [item] = displayCategories.splice(index, 1);
-            displayCategories.unshift(item);
-        }
-    }
+    React.useEffect(() => {
+        const loadCategories = async () => {
+            const allProducts = await getProducts();
+            const activeCategoriesSlugs = new Set(allProducts.filter(p => p.is_active).map(p => p.category?.toLowerCase()));
+
+            let filtered = categories.filter(cat => activeCategoriesSlugs.has(cat.slug));
+
+            // If interest exists, move it to front
+            if (interest) {
+                const index = filtered.findIndex(c => c.slug === interest);
+                if (index > -1) {
+                    const [item] = filtered.splice(index, 1);
+                    filtered.unshift(item);
+                }
+            }
+
+            setDisplayCategories(filtered);
+        };
+        loadCategories();
+    }, [interest]);
+
 
     return (
         <section className="py-16 px-4">
