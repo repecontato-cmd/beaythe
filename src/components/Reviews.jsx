@@ -35,8 +35,57 @@ const reviewsData = [
         text: "Minha pele estava muito seca por causa do frio e esta máscara salvou-me! Uso sempre aos domingos no meu skincare.",
         rating: 5,
         date: "01 Mar 2026"
+    },
+    {
+        id: 5,
+        name: "Sofia R.",
+        product: "Limpiador Facial Suave",
+        text: "O melhor gel de limpeza que já usei. Não deixa a pele esticada e remove bem as impurezas.",
+        rating: 5,
+        date: "28 Feb 2026"
+    },
+    {
+        id: 6,
+        name: "Marta G.",
+        product: "Creme de Noite Nutritivo",
+        text: "Acordo com a pele super macia. A textura é rica mas absorve rápido. Muito satisfeita!",
+        rating: 5,
+        date: "25 Feb 2026"
+    },
+    {
+        id: 7,
+        name: "Isabel T.",
+        product: "Solar Facial SPF 50",
+        text: "Finalmente um protetor solar que não deixa a cara branca! Fica muito bem por baixo da base.",
+        rating: 5,
+        date: "20 Feb 2026"
+    },
+    {
+        id: 8,
+        name: "Cláudia B.",
+        product: "Máscara de Cílios Volume",
+        text: "Dá muito volume sem deixar grumos. É a minha nova favorita para o dia a dia.",
+        rating: 4,
+        date: "15 Feb 2026"
+    },
+    {
+        id: 9,
+        name: "Patrícia V.",
+        product: "Bálsamo Labial Calcio",
+        text: "Recuperou os meus lábios num instante. Super hidratante e nada pegajoso.",
+        rating: 5,
+        date: "10 Feb 2026"
+    },
+    {
+        id: 10,
+        name: "Lúcia F.",
+        product: "Sérum Vitamina C",
+        text: "Estou a usar há duas semanas e já noto as manchas mais claras. Top!",
+        rating: 5,
+        date: "05 Feb 2026"
     }
 ];
+
 
 export default function Reviews() {
     const { t } = useLanguage();
