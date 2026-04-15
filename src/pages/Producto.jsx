@@ -89,7 +89,7 @@ export default function Producto() {
                         </div>
 
                         {/* Main Image */}
-                        <div className="order-1 md:order-2 flex-1 relative aspect-[4/5] bg-[#F9F7F5] rounded-[48px] overflow-hidden group">
+                        <div className="order-1 md:order-2 flex-1 relative aspect-square bg-[#F9F7F5] rounded-[40px] overflow-hidden group">
                             <AnimatePresence mode="wait">
                                 <motion.img
                                     key={selectedImage}
