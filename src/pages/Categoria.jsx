@@ -62,12 +62,7 @@ export default function Categoria() {
         loadProducts();
     }, []);
 
-    useEffect(() => {
-        window.scrollTo(0, 0);
-        setVisibleCount(8);
-        setSelectedFilters({ price: null, skin_tone: null, color_name: null, product_type: null });
-        setSortOption(null);
-    }, [slug]);
+    const { lang, translateProduct } = useLanguage();
 
     const filteredAndSortedProducts = useMemo(() => {
         // First filter by Category/Slug
@@ -113,6 +108,9 @@ export default function Categoria() {
             });
         }
 
+        // Apply translations
+        result = result.map(p => translateProduct(p));
+
         // Sort
         if (sortOption === "menor_preco") result.sort((a, b) => (a.manual_price || a.price) - (b.manual_price || b.price));
         else if (sortOption === "maior_preco") result.sort((a, b) => (b.manual_price || b.price) - (a.manual_price || a.price));
@@ -120,7 +118,8 @@ export default function Categoria() {
         else if (sortOption === "z_a") result.sort((a, b) => b.name.localeCompare(a.name));
 
         return result;
-    }, [allProducts, slug, searchTerm, selectedFilters, sortOption]);
+    }, [allProducts, slug, searchTerm, selectedFilters, sortOption, translateProduct]);
+
 
     const visibleProducts = filteredAndSortedProducts.slice(0, visibleCount);
 
