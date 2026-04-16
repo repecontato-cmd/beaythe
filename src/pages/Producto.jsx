@@ -71,10 +71,10 @@ export default function Producto() {
         <div className="bg-white min-h-screen overflow-hidden">
             {/* 1. Compact Hero Section */}
             <section className="pt-24 md:pt-32 pb-12 px-4 md:px-8 max-w-[1440px] mx-auto">
-                <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 xl:gap-20">
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 xl:gap-20 items-start">
 
                     {/* Left Column: Image Gallery */}
-                    <div className="lg:col-span-7 flex flex-col md:flex-row gap-6">
+                    <div className="lg:col-span-7 flex flex-col md:flex-row gap-6 lg:sticky lg:top-32">
                         {/* Thumbnails (Vertical on Desktop) */}
                         <div className="order-2 md:order-1 flex md:flex-col gap-4 overflow-x-auto md:overflow-y-auto no-scrollbar">
                             {product.images.map((img, idx) => (
