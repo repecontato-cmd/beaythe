@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useMemo } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link, useSearchParams } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Heart, ShoppingBag, ChevronDown, Search, Plus } from 'lucide-react';
 import { useCart } from '../context/CartContext';
@@ -16,7 +16,13 @@ export default function Categoria() {
 
     const [allProducts, setAllProducts] = useState([]);
     const [loading, setLoading] = useState(true);
-    const [searchTerm, setSearchTerm] = useState('');
+    const [searchParams] = useSearchParams();
+    const [searchTerm, setSearchTerm] = useState(searchParams.get('q') || '');
+
+    // Sync URL queries to the search state
+    useEffect(() => {
+        setSearchTerm(searchParams.get('q') || '');
+    }, [searchParams]);
     const [visibleCount, setVisibleCount] = useState(8);
     const [activeFilter, setActiveFilter] = useState(null);
     const [selectedFilters, setSelectedFilters] = useState({
