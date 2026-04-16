@@ -22,6 +22,7 @@ export default function ProductTabs() {
         { id: 'cremas', label: 'Cremas', match: ['crema', 'creme', 'hidratante'] },
         { id: 'ojos', label: 'Ojos', match: ['contorno', 'ojos', 'olhos'] },
         { id: 'labios', label: 'Labios', match: ['labios', 'lips', 'batom'] },
+        { id: 'cabello', label: t('nav.cabello') || 'Cabello', match: ['cabello', 'cabelo', 'hair', 'capilar', 'champô', 'champu'] },
         { id: 'manos-pies', label: t('nav.manos_pies') || 'Manos y Pies', match: ['mano', 'pie', 'mão', 'pe', 'unha', 'uña', 'hand', 'foot', 'nails'] }
     ];
 
@@ -39,7 +40,13 @@ export default function ProductTabs() {
     const filteredProducts = allProducts.filter(p => {
         if (activeTab === 'ALL') return true;
         const currentTab = tabs.find(tab => tab.id === activeTab);
-        const content = (p.name + " " + (p.description || "") + " " + (p.tags?.join(' ') || "")).toLowerCase();
+        const content = (
+            p.name + " " +
+            (p.description || "") + " " +
+            (p.tags?.join(' ') || "") + " " +
+            (typeof p.product_type === 'string' ? p.product_type : "") + " " +
+            (typeof p.category === 'string' ? p.category : "")
+        ).toLowerCase();
         return currentTab.match.some(term => content.includes(term));
     }).slice(0, 8);
 
