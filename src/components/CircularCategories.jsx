@@ -23,6 +23,7 @@ export default function CircularCategories() {
 
     React.useEffect(() => {
         const loadCategories = async () => {
+            const allProducts = await getProducts();
             const activeCategoriesSlugs = new Set();
             allProducts.filter(p => p.is_active).forEach(p => {
                 const content = (
