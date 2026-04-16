@@ -391,14 +391,23 @@ export default function Navbar({ onCartClick, onFavoritesClick, onUserClick }) {
                                             </AnimatePresence>
                                         </div>
                                         <div className="text-center w-full">
-                                            <h4 className="text-[14px] font-bold text-[#C4A49A] mb-2 group-hover:text-[#8A7369] transition-colors truncate">
-                                                <Link to={`/categoria/${item.name === 'ultimas' ? 'outlet' : (item.name === 'promociones' ? 'outlet' : (item.name === 'manos_pies' ? 'manos-pies' : item.name))}`} onClick={() => setActiveMenu(null)}>{t(`nav.${item.name}`)}</Link>
-                                            </h4>
-                                            <div className="flex flex-col gap-1.5 opacity-80 group-hover:opacity-100 transition-opacity">
-                                                {t(`nav.sub_${item.name}`) instanceof Array ? t(`nav.sub_${item.name}`).map((subItem, sIdx) => (
-                                                    <span key={sIdx} className="text-[12px] text-[#5C534F] font-light hover:text-[#C4A49A] transition-colors truncate">{subItem}</span>
-                                                )) : null}
-                                            </div>
+                                            {(() => {
+                                                const catPath = item.name === 'ultimas' ? 'outlet' : (item.name === 'promociones' ? 'outlet' : (item.name === 'manos_pies' ? 'manos-pies' : item.name));
+                                                return (
+                                                    <>
+                                                        <h4 className="text-[14px] font-bold text-[#C4A49A] mb-2 group-hover:text-[#8A7369] transition-colors truncate">
+                                                            <Link to={`/categoria/${catPath}`} onClick={() => setActiveMenu(null)}>{t(`nav.${item.name}`)}</Link>
+                                                        </h4>
+                                                        <div className="flex flex-col gap-1.5 opacity-80 group-hover:opacity-100 transition-opacity">
+                                                            {t(`nav.sub_${item.name}`) instanceof Array ? t(`nav.sub_${item.name}`).map((subItem, sIdx) => (
+                                                                <Link key={sIdx} to={`/categoria/${catPath}?q=${encodeURIComponent(subItem)}`} onClick={() => setActiveMenu(null)} className="text-[12px] text-[#5C534F] font-light hover:text-[#C4A49A] transition-colors truncate">
+                                                                    {subItem}
+                                                                </Link>
+                                                            )) : null}
+                                                        </div>
+                                                    </>
+                                                );
+                                            })()}
                                         </div>
                                     </div>
                                 ))}
