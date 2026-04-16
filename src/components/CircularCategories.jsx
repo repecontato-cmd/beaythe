@@ -23,8 +23,32 @@ export default function CircularCategories() {
 
     React.useEffect(() => {
         const loadCategories = async () => {
-            const allProducts = await getProducts();
-            const activeCategoriesSlugs = new Set(allProducts.filter(p => p.is_active).map(p => p.category?.toLowerCase()));
+            const activeCategoriesSlugs = new Set();
+            allProducts.filter(p => p.is_active).forEach(p => {
+                const content = (
+                    p.name + " " +
+                    (p.description || "") + " " +
+                    (typeof p.product_type === 'string' ? p.product_type : "") + " " +
+                    (typeof p.category === 'string' ? p.category : "")
+                ).toLowerCase();
+
+                categories.forEach(cat => {
+                    const terms = {
+                        rostro: ['rostro', 'rosto', 'facial', 'face', 'piel', 'pele', 'skincare'],
+                        maquillaje: ['maquillaje', 'maquilhagem', 'makeup', 'labios', 'ojos', 'olhos'],
+                        cuerpo: ['cuerpo', 'corpo', 'baño', 'banho', 'hidratacion', 'body'],
+                        cabello: ['cabello', 'cabelo', 'hair', 'capilar'],
+                        'manos-pies': ['mano', 'pie', 'mão', 'pe', 'unha', 'uña', 'hand', 'foot', 'nails'],
+                        bienestar: ['bienestar', 'bem-estar', 'relax', 'zen'],
+                        solares: ['solares', 'solar', 'sol', 'protector', 'spf'],
+                        hombre: ['hombre', 'homem', 'men', 'masculino']
+                    };
+                    const searchTerms = terms[cat.slug] || [cat.slug];
+                    if (searchTerms.some(term => content.includes(term))) {
+                        activeCategoriesSlugs.add(cat.slug);
+                    }
+                });
+            });
 
             let filtered = categories.filter(cat => activeCategoriesSlugs.has(cat.slug));
 
