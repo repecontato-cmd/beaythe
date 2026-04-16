@@ -88,11 +88,16 @@ export default function Categoria() {
         } else if (normalizedSlug === 'todos' || !normalizedSlug) {
             result = [...allProducts];
         } else {
-            // Flexible matching for categories: check name, description, or tags
+            // Flexible matching for categories: check name, description, tags, type, and system category
             result = allProducts.filter(p => {
-                const content = (p.name + " " + (p.description || "")).toLowerCase();
+                const content = (
+                    p.name + " " +
+                    (p.description || "") + " " +
+                    (typeof p.product_type === 'string' ? p.product_type : "") + " " +
+                    (typeof p.category === 'string' ? p.category : "")
+                ).toLowerCase();
                 const terms = {
-                    rostro: ['rostro', 'rosto', 'facial', 'face', 'piel', 'pele'],
+                    rostro: ['rostro', 'rosto', 'facial', 'face', 'piel', 'pele', 'skincare'],
                     maquillaje: ['maquillaje', 'maquilhagem', 'makeup', 'labios', 'ojos', 'olhos'],
                     cuerpo: ['cuerpo', 'corpo', 'baño', 'banho', 'hidratacion', 'body'],
                     cabello: ['cabello', 'cabelo', 'hair', 'capilar'],
