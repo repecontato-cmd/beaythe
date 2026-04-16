@@ -107,7 +107,13 @@ export default function Categoria() {
 
         // Search filter
         if (searchTerm) {
-            result = result.filter(p => p.name.toLowerCase().includes(searchTerm.toLowerCase()));
+            const term = searchTerm.toLowerCase();
+            result = result.filter(p =>
+                p.name.toLowerCase().includes(term) ||
+                (p.description && p.description.toLowerCase().includes(term)) ||
+                (typeof p.product_type === 'string' && p.product_type.toLowerCase().includes(term)) ||
+                (typeof p.category === 'string' && p.category.toLowerCase().includes(term))
+            );
         }
 
         // Dropdown filters (simplified mapping for real data)
